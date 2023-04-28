@@ -3,37 +3,37 @@
 include_once("connection.php");
 
 // create user table
-$stmt = $conn->prepare("DROP TABLE IF EXISTS TblUsers;
-CREATE TABLE TblUsers
+$stmt = $conn->prepare("DROP TABLE IF EXISTS tblUsers;
+CREATE TABLE tblUsers
 (userID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 userType TINYINT(1) NOT NULL,
 userEmail VARCHAR(40) NOT NULL,
 userPassword VARCHAR(30) NOT NULL,
 userForename VARCHAR(20) NOT NULL,
 userSurname VARCHAR(20) NOT NULL,
-userTelephone INT(11),
+userTelephone VARCHAR(11),
 userAddressLine VARCHAR(20),
 userPostcode VARCHAR(7))");
 $stmt->execute();
 
 // create books table
-$stmt = $conn->prepare("DROP TABLE IF EXISTS TblBooks;
-CREATE TABLE TblBooks
+$stmt = $conn->prepare("DROP TABLE IF EXISTS tblBooks;
+CREATE TABLE tblBooks
 (bookID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 bookName VARCHAR(100) NOT NULL,
 bookAuthor VARCHAR(100),
 bookSubject VARCHAR(20),
 bookLevel VARCHAR(20),
 bookDescription VARCHAR(1000) NOT NULL,
-bookImage INT(100),
+bookImage VARCHAR(100),
 bookPrice FLOAT(4,2) NOT NULL,
 bookSold TINYINT(1) NOT NULL,
 userID INT(6) NOT NULL)");
 $stmt->execute();
 
 // create orders table
-$stmt = $conn->prepare("DROP TABLE IF EXISTS TblOrders;
-CREATE TABLE TblOrders
+$stmt = $conn->prepare("DROP TABLE IF EXISTS tblOrders;
+CREATE TABLE tblOrders
 (orderID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 orderContents VARCHAR(255) NOT NULL,
 orderPrice FLOAT(4,2) NOT NULL,
@@ -48,7 +48,7 @@ userID INT(6))");
 $stmt->execute();
 
 // create basket table
-$stmt = $conn->prepare("DROP TABLE IF EXISTS TblBasket;
+$stmt = $conn->prepare("DROP TABLE IF EXISTS tblBasket;
 CREATE TABLE tblBasket
 (userID INT(6),
 basketContents VARCHAR(255) NOT NULL,
@@ -56,8 +56,8 @@ basketPrice FLOAT(4,2))");
 $stmt->execute();
 
 // create messages table
-$stmt = $conn->prepare("DROP TABLE IF EXISTS TblMessages;
-CREATE TABLE TblMessages
+$stmt = $conn->prepare("DROP TABLE IF EXISTS tblMessages;
+CREATE TABLE tblMessages
 (messageID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 senderUserID INT(6) NOT NULL,
 recieveUserID INT(6) NOT NULL,
@@ -72,7 +72,7 @@ $users = [
   ];
 
 // inputs array into table by executing row-by-row
-$stmt = $conn->prepare("INSERT INTO TblUsers (userType, userEmail, userPassword, userForename, userSurname, userTelephone, userAddressLine,userPostcode) VALUES (?,?,?,?,?,?,?,?)");
+$stmt = $conn->prepare("INSERT INTO tblUsers (userType, userEmail, userPassword, userForename, userSurname, userTelephone, userAddressLine,userPostcode) VALUES (?,?,?,?,?,?,?,?)");
 try {
     $conn->beginTransaction();
     foreach ($users as $row)
@@ -91,7 +91,7 @@ $books = [
   ];
 
 // inputs array into table by executing row-by-row
-$stmt = $conn->prepare("INSERT INTO TblBooks (bookId, bookName, bookAuthor, bookSubject, bookLevel, bookDescription, bookImage, bookPrice, bookSold, userID) VALUES (?,?,?,?,?,?,?,?,?,?)");
+$stmt = $conn->prepare("INSERT INTO tblBooks (bookId, bookName, bookAuthor, bookSubject, bookLevel, bookDescription, bookImage, bookPrice, bookSold, userID) VALUES (?,?,?,?,?,?,?,?,?,?)");
 try {
     $conn->beginTransaction();
     foreach ($books as $row)
