@@ -65,11 +65,45 @@ sendDate DATETIME NOT NULL,
 content VARCHAR(1023) NOT NULL)");
 $stmt->execute();
 
-// insert test customer
-$sql = "INSERT INTO TblUsers (userType, userEmail, userPassword, userForename, userSurname, userTelephone, userAddressLine,userPostcode)
-  VALUES ('1', 'jill,wones@aol.com', 'pass', 'Jill', 'Wones', '07957159532', 'Laundimer House', 'PE84AP')";
-  // use exec() because no results are returned
-  $conn->exec($sql);
+// create 2D array of users
+$users = [
+  ['1', 'jill,wones@aol.com', 'pass', 'Jill', 'Wones', '07957159532', 'Laundimer House', 'PE84AP'],
+  ['0', 'roris.byabov@yahoo.com', 'pass', 'Roris', 'Byabov', '07957159532', 'Laundimer House', 'PE84AP'],
+  ];
+
+// inputs array into table by executing row-by-row
+$stmt = $conn->prepare("INSERT INTO TblUsers (userType, userEmail, userPassword, userForename, userSurname, userTelephone, userAddressLine,userPostcode) VALUES (?,?,?,?,?,?,?,?)");
+try {
+    $conn->beginTransaction();
+    foreach ($users as $row)
+    {
+        $stmt->execute($row);
+    }
+    $conn->commit();
+}catch (Exception $e){
+    $conn->rollback();
+    throw $e;
+}
+
+// create 2D array of books
+$books = [
+  ['000001', 'OCR Computer Science Algorithms', 'Craig and Dave', 'Computer Science', 'A-Level', 'Contains all of the required algorithms to pass your exams', '000001.png', '6.40', '0', '000001'],
+  ];
+
+// inputs array into table by executing row-by-row
+$stmt = $conn->prepare("INSERT INTO TblBooks (bookId, bookName, bookAuthor, bookSubject, bookLevel, bookDescription, bookImage, bookPrice, bookSold, userID) VALUES (?,?,?,?,?,?,?,?,?,?)");
+try {
+    $conn->beginTransaction();
+    foreach ($books as $row)
+    {
+        $stmt->execute($row);
+    }
+    $conn->commit();
+}catch (Exception $e){
+    $conn->rollback();
+    throw $e;
+}
+
 
 $conn=null;
 ?>
