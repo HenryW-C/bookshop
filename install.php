@@ -67,7 +67,7 @@ $stmt->execute();
 
 // create 2D array of users
 $users = [
-  ['1', 'jill,wones@aol.com', 'pass', 'Jill', 'Wones', '07957159532', 'Laundimer House', 'PE84AP'],
+  ['1', 'jill.wones@aol.com', 'pass', 'Jill', 'Wones', '07957159532', 'Laundimer House', 'PE84AP'],
   ['0', 'roris.byabov@yahoo.com', 'pass', 'Roris', 'Byabov', '07957159532', 'Laundimer House', 'PE84AP'],
   ];
 
@@ -88,6 +88,9 @@ try {
 // create 2D array of books
 $books = [
   ['000001', 'OCR Computer Science Algorithms', 'Craig and Dave', 'Computer Science', 'A-Level', 'Contains all of the required algorithms to pass your exams', '000001.png', '6.40', '0', '000001'],
+  ['000002', 'A Promised Land', 'Barack Obama', 'Politics', null, 'Memoir', '000002.png', '7.30', '0', '000001'],
+  ['000003', 'CGP IGCSE Maths', 'CGP', 'Maths', 'GCSE', 'Edexcel IGCSE Maths, 2018', '000003.png', '8.20', '1', '000002'],
+  ['000004', 'CIE Physics (A Level)', 'David Sang, Graham Jones, Gurinder Chadha & Richard Woodside', 'Physics', 'A-Level', 'cie a level physics textbook. little wear. third edition', '000004.png', '11.12', '0', '000002'],
   ];
 
 // inputs array into table by executing row-by-row
@@ -104,6 +107,20 @@ try {
     throw $e;
 }
 
+// insert test order
+$stmt = $conn->prepare("INSERT INTO tblOrders (orderID, userID, orderContents, orderPrice, userAddressLine, userPostcode, cardNo, cardName, cardExpiry, cardCVC, orderDate) 
+    VALUES ('000001','000001','000001,000002','13.70','Laundimer House','PE84AP','5105105105105100','MR HENRY WOOD-COLLINS','07/25','218','2023-03-14')");
+$stmt->execute();
+
+// insert test messages
+$stmt = $conn->prepare("INSERT INTO tblMessages (messageID, senderUserID, recieveUserID, sendDate, content) 
+    VALUES ('000001','000001','000002','2023-03-04 10:52:31','Hello, I was wondering if this book, number 632456, contains the original audio CD? Many thanks, Chantelle.')");
+$stmt->execute();
+
+// insert test basket
+$stmt = $conn->prepare("INSERT INTO tblBasket (userID, basketContents, basketPrice) 
+    VALUES ('000001','000002,000003','15.50')");
+$stmt->execute();
 
 $conn=null;
 ?>
