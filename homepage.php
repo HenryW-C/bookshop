@@ -15,16 +15,17 @@
     <!-- top navbar -->
     <div class="navbar_top">
         <div class="container-fluid">
-            
-            <a class="logo" class="button" href="#home">Bella's<br>Books</a>
-
-            <div class="float-end">
-                <div  class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-primary">Basket</button>
-                    <button type="button" class="btn btn-primary">My Account</button>
-                    <button type="button" class="btn btn-primary">Sign In</button>
+            <a class="logo" class="button" href="#homepage">Bella's<br>Books
+                <span>
+                <div class="float-end">
+                    <div  class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-primary">Basket</button>
+                        <button type="button" class="btn btn-primary">My Account</button>
+                        <button type="button" class="btn btn-primary">Sign In</button>
+                    </div> 
                 </div> 
-            </div> 
+                </span>
+            </a>
         </div>
     </div>
 
@@ -35,7 +36,7 @@
 
     <!-- bottom navbar -->
     <div class="navbar_bottom">
-        &nbsp
+        <a> </a>
     </div>
    
 </body>
