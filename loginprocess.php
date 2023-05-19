@@ -18,7 +18,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
             $_SESSION['name']=$row["userEmail"];
 
             if (!isset($_SESSION['backURL'])){
-                $backURL= "/bookshop/template.php";
+                $backURL= "/bookshop/homepage.php";
 
             }else{
                 $backURL=$_SESSION['backURL'];
@@ -30,5 +30,5 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
             header('Location: login.php');
         }    
     }
-$conn=null;
+header('Location: login.php');
 ?>
