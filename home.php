@@ -12,7 +12,7 @@
     
     <div class="navbar_top">
         <a class="logo" class="button" href="#home">Bella's<br>Books</a>
-        <div class="btn-group" role="group" aria-label="Basic example">
+        <div class="btn-group" role="group">
             <button type="button" class="btn btn-primary">Basket</button>
             <button type="button" class="btn btn-primary">My Account</button>
             <button type="button" class="btn btn-primary">Sign In</button>
