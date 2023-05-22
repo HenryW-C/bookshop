@@ -2,7 +2,7 @@
 <html>
 <head>
     
-    <title>Login</title>
+    <title>Template</title>
     <!-- links to stylesheets and google fonts -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -20,7 +20,7 @@
                 <div class="float-end">
                     <div  class="btn-group" role="group" aria-label="Basic example">
                         <a type="button" class="btn btn-primary">Basket</a>
-                        <a type="button" class="btn btn-primary">My Account</a>
+                        <a type="button" href="/bookshop/login.php" class="btn btn-primary">Sign In</a>
                         <a type="button" href="/bookshop/signup.php" class="btn btn-primary">Sign Up</a>
                     </div> 
                 </div> 
@@ -30,11 +30,7 @@
 
     <!-- body of website -->
     <div class="main">
-      <form action="loginprocess.php" method= "POST">
-         User email:<input type="text" name="Email"><br>
-         Password:<input type="password" name="Pword"><br>
-         <input type="submit" value="Login">
-      </form>
+        <p>Body</p>
     </div> 
 
     <!-- bottom navbar -->
