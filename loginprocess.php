@@ -6,7 +6,7 @@ include_once ("connection.php");
 array_map("htmlspecialchars", $_POST);
 
 $stmt = $conn->prepare("SELECT * FROM tblusers WHERE userEmail =:email ;" );
-$stmt->bindParam(':email', $_POST['email']);
+$stmt->bindParam(':email', $_POST['Email']);
 $stmt->execute();
 
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
@@ -24,11 +24,14 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
                 $backURL=$_SESSION['backURL'];
             }
             unset($_SESSION['backURL']);
-            header('Location: ' . $backURL);
+            echo("ok");
+            // header('Location: ' . $backURL);
 
         }else{
-            header('Location: login.php');
+            echo("password wrong");
+            // header('Location: login.php');
         }    
     }
-header('Location: login.php');
+echo("no user");
+// header('Location: login.php');
 ?>

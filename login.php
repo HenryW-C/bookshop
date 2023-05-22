@@ -21,7 +21,7 @@
                     <div  class="btn-group" role="group" aria-label="Basic example">
                         <a type="button" class="btn btn-primary">Basket</a>
                         <a type="button" class="btn btn-primary">My Account</a>
-                        <a type="button" href="/bookshop/login.php" class="btn btn-primary">Sign In</a>
+                        <a type="button" href="/bookshop/signup.php" class="btn btn-primary">Sign Up</a>
                     </div> 
                 </div> 
                 </span>
@@ -31,8 +31,8 @@
     <!-- body of website -->
     <div class="main">
       <form action="loginprocess.php" method= "POST">
-         User email:<input type="text" name="email"><br>
-         Password:<input type="password" name="pword"><br>
+         User email:<input type="text" name="Email"><br>
+         Password:<input type="password" name="Pword"><br>
          <input type="submit" value="Login">
       </form>
     </div> 
