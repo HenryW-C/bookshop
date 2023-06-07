@@ -38,6 +38,10 @@
             Phone:<input type="tel" name="phone"><br>
             Address Line 1:<input type="text" name="address"><br>
             Postcode:<input type="text" name="postcode"><br>
+            Card Number:<input type="password" name="cardno"><br>
+            Card Name:<input type="text" name="cardname"><br>
+            Card Expiry Date:<input type="text" name="cardexpiry"><br>
+            Card Security Code:<input type="password" name="cardcvc"><br>
             <input type="submit" value="Sign up">
         </form>      
     </div> 

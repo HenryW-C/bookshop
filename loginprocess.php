@@ -5,7 +5,7 @@ include_once ("connection.php");
 // sanitise  $_POST array
 array_map("htmlspecialchars", $_POST);
 
-$stmt = $conn->prepare("SELECT * FROM tblusers WHERE userEmail =:email ;" );
+$stmt = $conn->prepare("SELECT * FROM tblusers WHERE email =:email ;" );
 $stmt->bindParam(':email', $_POST['Email']);
 $stmt->execute();
 
