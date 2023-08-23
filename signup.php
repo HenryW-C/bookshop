@@ -16,15 +16,6 @@
     <div class="navbar_top">
         <div class="container-fluid">
             <a class="logo" class="button" href="/bookshop/homepage.php">Bella's<br>Books </a>
-                <span>
-                <div class="float-end">
-                    <div  class="btn-group" role="group" aria-label="Basic example">
-                        <a type="button" class="btn btn-primary">Basket</a>
-                        <a type="button" class="btn btn-primary">My Account</a>
-                        <a type="button" href="/bookshop/login.php" class="btn btn-primary">Sign In</a>
-                    </div> 
-                </div> 
-                </span>
         </div>
     </div>
 
