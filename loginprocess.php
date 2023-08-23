@@ -1,4 +1,4 @@
-<?php
+<?php 
 session_start(); 
 include_once ("connection.php");
 
@@ -10,6 +10,7 @@ $stmt = $conn->prepare("SELECT * FROM tblusers WHERE email =:email ;" );
 $stmt->bindParam(':email', $_POST['Email']);
 $stmt->execute();
 
+// initiates a while loop that iterates through the rows of the results from executing the prepared statement
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
     { 
         $hashed = $row['password']; 
