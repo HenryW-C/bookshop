@@ -19,9 +19,16 @@
                 <span>
                 <div class="float-end">
                     <div  class="btn-group" role="group" aria-label="Basic example">
-                        <a type="button" class="btn btn-primary">Basket</a>
+                        <!-- php if statement to show select buttons dependant on logged in -->
+                        <?php session_start(); if(isset($_SESSION['Email'])): ?>
+                        <a type="button" href="/bookshop/basket.php" class="btn btn-primary">Basket</a>
+                        <a type="button" href="/bookshop/logout.php" class="btn btn-primary">Logout</a>
+
+                        <?php else: ?>
                         <a type="button" href="/bookshop/login.php" class="btn btn-primary">Sign In</a>
                         <a type="button" href="/bookshop/signup.php" class="btn btn-primary">Sign Up</a>
+
+                        <?php endif ?>
                     </div> 
                 </div> 
                 </span>

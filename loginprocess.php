@@ -5,18 +5,18 @@ include_once ("connection.php");
 // sanitise  $_POST array
 array_map("htmlspecialchars", $_POST);
 
+// selects all columns from the user's row
 $stmt = $conn->prepare("SELECT * FROM tblusers WHERE email =:email ;" );
 $stmt->bindParam(':email', $_POST['Email']);
 $stmt->execute();
 
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
     { 
-        $hashed = $row['Pword'];
-        $attempt = $_POST['passwd'];
+        $hashed = $row['password']; 
+        $attempt = $_POST['Pword'];
 
+        // if password is correct, sets session and redirects, otherwise returns to login
         if(password_verify($attempt,$hashed)){
-            $_SESSION['name']=$row["userEmail"];
-
             if (!isset($_SESSION['backURL'])){
                 $backURL= "/bookshop/homepage.php";
 
@@ -24,14 +24,11 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
                 $backURL=$_SESSION['backURL'];
             }
             unset($_SESSION['backURL']);
-            echo("ok");
-            // header('Location: ' . $backURL);
+            $_SESSION['Email']=$row["email"];
+            header('Location: ' . $backURL);
 
         }else{
-            echo("password wrong");
-            // header('Location: login.php');
+            header('Location: login.php');
         }    
     }
-echo("no user");
-// header('Location: login.php');
 ?>
