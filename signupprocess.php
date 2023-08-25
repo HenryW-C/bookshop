@@ -8,6 +8,7 @@ TblUsers (userID,userType,email,password,forename,surname,telephone,addressLine,
 VALUES (null,0,:email,:password,:forename,:surname,:phone,:address,:postcode,:cardno,:cardname,:cardexpiry,:cardcvc)");
 
 $hashed_password = password_hash($_POST["passwd"], PASSWORD_DEFAULT);
+
 $stmt->bindParam(':email', $_POST["email"]);
 $stmt->bindParam(':password', $hashed_password);
 $stmt->bindParam(':forename', $_POST["forename"]);
