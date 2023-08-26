@@ -26,6 +26,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC))
             }
             unset($_SESSION['backURL']);
             $_SESSION['Email']=$row["email"];
+            $_SESSION['UserType']=$row["userType"];
             header('Location: ' . $backURL);
 
         }else{
