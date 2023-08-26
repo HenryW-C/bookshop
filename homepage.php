@@ -19,7 +19,7 @@
                 <span>
                 <div class="float-end">
                     <div  class="btn-group" role="group" aria-label="Basic example">
-                        <!-- php if statement to show select buttons dependant on logged in -->
+                        <!-- php switch statement to show select buttons dependant on user type -->
                         <?php session_start(); 
                         switch ($_SESSION['UserType']??'') { 
                         case(1): ?>
