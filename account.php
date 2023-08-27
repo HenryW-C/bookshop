@@ -1,3 +1,12 @@
+<?php
+// starts session and ensures that user is logged in, if not, they are sent to homepage
+session_start(); 
+
+if (!isset($_SESSION['UserType'])) {
+  header('Location: homepage.php');
+  }
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,24 +29,18 @@
                 <div class="float-end">
                     <div  class="btn-group" role="group" aria-label="Basic example">
                         <!-- php switch statement to show select buttons dependant on user type -->
-                        <?php session_start(); 
+                        <?php 
                         switch ($_SESSION['UserType']??'') { 
                         case(1): ?>
                         <a type="button" href="/bookshop/admintools.php" class="btn btn-primary">Admin Tools</a>
-                        <a type="button" href="/bookshop/account.php" class="btn btn-primary">My Account</a>
                         <a type="button" href="/bookshop/basket.php" class="btn btn-primary">Basket</a>
                         <a type="button" href="/bookshop/logout.php" class="btn btn-primary">Logout</a>
                         <?php break; ?>
 
                         <?php case(0): ?>
                         <a type="button" href="/bookshop/basket.php" class="btn btn-primary">Basket</a>
-                        <a type="button" href="/bookshop/account.php" class="btn btn-primary">My Account</a>
                         <a type="button" href="/bookshop/logout.php" class="btn btn-primary">Logout</a>
                         <?php break; ?>
-
-                        <?php default: ?>
-                        <a type="button" href="/bookshop/login.php" class="btn btn-primary">Sign In</a>
-                        <a type="button" href="/bookshop/signup.php" class="btn btn-primary">Sign Up</a>
                         <?php } ?>
                     </div> 
                 </div> 

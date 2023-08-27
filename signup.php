@@ -21,20 +21,26 @@
 
     <!-- body of website -->
     <div class="main">
+    <div class="text-center">
+        <h3> Sign Up </h3>
         <form action="signupprocess.php" method = "post">
-            Email:<input type="email" name="email"><br>
-            First Name:<input type="text" name="forename"><br>
-            Surname:<input type="text" name="surname"><br>
-            Password:<input type="password" name="passwd"><br>
-            Phone:<input type="tel" name="phone"><br>
-            Address Line 1:<input type="text" name="address"><br>
-            Postcode:<input type="text" name="postcode"><br>
-            Card Number:<input type="password" name="cardno"><br>
-            Card Name:<input type="text" name="cardname"><br>
-            Card Expiry Date:<input type="text" name="cardexpiry"><br>
-            Card Security Code:<input type="password" name="cardcvc"><br>
+            <input type="email" name="email" placeholder="Email" required><br>
+            <input type="text" name="forename" placeholder="First Name" required><br>
+            <input type="text" name="surname" placeholder="Surname" required><br>
+            <input type="password" name="passwd" placeholder="Password" required><br>
+            <input type="tel" name="phone" placeholder="Phone" required><br>
+            <br>
+            <input type="text" name="address" placeholder="Address Line 1" required><br>
+            <input type="text" name="postcode" placeholder="Postcode" required><br>
+            <br>
+            <input type="password" name="cardno" placeholder="Card Number" required><br>
+            <input type="text" name="cardname" placeholder="Card Name" required><br>
+            <input type="text" name="cardexpiry" placeholder="Card Expiry Date" required><br>
+            <input type="password" name="cardcvc" placeholder="Card CVC" required><br>
+            <br>
             <input type="submit" value="Sign up">
         </form>      
+    </div>
     </div> 
 
     <!-- bottom navbar -->

@@ -20,12 +20,25 @@
     </div>
 
     <!-- body of website -->
+    
     <div class="main">
-      <form action="loginprocess.php" method= "POST">
-         User email: <input type="text" name="Email"><br><br>
-         Password: <input type="password" name="Pword"><br>
-         <input type="submit" value="Login">
-      </form>
+            <form action="loginprocess.php" method= "POST">
+                <div class="text-center">
+                        <h3> Login </h3>
+                            <p style="color:red;">
+                                <?php
+                                session_start(); 
+                                if (isset($_SESSION['Message'])){
+                                    echo($_SESSION['Message']);
+                                    unset($_SESSION['Message']);
+                                } 
+                                ?>
+                            </p>
+                        <input type="text" name="Email" placeholder="Email" required><br><br>
+                        <input type="password" name="Pword" placeholder="Password" required><br><br>
+                        <input type="submit" value="Login">
+                </div>
+            </form>
     </div> 
 
     <!-- bottom navbar -->
