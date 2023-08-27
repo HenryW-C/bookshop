@@ -27,6 +27,7 @@
                         <h3> Login </h3>
                             <p style="color:red;">
                                 <?php
+                                // displays an error message if necessary
                                 session_start(); 
                                 if (isset($_SESSION['Message'])){
                                     echo($_SESSION['Message']);
