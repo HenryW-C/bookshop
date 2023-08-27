@@ -40,6 +40,6 @@ if($results){
 else{
 // if the email does not exist, the user is notified
     $_SESSION['Message']="User does not exist, please try again";
-        header('Location: login.php');
+    header('Location: login.php');
 }
 ?>  

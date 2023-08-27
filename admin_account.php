@@ -1,4 +1,7 @@
 <?php
+// link to connection.php to access the database
+include_once("connection.php");
+
 // starts session and ensures that user is logged in as admin, if not, they are sent to homepage
 session_start(); 
 
@@ -11,7 +14,7 @@ if ($_SESSION['UserType'] != 1) {
 <html>
 <head>
     
-    <title>Home</title>
+    <title>Manage Account</title>
     <!-- links to stylesheets and google fonts -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
