@@ -55,7 +55,7 @@ if ($_SESSION['UserType'] != 1) {
                 <div class="col-md-4">
                     <div class="custom-column">
                         <h3>Past Orders</h3>
-                        <p>[Past Orders]]</p>
+                        <p>[Past Orders]</p>
                     </div>
                 </div>
                 <div class="col-md-4">
