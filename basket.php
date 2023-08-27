@@ -28,25 +28,31 @@ if (!isset($_SESSION['UserType'])) {
     <div class="navbar_top">
         <div class="container-fluid">
             <a class="logo" class="button" href="/bookshop/homepage.php">Bella's<br>Books </a>
-                <span>
-                <div class="float-end">
-                    <div  class="btn-group" role="group" aria-label="Basic example">
-                        <!-- php switch statement to show select buttons dependant on user type -->
-                        <?php 
-                        switch ($_SESSION['UserType']??'') { 
-                        case(1): ?>
-                        <a type="button" href="/bookshop/admin_account.php" class="btn btn-primary">My Account</a>
-                        <a type="button" href="/bookshop/logout.php" class="btn btn-primary">Logout</a>
-                        <?php break; ?>
+            <div class="search-bar">
+                <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Go</button>
+                </form>
+            </div>
+            <span>
+            <div class="float-end">
+                <div  class="btn-group" role="group" aria-label="Basic example">
+                    <!-- php switch statement to show select buttons dependant on user type -->
+                    <?php 
+                    switch ($_SESSION['UserType']??'') { 
+                    case(1): ?>
+                    <a type="button" href="/bookshop/admin_account.php" class="btn btn-primary">My Account</a>
+                    <a type="button" href="/bookshop/logout.php" class="btn btn-primary">Logout</a>
+                    <?php break; ?>
 
-                        <?php case(0): ?>
-                        <a type="button" href="/bookshop/customer_account.php" class="btn btn-primary">My Account</a>
-                        <a type="button" href="/bookshop/logout.php" class="btn btn-primary">Logout</a>
-                        <?php break; ?>
-                        <?php } ?>
-                    </div> 
+                    <?php case(0): ?>
+                    <a type="button" href="/bookshop/customer_account.php" class="btn btn-primary">My Account</a>
+                    <a type="button" href="/bookshop/logout.php" class="btn btn-primary">Logout</a>
+                    <?php break; ?>
+                    <?php } ?>
                 </div> 
-                </span>
+            </div> 
+            </span>
         </div>
     </div>
 

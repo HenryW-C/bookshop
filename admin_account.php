@@ -25,11 +25,16 @@ if ($_SESSION['UserType'] != 1) {
     <div class="navbar_top">
         <div class="container-fluid">
             <a class="logo" class="button" href="/bookshop/homepage.php">Bella's<br>Books </a>
+            <div class="search-bar">
+                <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Go</button>
+                </form>
+            </div>
                 <span>
                 <div class="float-end">
                     <div  class="btn-group" role="group" aria-label="Basic example">
                         <a type="button" href="/bookshop/basket.php" class="btn btn-primary">Basket</a>
-                        <a type="button" href="/bookshop/account.php" class="btn btn-primary">My Account</a>
                         <a type="button" href="/bookshop/logout.php" class="btn btn-primary">Logout</a>
                     </div> 
                 </div> 
