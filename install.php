@@ -56,6 +56,13 @@ sendDate DATETIME NOT NULL,
 content VARCHAR(1000) NOT NULL)");
 $stmt->execute();
 
+// create categories table
+$stmt = $conn->prepare("DROP TABLE IF EXISTS tblCategories;
+CREATE TABLE tblCategories
+(category VARCHAR(100) PRIMARY KEY,
+categoryType BOOL NOT NULL)");
+$stmt->execute();
+
 // create 2D array of users
 $users = [
   ['0', 'jill.wones@aol.com', password_hash("pass", PASSWORD_DEFAULT), 'Jill', 'Wones', '07957159532', 'Laundimer House', 'PE84AP', '5105105105105100', 'MR JILL WONES', '07/25', '218'],
@@ -97,6 +104,29 @@ try {
     $conn->rollback();
     throw $e;
 }
+
+// create 2D array of categories
+$categories = [
+    ['Physics', 1],
+    ['Maths', 1],
+    ['Computer Science', 1],
+    ['GCSE', 0],
+    ['A-Level', 0],
+    ];
+  
+  // inputs array into table by executing row-by-row
+  $stmt = $conn->prepare("INSERT INTO tblCategories (category, categoryType) VALUES (?,?)");
+  try {
+      $conn->beginTransaction();
+      foreach ($categories as $row)
+      {
+          $stmt->execute($row);
+      }
+      $conn->commit();
+  }catch (Exception $e){
+      $conn->rollback();
+      throw $e;
+  }
 
 // insert test order
 $stmt = $conn->prepare("INSERT INTO tblOrders (orderID, totalPrice, orderDate, userID) 

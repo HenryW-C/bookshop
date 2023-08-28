@@ -27,31 +27,46 @@ if (!isset($_SESSION['UserType'])) {
     <!-- top navbar -->
     <div class="navbar_top">
         <div class="container-fluid">
-            <a class="logo" class="button" href="/bookshop/homepage.php">Bella's<br>Books </a>
+            <!-- logo and link to homepage -->
+            <a class="logo" type="button" href="/bookshop/homepage.php">Bella's<br>Books </a>
+
+            <!-- search bar including dropdown box and search button -->
             <div class="search-bar">
-                <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search">
-                <button class="btn btn-outline-success" type="submit">Go</button>
+                <form class="d-flex" id="searchForm">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown">
+                            <span id="selectedOption">Categories</span>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#" data-value="Option 1">Option 1</a>
+                            <a class="dropdown-item" href="#" data-value="Option 2">Option 2</a>
+                            <a class="dropdown-item" href="#" data-value="Option 3">Option 3</a>
+                        </div>
+                    </div>
+                    <input type="hidden" id="selectedValue" name="selectedValue">
+                    <input class="form-control me-2" type="search" placeholder="Search">
+                    <button class="btn btn-outline-success go-button" type="submit">Go</button>
                 </form>
             </div>
-            <span>
-            <div class="float-end">
-                <div  class="btn-group" role="group">
-                    <!-- php switch statement to show select buttons dependant on user type -->
-                    <?php 
-                    switch ($_SESSION['UserType']??'') { 
-                    case(1): ?>
-                    <a type="button" href="/bookshop/admin_account.php" class="btn btn-primary">My Account</a>
-                    <a type="button" href="/bookshop/logout.php" class="btn btn-primary">Logout</a>
-                    <?php break; ?>
 
-                    <?php case(0): ?>
-                    <a type="button" href="/bookshop/customer_account.php" class="btn btn-primary">My Account</a>
-                    <a type="button" href="/bookshop/logout.php" class="btn btn-primary">Logout</a>
-                    <?php break; ?>
-                    <?php } ?>
+            <!-- button at end of navbar -->
+            <span>
+                <div class="float-end">
+                    <div  class="btn-group" role="group">
+                        <!-- php switch statement to show select buttons dependant on user type -->
+                        <?php
+                        switch ($_SESSION['UserType']??'') { 
+                        case(1): ?>
+                        <a type="button" href="/bookshop/admin_account.php" class="btn btn-primary">My Account</a>
+                        <a type="button" href="/bookshop/logout.php" class="btn btn-primary">Logout</a>
+                        <?php break; ?>
+
+                        <?php case(0): ?>
+                        <a type="button" href="/bookshop/customer_account.php" class="btn btn-primary">My Account</a>
+                        <a type="button" href="/bookshop/logout.php" class="btn btn-primary">Logout</a>
+                        <?php } ?>
+                    </div> 
                 </div> 
-            </div> 
             </span>
         </div>
     </div>
