@@ -88,7 +88,23 @@ $books = [
   ['000001', 'OCR Computer Science Algorithms', 'Craig and Dave', 'Computer Science', 'A-Level', 'Contains all of the required algorithms to pass your exams', '000001.png', '6.40', '0', '000001', null, null],
   ['000002', 'A Promised Land', 'Barack Obama', 'Politics', null, 'Memoir', '000002.png', '7.30', '0', '000001', null, null],
   ['000003', 'CGP IGCSE Maths', 'CGP', 'Maths', 'GCSE', 'Edexcel IGCSE Maths, 2018', '000003.png', '8.20', '1', '000002', '000001', '000001'],
-  ['000004', 'CIE Physics (A Level)', 'David Sang, Graham Jones, Gurinder Chadha & Richard Woodside', 'Physics', 'A-Level', 'cie a level physics textbook. little wear. third edition', '000004.png', '11.12', '0', '000002', null, null],
+  ['000004', 'Quantum Physics For Dummies', 'J. Robert Oppenheimer',  'Physics',  null,  'very little damage, except missing one chapter (ripped out)', '000004.png', '11.12', '0', '000002', null, null],
+  ['000005', 'Maths: The Study Book', 'Richard Parsons',  'Maths',  'KS3',  'Exciting and fun read for the kids!', '000005.png', '7.39', '0', '000002', null, null],
+  ['000006', 'Free Market Anarchism: The Future?', 'Nancy Scott',  'Politics',  'Bachelors',  'Free Market Anarchism: The Future?', '000006.png', '5.40', '0', '000002', null, null],
+  ['000007', 'Angels In America: Script', 'Tony Kushner',  'Drama',  null,  'Very good book.', '000007.png', '13.42', '0', '000002', null, null],
+  ['000008', 'Mountains and Rivers and Things', 'Aunt Arctica',  'Geography',  'GCSE',  'good condition', '000008.png', '10.00', '0', '000001', null, null],
+  ['000009', 'Introduction to Sociology', 'Andrew F. Parker',  'Sociology',  'A-Level',  '', '000009.png', '1.32', '0', '000002', null, null],
+  ['000010', 'Access 95, A User Guide', 'B. Gates',  'Computer Science',  null,  'Very helpful, recommend!', '000010.png', '17.42', '0', '000001', null, null],
+  ['000011', 'College Physics 76A', null,  'Physics',  'Bachelors',  'boring', null, '9.22', '0', '000002', null, null],
+  ['000012', 'The Riemann Hypothesis: A Million Dollar Problem', 'by Roland van der Veen',  'Maths',  null,  'medium quality', '000012.png', '7.21', '0', '000002', null, null],
+  ['000013', 'Vindication of the Rights of Woman', 'Mary Woolstonecraft',  'Politics',  null,  'published:1988', '000013.png', '15.32', '0', '000001', null, null],
+  ['000014', 'Arcadia', 'Tom Stoppard',  'Drama',  null,  'poor quality, water damage', '000014.png', '4.45', '0', '000002', null, null],
+  ['000015', 'KS3 Human Geography', null,  'Geography',  'KS3',  'excellent quality', '000015.png', '9.10', '0', '000001', null, null],
+  ['000016', 'The Cambridge Handbook of Social Theory', 'Peter Kivisto',  'Sociology',  'Bachelors',  'good quality', null, '10.11', '0', '000001', null, null],
+  ['000017', 'Computers: What are they and what do they do?', 'J. Evaristo',  'Computer Science',  'KS3',  'unused', '000017.png', '12.45', '0', '000002', null, null],
+  ['000018', 'CIE Physics (A Level)', 'David Sang, Graham Jones, Gurinder Chadha & Richard Woodside', 'Physics', 'A-Level', 'cie a level physics textbook. little wear. third edition', '000018.png', '11.12', '0', '000001', null, null],
+  ['000019', 'Leviathan', 'Thomas Hobbes',  'Philosophy',  'A-Level',  'poor condition, slight water damage, still readable', '000019.png', '12.12', '0', '000001', null, null],
+  ['000020', 'A Philosophical Enquiry into the Origin of Our Ideas of the Sublime and Beautiful', 'Edmund Burke',  'Philosophy',  null,  'signed first edition', '000020.png', '6.50', '0', '000002', null, null],
   ];
 
 // inputs array into table by executing row-by-row
@@ -109,8 +125,15 @@ try {
 $categories = [
     ['Physics', 1],
     ['Maths', 1],
+    ['Politics', 1],
+    ['Drama', 1],
+    ['Geography', 1],
+    ['Sociology', 1],
     ['Computer Science', 1],
+    ['Philosophy', 1],
     ['GCSE', 0],
+    ['KS3', 0],
+    ['Bachelors', 0],
     ['A-Level', 0],
     ];
   

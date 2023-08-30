@@ -2,10 +2,16 @@
 // link to connection.php to access the database
 include_once("connection.php");
 
-// starts session and ensures that user is logged in as admin, if not, they are sent to homepage
+// starts session and ensures that user is logged in as admin, if not, they are sent to login
 session_start(); 
+$_SESSION['backURL']='admin_account.php';
 if ($_SESSION['UserType'] != 1) {
-  header('Location: homepage.php');
+    $_SESSION['Message'] = "Please login to use this service";
+    header('Location: login.php');
+  }
+if (!isset($_SESSION['Email'])) {
+  $_SESSION['Message'] = "Please login to use this service";
+  header('Location: login.php');
   }
 ?>
 
@@ -27,45 +33,44 @@ if ($_SESSION['UserType'] != 1) {
             <!-- logo and link to homepage -->
             <a class="logo" type="button" href="/bookshop/homepage.php">Bella's<br>Books </a>
 
-           <!-- search bar including dropdown box and search button -->
-           <div class="search-bar">
-                <form class="d-flex" id="searchForm">
+            <!-- search bar including dropdown box and search button -->
+            <div class="search-bar">
+                <form class="d-flex" id="searchForm" action="items.php" method="GET">
                     <div class="dropdown">
-                            <!-- dropdown box code -->
-                            <select class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown">
-                                <!-- default 'categories' label -->
-                                <option value="" disabled selected>Categories</option>
-                                <option value=""> All</option>
-                                <optgroup label="Levels">
-                                    <!-- php code to take levels from table and display as dropdown options -->
-                                    <?php
-                                    session_start(); 
-                                    include_once ("connection.php");
-                                    $stmt = $conn->prepare('SELECT category FROM tblCategories WHERE categoryType = 0');
-                                    $stmt->execute();
-                                    $results = $stmt->fetchAll();
+                        <!-- dropdown box code -->
+                        <select class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" name="selectedCategory">
+                            <!-- default 'categories' label -->
+                            <option value="" disabled selected>Categories</option>
+                            <option value=""> All</option>
+                            <optgroup label="Levels">
+                                <!-- php code to take levels from table and display as dropdown options -->
+                                <?php
+                                session_start(); 
+                                include_once ("connection.php");
+                                $stmt = $conn->prepare('SELECT category FROM tblCategories WHERE categoryType = 0');
+                                $stmt->execute();
+                                $results = $stmt->fetchAll();
 
-                                    foreach ($results as $row): ?>
-                                        <option value="<?=$row["category"]?>"><?=$row["category"]?></option>
-                                    <?php endforeach ?>
-                                </optgroup>
+                                foreach ($results as $row): ?>
+                                    <option value="<?=$row["category"]?>"><?=$row["category"]?></option>
+                                <?php endforeach ?>
+                            </optgroup>
 
-                                <optgroup label="Subjects">
-                                    <!-- php code to take levels from table and display as dropdown options -->
-                                    <?php
-                                    include_once ("connection.php");
-                                    $stmt = $conn->prepare('SELECT category FROM tblCategories WHERE categoryType = 1');
-                                    $stmt->execute();
-                                    $results = $stmt->fetchAll();
+                            <optgroup label="Subjects">
+                                <!-- php code to take levels from table and display as dropdown options -->
+                                <?php
+                                include_once ("connection.php");
+                                $stmt = $conn->prepare('SELECT category FROM tblCategories WHERE categoryType = 1');
+                                $stmt->execute();
+                                $results = $stmt->fetchAll();
 
-                                    foreach ($results as $row): ?>
-                                        <option value="<?=$row["category"]?>"><?=$row["category"]?></option>
-                                    <?php endforeach ?>
-                                </optgroup>
-                            </select>
+                                foreach ($results as $row): ?>
+                                    <option value="<?=$row["category"]?>"><?=$row["category"]?></option>
+                                <?php endforeach ?>
+                            </optgroup>
+                        </select>
                     </div>
-                    <input type="hidden" id="selectedValue" name="selectedValue">
-                    <input class="form-control me-2" type="search" placeholder="Search">
+                    <input class="form-control me-2" type="search" placeholder="Search" name="searchQuery">
                     <button class="btn btn-outline-success go-button" type="submit">Go</button>
                 </form>
             </div>
