@@ -35,6 +35,7 @@ if (isset($_GET['selectedCategory']) && isset($_GET['searchQuery'])) {
 <body>
     
   <!-- top navbar -->
+  <div class="white_box_top"></div>
   <div class="navbar_top">
       <div class="container-fluid">
 
@@ -64,7 +65,7 @@ if (isset($_GET['selectedCategory']) && isset($_GET['searchQuery'])) {
                           </optgroup>
 
                           <optgroup label="Subjects">
-                              <!-- php code to take levels from table and display as dropdown options -->
+                              <!-- php code to take subjects from table and display as dropdown options -->
                               <?php
                               include_once ("connection.php");
                               $stmt = $conn->prepare('SELECT category FROM tblCategories WHERE categoryType = 1');
@@ -112,50 +113,69 @@ if (isset($_GET['selectedCategory']) && isset($_GET['searchQuery'])) {
       </div>
   </div>
 
-  <!-- body of website -->
-  <div class="main">
-      <div class="books">
-          <?php
-          // base query
-          $query = "SELECT * FROM tblBooks WHERE tblBooks.sold = 0";
+    <!-- body of website -->
+    <div class="main">
+        <div class="books">
+            <?php
+            // base query
+            $query = "SELECT * FROM tblBooks WHERE tblBooks.sold = 0";
 
-          // check if selectedCategory is not blank
-          if (!empty($selectedCategory)) {
-              $query .= " AND (tblBooks.level = :selectedCategory OR tblBooks.subject = :selectedCategory)";
-              echo('You have searched ' . $searchQuery . ' in Category: ' . $selectedCategory . '<br><br>');
-          } else {
-            echo('You have searched ' . $searchQuery . ' in all categories <br><br>');
-          }
+            // initialize the message
+            $message = '';
 
-          // check if searchQuery is not blank
-          if (!empty($searchQuery)) {
-              $query .= " AND tblBooks.name LIKE CONCAT('%', :searchQuery, '%')";
-          }
+            // check if selectedCategory is not blank
+            if (!empty($selectedCategory)) {
+                $query .= " AND (tblBooks.level = :selectedCategory OR tblBooks.subject = :selectedCategory)";
+                $message = 'You have searched ' . $searchQuery . ' in Category: ' . $selectedCategory . '<br><br>';
+            } else {
+                $message = 'You have searched ' . $searchQuery . ' in all categories <br><br>';
+            }
 
-          // prepare and execute the dynamic query
-          $stmt = $conn->prepare($query);
+            // check if searchQuery is not blank
+            if (!empty($searchQuery)) {
+                $query .= " AND tblBooks.name LIKE CONCAT('%', :searchQuery, '%')";
+            }
 
-          if (!empty($selectedCategory)) {
-              $stmt->bindParam(':selectedCategory', $selectedCategory, PDO::PARAM_STR);
-          }
+            // prepare and execute the dynamic query
+            $stmt = $conn->prepare($query);
 
-          if (!empty($searchQuery)) {
-              $stmt->bindParam(':searchQuery', $searchQuery, PDO::PARAM_STR);
-          }
+            if (!empty($selectedCategory)) {
+                $stmt->bindParam(':selectedCategory', $selectedCategory, PDO::PARAM_STR);
+            }
 
-          $stmt->execute();
+            if (!empty($searchQuery)) {
+                $stmt->bindParam(':searchQuery', $searchQuery, PDO::PARAM_STR);
+            }
 
-          // displaying each matching item
-          while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-              echo ($row['name'] . '<br>');
-          }
-          ?>
-      </div>
-  </div>
+            $stmt->execute();
+            $count=0;
 
+            // print the message
+            echo $message;
 
+            // displaying each matching item in a 4-wide grid
+            echo '<div class="row row-cols-1 row-cols-md-4 g-3">';
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                echo ('<div class="col">');
+                echo ('<div class="card h-100">');
+                echo ('<div class="card-body">');
+                echo ('<h5 class="card-title">' . $row['name'] . '</h5>');
+                echo ('<p class="card-text text-truncate">' . '£' . $row['price'] . '</p>');
+                echo ('<form action="addtobasket.php" method="POST" class="form-inline">');
+                echo ('<input type="hidden" name="id" value='.$row["bookID"].">");
+                echo ('<input type="submit" value="Add to Basket" class="btn btn-sm"><br>');
+                echo ('</form><br>');
+                echo ('</div>');
+                echo ('</div>');
+                echo ('</div>');
+            }
+            echo '</div>';
+            ?>
+        </div>
+    </div>
 
   <!-- bottom navbar -->
+  <div class="white_box_bottom"><div>
   <div class="navbar_bottom">
       <a> </a>
   </div>

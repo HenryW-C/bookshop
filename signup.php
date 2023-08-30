@@ -42,7 +42,7 @@
             <input type="text" name="address" placeholder="Address Line 1" required><br>
             <input type="text" name="postcode" placeholder="Postcode" required><br>
             <br>
-            <input type="password" name="cardno" placeholder="Card Number" required><br>
+            <input type="text" name="cardno" placeholder="Card Number" required><br>
             <input type="text" name="cardname" placeholder="Card Name" required><br>
             <input type="text" name="cardexpiry" placeholder="Card Expiry Date" required><br>
             <input type="password" name="cardcvc" placeholder="Card CVC" required><br>
