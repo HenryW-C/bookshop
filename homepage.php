@@ -18,6 +18,7 @@
     <!-- top navbar -->
     <div class="navbar_top">
         <div class="container-fluid">
+
             <!-- logo and link to homepage -->
             <a class="logo" type="button" href="/bookshop/homepage.php">Bella's<br>Books </a>
 
@@ -25,14 +26,38 @@
             <div class="search-bar">
                 <form class="d-flex" id="searchForm">
                     <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown">
-                            <span id="selectedOption">Categories</span>
-                        </button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#" data-value="Option 1">Option 1</a>
-                            <a class="dropdown-item" href="#" data-value="Option 2">Option 2</a>
-                            <a class="dropdown-item" href="#" data-value="Option 3">Option 3</a>
-                        </div>
+                        <!-- dropdown box code -->
+                        <select class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown">
+                            <!-- default 'categories' label -->
+                            <option value="" disabled selected>Categories</option>
+                            <option value=""> All</option>
+                            <optgroup label="Levels">
+                                <!-- php code to take levels from table and display as dropdown options -->
+                                <?php
+                                session_start(); 
+                                include_once ("connection.php");
+                                $stmt = $conn->prepare('SELECT category FROM tblCategories WHERE categoryType = 0');
+                                $stmt->execute();
+                                $results = $stmt->fetchAll();
+
+                                foreach ($results as $row): ?>
+                                    <option value="<?=$row["category"]?>"><?=$row["category"]?></option>
+                                <?php endforeach ?>
+                            </optgroup>
+
+                            <optgroup label="Subjects">
+                                <!-- php code to take levels from table and display as dropdown options -->
+                                <?php
+                                include_once ("connection.php");
+                                $stmt = $conn->prepare('SELECT category FROM tblCategories WHERE categoryType = 1');
+                                $stmt->execute();
+                                $results = $stmt->fetchAll();
+
+                                foreach ($results as $row): ?>
+                                    <option value="<?=$row["category"]?>"><?=$row["category"]?></option>
+                                <?php endforeach ?>
+                            </optgroup>
+                        </select>
                     </div>
                     <input type="hidden" id="selectedValue" name="selectedValue">
                     <input class="form-control me-2" type="search" placeholder="Search">
@@ -40,12 +65,12 @@
                 </form>
             </div>
 
-            <!-- button at end of navbar -->
+            <!-- buttons at end of navbar -->
             <span>
                 <div class="float-end">
                     <div  class="btn-group" role="group">
                         <!-- php switch statement to show select buttons dependant on user type -->
-                        <?php session_start(); 
+                        <?php
                         switch ($_SESSION['UserType']??'') { 
                         case(1): ?>
                         <a type="button" href="/bookshop/admin_account.php" class="btn btn-primary">My Account</a>
@@ -68,6 +93,8 @@
             </span>
         </div>
     </div>
+
+
 
     <!-- body of website -->
     <div class="main">

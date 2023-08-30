@@ -76,10 +76,12 @@
   width: 100%;
   background-color: #D9D9D9;
   color: #000000;
+  padding-right: 30px;
 }
 
 /* dropdown menu */
 .navbar_top .search-bar .dropdown-menu {
+  font-family: 'Roboto Slab';
   min-width: 100%;
   left: 0;
   margin: 5px;
