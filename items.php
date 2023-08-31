@@ -3,7 +3,7 @@ include_once("connection.php");
 
 // starts session and ensures that user is logged in, if not, they are sent to login
 session_start(); 
-$_SESSION['backURL']='items.php';
+$_SESSION['backURL']='homepage.php';
 if (!isset($_SESSION['Email'])) {
   $_SESSION['Message'] = "Please login to use this service";
   header('Location: login.php');
@@ -49,7 +49,7 @@ if (isset($_GET['selectedCategory']) && isset($_GET['searchQuery'])) {
                       <!-- dropdown box code -->
                       <select class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" name="selectedCategory">
                           <!-- default 'categories' label -->
-                          <option value="" disabled selected>Categories</option>
+                          <option value="">Categories</option>
                           <option value=""> All</option>
                           <optgroup label="Levels">
                               <!-- php code to take levels from table and display as dropdown options -->
@@ -159,17 +159,23 @@ if (isset($_GET['selectedCategory']) && isset($_GET['searchQuery'])) {
                     echo ('<div class="col">');
                         echo ('<div class="card h-100">');
                             echo ('<div class="card-body">');
+                                // link to individual book page
                                 echo ('<a class=link href="item.php?bookID=' . $row["bookID"] . '" class="card-title">');
-                                echo '<div class="image-container">';
-                                    if($row['image']) {
-                                        echo ('<img class="image" src="images/' . $row['image'] . '" alt="' . $row['name'] . '"><br><br>');
-                                    } else {
-                                        echo ('<div class="alt-image">No Image</div><br>');
-                                    }
-                                echo ('</div>');
-                                echo ('<h5>' . $row['name'] . '</h5>');
+                                    echo '<div class="image-container">';
+                                        // if there is an image, it is displayed. otherwise, black image and text is displayed
+                                        if($row['image']) {
+                                            echo ('<img class="image" src="images/' . $row['image'] . '" alt="' . $row['name'] . '"><br><br>');
+                                        } else {
+                                            echo ('<div class="noimage">');
+                                                echo ('<div class="centered">No Image</div>');
+                                                echo ('<img class="image" src="images/default.png" alt="No Image"><br><br>');
+                                            echo ('</div>');
+                                        }
+                                    echo ('</div>');
+                                    echo ('<h5 class=name>' . $row['name'] . '</h5>');
                                 echo ('</a>');
                                 echo ('<p class="card-text text-truncate">' . '£' . $row['price'] . '</p>');
+                                // link to add to basket page
                                 echo ('<form action="addtobasket.php" method="POST" class="form-inline">');
                                     echo ('<input type="hidden" name="id" value='.$row["bookID"].">");
                                     echo ('<input type="submit" value="Add to Basket" class="btn btn-sm"><br>');

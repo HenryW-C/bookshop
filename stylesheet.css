@@ -117,18 +117,25 @@
 }
 
 /* buttons */
-.navbar_top .btn-primary {
+.btn-primary {
   background-color: #D9D9D9;
   color: #000000;
   border-color:#000000;
   border-radius: 30px;
 }
 
+/* button hover colour */
+.btn-primary:hover{
+  background: #303030;
+  border: #ffffff;
+}
+
 /* main content */
 .main {
   font-family: 'Roboto Slab';
-  padding: 0.5%;
-  padding-top: 100px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 90px;
   text-align: center;
 }
 
@@ -145,8 +152,9 @@
 /* item */
 .item {
   font-family: 'Roboto Slab';
-  padding-left: 2%;
-  padding-top: 100px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 90px;
   text-align: left;
 }
 
@@ -159,16 +167,21 @@
   width: 250px;
 }
 
-/* no image */
-.alt-image {
-  width: 250px;
-  height: 350px;
-  border: 1px solid #000000;
-  border-radius: 4px;
-  padding: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* container holding the image and the text - items page */
+.books .noimage {
+  position: relative;
+  text-align: center;
+  color: #ffffff;
+}
+
+/* centered text on no image - items page */
+.books .noimage .centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  color: #000000;
 }
 
 /* book image on book page */
@@ -176,14 +189,40 @@
   border: 1px solid #000000;
   border-radius: 4px;
   padding: 5px;
-  width: 250px;
+  width: 100%;
 }
 
-/* custom columns for account pages */
+/* container holding the image and the text - book page */
+.item .noimage {
+  position: relative;
+  text-align: left;
+  color: #ffffff;
+}
+
+/* centered text on no image - book page */
+.item .noimage .centered {
+  position: absolute;
+  top: 45%;
+  left: 40%;
+  z-index: 2;
+  color: #000000;
+}
+
+/* custom columns */
 .custom-column {
   background-color: #f4f4f4;
   border: 5px solid #D9D9D9;
   border-radius: 10px;
   padding: 20px;
-  height: 80vh;
+  height: 85vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* custom columns */
+.custom-column .bottom{
+  position: relative;
+  text-align: center;
+  transform:translateY(60vh);
+  left: 0;
 }

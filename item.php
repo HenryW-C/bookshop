@@ -3,7 +3,7 @@ include_once("connection.php");
 
 // starts session and ensures that user is logged in, if not, they are sent to login
 session_start(); 
-$_SESSION['backURL']='items.php';
+$_SESSION['backURL']='homepage.php';
 if (!isset($_SESSION['Email'])) {
   $_SESSION['Message'] = "Please login to use this service";
   header('Location: login.php');
@@ -39,7 +39,7 @@ if (!isset($_SESSION['Email'])) {
                         <!-- dropdown box code -->
                         <select class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" name="selectedCategory">
                             <!-- default 'categories' label -->
-                            <option value="" disabled selected>Categories</option>
+                            <option value="">Categories</option>
                             <option value=""> All</option>
                             <optgroup label="Levels">
                                 <!-- php code to take levels from table and display as dropdown options -->
@@ -130,25 +130,50 @@ if (!isset($_SESSION['Email'])) {
                     
                     // display book details
                     if ($bookData) {
-                        echo ('<h3>' . $bookData['name'] . '</h3>');
-                        if($bookData['image']) {
-                            echo ('<img class="image" src="images/' . $bookData['image'] . '" alt="' . $bookData['name'] . '"><br><br>');
-                        } else {
-                            echo ('<div class="alt-image">No Image</div><br>');
-                        }
-                        if($bookData['author']) {
-                            echo ('<p>By ' . $bookData['author'] . '</p>');
-                        }
-                        if($bookData['subject']) {
-                            echo ('<h5>Subject: <b>' . $bookData['subject'] . '</b></h5></p>');
-                        }
-                        if($bookData['level']) {
-                            echo ('<h5>Level: <b>' . $bookData['level'] . '</b></h5></p>');
-                        }
-                        echo ('<p>Price: £' . $bookData['price'] . '</p><br><br>');
-                        echo ('<p>Description: ' . $bookData['description'] . '</p>');
+                        echo ('<div class="container fluid mt-5">');
+                            echo ('<div class="row">');
+                                echo ('<div class="col-md-4">');
+                                    echo ('<div class="custom-column">');
+                                        echo ('<h3>' . $bookData['name'] . '</h3>');
+                                        if($bookData['author']) {
+                                            echo ('<p>By ' . $bookData['author'] . '</p>');
+                                        }
+                                        if($bookData['image']) {
+                                            echo ('<img class="image" src="images/' . $bookData['image'] . '" alt="' . $bookData['name'] . '"><br><br>');
+                                        } else {
+                                            echo ('<div class="noimage">');
+                                                echo ('<div class="centered">No Image</div>');
+                                                echo ('<img class="image" src="images/default.png" alt="No Image"><br><br>');
+                                            echo ('</div>');
+                                        }
+                                    echo ('</div>');
+                                echo ('</div>');
+                                echo ('<div class="col-md-4">');
+                                    echo ('<div class="custom-column">');
+                                        if($bookData['subject']) {
+                                            echo ('<h5>Subject: <b>' . $bookData['subject'] . '</b></h5></p>');
+                                        }
+                                        if($bookData['level']) {
+                                            echo ('<h5>Level: <b>' . $bookData['level'] . '</b></h5></p>');
+                                        }
+                                        echo ('<p>Description: ' . $bookData['description'] . '</p>');
+
+                                        echo ('<div class="bottom";">');
+                                            echo ('<h4>Price: £' . $bookData['price'] . '</h4><br>');
+                                            echo ('<a type="button" href="/bookshop/addtobasket.php" class="btn btn-primary">Add to Basket</a>');
+                                        echo ('</div>');
+                                        
+                                    echo ('</div>');
+                                echo ('</div>');
+                                echo ('<div class="col-md-4">');
+                                    echo ('<div class="custom-column">');
+                                        echo ('[Basket]');
+                                    echo ('</div>');
+                                echo ('</div>');
+                            echo ('</div>');
+                        echo ('</div>');
                     } else {
-                        echo ('Book not found.');
+                        echo ('Book not found');
                     }
                 } catch (PDOException $e) {
                     echo ("Error: " . $e->getMessage());

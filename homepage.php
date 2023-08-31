@@ -26,7 +26,7 @@
                         <!-- dropdown box code -->
                         <select class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" name="selectedCategory">
                             <!-- default 'categories' label -->
-                            <option value="" disabled selected>Categories</option>
+                            <option value="">Categories</option>
                             <option value=""> All</option>
                             <optgroup label="Levels">
                                 <!-- php code to take levels from table and display as dropdown options -->
