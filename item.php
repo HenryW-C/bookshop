@@ -1,3 +1,15 @@
+<?php
+include_once("connection.php");
+
+// starts session and ensures that user is logged in, if not, they are sent to login
+session_start(); 
+$_SESSION['backURL']='items.php';
+if (!isset($_SESSION['Email'])) {
+  $_SESSION['Message'] = "Please login to use this service";
+  header('Location: login.php');
+  }
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +25,7 @@
 <body>
     
     <!-- top navbar -->
+    <div class="white_box_top"></div>
     <div class="navbar_top">
         <div class="container-fluid">
 
@@ -31,7 +44,6 @@
                             <optgroup label="Levels">
                                 <!-- php code to take levels from table and display as dropdown options -->
                                 <?php
-                                session_start(); 
                                 include_once ("connection.php");
                                 $stmt = $conn->prepare('SELECT category FROM tblCategories WHERE categoryType = 0');
                                 $stmt->execute();
@@ -118,31 +130,37 @@
                     
                     // display book details
                     if ($bookData) {
-                        echo '<h3>' . $bookData['name'] . '</h3>';
+                        echo ('<h3>' . $bookData['name'] . '</h3>');
+                        if($bookData['image']) {
+                            echo ('<img class="image" src="images/' . $bookData['image'] . '" alt="' . $bookData['name'] . '"><br><br>');
+                        } else {
+                            echo ('<div class="alt-image">No Image</div><br>');
+                        }
                         if($bookData['author']) {
-                            echo '<p>By ' . $bookData['author'] . '</p>';
+                            echo ('<p>By ' . $bookData['author'] . '</p>');
                         }
                         if($bookData['subject']) {
-                            echo '<p>Subject: <b>' . $bookData['subject'] . '</b></p>';
+                            echo ('<h5>Subject: <b>' . $bookData['subject'] . '</b></h5></p>');
                         }
                         if($bookData['level']) {
-                            echo '<p>Level: <b>' . $bookData['level'] . '</b></p>';
+                            echo ('<h5>Level: <b>' . $bookData['level'] . '</b></h5></p>');
                         }
-                        echo '<p>Price: £' . $bookData['price'] . '</p>';
-                        echo '<p>Description: ' . $bookData['description'] . '</p>';
+                        echo ('<p>Price: £' . $bookData['price'] . '</p><br><br>');
+                        echo ('<p>Description: ' . $bookData['description'] . '</p>');
                     } else {
-                        echo 'Book not found.';
+                        echo ('Book not found.');
                     }
                 } catch (PDOException $e) {
-                    echo "Error: " . $e->getMessage();
+                    echo ("Error: " . $e->getMessage());
                 }
             } else {
-                echo 'Invalid bookID.';
+                echo ('Invalid bookID.');
             }
         ?>
     </div> 
 
     <!-- bottom navbar -->
+    <div class="white_box_bottom"><div>
     <div class="navbar_bottom">
         <a> </a>
     </div>

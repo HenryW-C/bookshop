@@ -155,22 +155,29 @@ if (isset($_GET['selectedCategory']) && isset($_GET['searchQuery'])) {
 
             // displaying each matching item in a 4-wide grid
             echo '<div class="row row-cols-1 row-cols-md-4 g-3">';
-            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                echo ('<div class="col">');
-                echo ('<div class="card h-100">');
-                echo ('<div class="card-body">');
-                echo ('<a class=link href="item.php?bookID=' . $row["bookID"] . '" class="card-title">');
-                echo ('<h5>' . $row['name'] . '</h5>');
-                echo ('</a>');
-                echo ('<p class="card-text text-truncate">' . '£' . $row['price'] . '</p>');
-                echo ('<form action="addtobasket.php" method="POST" class="form-inline">');
-                echo ('<input type="hidden" name="id" value='.$row["bookID"].">");
-                echo ('<input type="submit" value="Add to Basket" class="btn btn-sm"><br>');
-                echo ('</form><br>');
-                echo ('</div>');
-                echo ('</div>');
-                echo ('</div>');
-            }
+                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    echo ('<div class="col">');
+                        echo ('<div class="card h-100">');
+                            echo ('<div class="card-body">');
+                                echo ('<a class=link href="item.php?bookID=' . $row["bookID"] . '" class="card-title">');
+                                echo '<div class="image-container">';
+                                    if($row['image']) {
+                                        echo ('<img class="image" src="images/' . $row['image'] . '" alt="' . $row['name'] . '"><br><br>');
+                                    } else {
+                                        echo ('<div class="alt-image">No Image</div><br>');
+                                    }
+                                echo ('</div>');
+                                echo ('<h5>' . $row['name'] . '</h5>');
+                                echo ('</a>');
+                                echo ('<p class="card-text text-truncate">' . '£' . $row['price'] . '</p>');
+                                echo ('<form action="addtobasket.php" method="POST" class="form-inline">');
+                                    echo ('<input type="hidden" name="id" value='.$row["bookID"].">");
+                                    echo ('<input type="submit" value="Add to Basket" class="btn btn-sm"><br>');
+                                echo ('</form><br>');
+                            echo ('</div>');
+                        echo ('</div>');
+                    echo ('</div>');
+                }
             echo '</div>';
             ?>
         </div>

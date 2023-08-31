@@ -138,6 +138,8 @@
   text-align: center;
   text-decoration: none;
   color: #000000;
+  display: grid;
+  justify-content: center;
 }
 
 /* item */
@@ -146,6 +148,35 @@
   padding-left: 2%;
   padding-top: 100px;
   text-align: left;
+}
+
+/* book image on items page */
+.books .image {
+  border: 1px solid #000000;
+  border-radius: 4px;
+  padding: 5px;
+  height: 350px;
+  width: 250px;
+}
+
+/* no image */
+.alt-image {
+  width: 250px;
+  height: 350px;
+  border: 1px solid #000000;
+  border-radius: 4px;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* book image on book page */
+.item .image {
+  border: 1px solid #000000;
+  border-radius: 4px;
+  padding: 5px;
+  width: 250px;
 }
 
 /* custom columns for account pages */
