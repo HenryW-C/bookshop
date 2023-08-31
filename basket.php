@@ -97,7 +97,7 @@ if (!isset($_SESSION['Email'])) {
 
     <!-- body of website -->
     <div class="main">
-      <p>Body</p>
+      <div class=custom_colum></div>
     </div> 
 
     <!-- bottom navbar -->

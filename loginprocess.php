@@ -29,6 +29,7 @@ if($results){
                 // session variables are set
                 $_SESSION['Email']=$row["email"];
                 $_SESSION['UserType']=$row["userType"];
+                $_SESSION['UserID']=$row["userID"];
                 header('Location: ' . $backURL);
             }else{
                 $_SESSION['Message']="Incorrect password, please try again";

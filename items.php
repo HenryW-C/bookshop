@@ -3,7 +3,7 @@ include_once("connection.php");
 
 // starts session and ensures that user is logged in, if not, they are sent to login
 session_start(); 
-$_SESSION['backURL']='homepage.php';
+$_SESSION['backURL']=$_SERVER['REQUEST_URI'];
 if (!isset($_SESSION['Email'])) {
   $_SESSION['Message'] = "Please login to use this service";
   header('Location: login.php');
@@ -137,6 +137,7 @@ if (isset($_GET['selectedCategory']) && isset($_GET['searchQuery'])) {
             }
 
             // prepare and execute the dynamic query
+            $query .= " ORDER BY name ASC";
             $stmt = $conn->prepare($query);
 
             if (!empty($selectedCategory)) {
@@ -176,10 +177,7 @@ if (isset($_GET['selectedCategory']) && isset($_GET['searchQuery'])) {
                                 echo ('</a>');
                                 echo ('<p class="card-text text-truncate">' . '£' . $row['price'] . '</p>');
                                 // link to add to basket page
-                                echo ('<form action="addtobasket.php" method="POST" class="form-inline">');
-                                    echo ('<input type="hidden" name="id" value='.$row["bookID"].">");
-                                    echo ('<input type="submit" value="Add to Basket" class="btn btn-sm"><br>');
-                                echo ('</form><br>');
+                                echo ('<a type="button" href="addtobasket.php?bookID=' . $row["bookID"] . '" class="btn btn-sm">Add to Basket</a>');
                             echo ('</div>');
                         echo ('</div>');
                     echo ('</div>');

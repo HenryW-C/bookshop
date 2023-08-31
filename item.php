@@ -3,7 +3,6 @@ include_once("connection.php");
 
 // starts session and ensures that user is logged in, if not, they are sent to login
 session_start(); 
-$_SESSION['backURL']='homepage.php';
 if (!isset($_SESSION['Email'])) {
   $_SESSION['Message'] = "Please login to use this service";
   header('Location: login.php');
@@ -109,7 +108,6 @@ if (!isset($_SESSION['Email'])) {
     <div class="item">
         <?php
             include_once("connection.php");
-            $_SESSION['backURL']='items.php';
             if (!isset($_SESSION['Email'])) {
             $_SESSION['Message'] = "Please login to use this service";
             header('Location: login.php');
@@ -160,14 +158,26 @@ if (!isset($_SESSION['Email'])) {
 
                                         echo ('<div class="bottom";">');
                                             echo ('<h4>Price: £' . $bookData['price'] . '</h4><br>');
-                                            echo ('<a type="button" href="/bookshop/addtobasket.php" class="btn btn-primary">Add to Basket</a>');
+                                            echo ('<a type="button" href="addtobasket.php?bookID=' . $bookData["bookID"] . '" class="btn btn-primary">Add to Basket</a>');
                                         echo ('</div>');
                                         
                                     echo ('</div>');
                                 echo ('</div>');
                                 echo ('<div class="col-md-4">');
                                     echo ('<div class="custom-column">');
-                                        echo ('[Basket]');
+                                        echo ('Basket:');
+                                        $stmt = $conn->prepare("SELECT * FROM tblBooks WHERE buyerID = :userID AND orderID IS NULL ORDER BY name ASC");
+                                        $stmt->bindParam(':userID', $_SESSION['UserID'], PDO::PARAM_INT);
+                                        $stmt->execute();
+                                        $basketData = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                                        if ($basketData) {
+                                            do {
+                                                echo('<br>' . $basketData["name"]);
+                                            } while ($basketData = $stmt->fetch(PDO::FETCH_ASSOC));
+                                        } else {
+                                            echo('<br>There is nothing in the basket');
+                                        }
                                     echo ('</div>');
                                 echo ('</div>');
                             echo ('</div>');
