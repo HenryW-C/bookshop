@@ -159,7 +159,9 @@ if (isset($_GET['selectedCategory']) && isset($_GET['searchQuery'])) {
                 echo ('<div class="col">');
                 echo ('<div class="card h-100">');
                 echo ('<div class="card-body">');
-                echo ('<h5 class="card-title">' . $row['name'] . '</h5>');
+                echo ('<a class=link href="item.php?bookID=' . $row["bookID"] . '" class="card-title">');
+                echo ('<h5>' . $row['name'] . '</h5>');
+                echo ('</a>');
                 echo ('<p class="card-text text-truncate">' . '£' . $row['price'] . '</p>');
                 echo ('<form action="addtobasket.php" method="POST" class="form-inline">');
                 echo ('<input type="hidden" name="id" value='.$row["bookID"].">");
