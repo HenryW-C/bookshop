@@ -33,6 +33,7 @@
                                 <!-- php code to take levels from table and display as dropdown options -->
                                 <?php
                                 session_start(); 
+                                $_SESSION['backURL']=$_SERVER['REQUEST_URI'];
                                 include_once ("connection.php");
                                 $stmt = $conn->prepare('SELECT category FROM tblCategories WHERE categoryType = 0');
                                 $stmt->execute();
