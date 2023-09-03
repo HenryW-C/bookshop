@@ -127,7 +127,7 @@ if (!isset($_SESSION['Email'])) {
                                                 }
                                         echo ('</div>');
                                         echo ('<div class="title">');
-                                            echo($basketData["name"]);
+                                            echo('<h4>'.$basketData["name"].'<h4>');
                                             echo ('</a>');
                                         echo ('</div>');
                                     echo('</div>');

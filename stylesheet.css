@@ -266,6 +266,9 @@
 /* basket name */
 .title {
   padding-left: 20px;
+  text-overflow: ellipsis;
+  text-align: left;
+  width: 30vw;
 }
 
 /* books page links */
