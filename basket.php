@@ -20,7 +20,7 @@ if (!isset($_SESSION['Email'])) {
     <link rel="icon" type="image/x-icon" href="images/favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="stylesheet.css">
+    <link rel="stylesheet" href="stylesheet.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto Slab">
     
 </head>
@@ -98,8 +98,50 @@ if (!isset($_SESSION['Email'])) {
 
     <!-- body of website -->
     <div class="main">
-      <div class=custom_colum></div>
-    </div> 
+        <div class="container-fluid mt-5">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- 'custom-column' to fill page as backing box -->
+                    <div class="custom-column">
+                        <?php
+                            // fetch all books that are in the basket
+                            $stmt = $conn->prepare("SELECT * FROM tblBooks WHERE buyerID = :userID AND orderID IS NULL ORDER BY name ASC");
+                            $stmt->bindParam(':userID', $_SESSION['UserID'], PDO::PARAM_INT);
+                            $stmt->execute();
+                            $basketData = $stmt->fetch(PDO::FETCH_ASSOC);
+                            if ($basketData) {
+                                // if there are books, they are displayed
+                                echo ('<h2>Basket:</h2>');
+                                do {
+                                    // row to fill the width of the page
+                                    echo('<div class="custom-row">');
+                                        echo ('<div class="left-content">'); // image on left of page
+                                            echo ('<a class="link" href="item.php?bookID=' . $basketData["bookID"] . '" class="card-title">'); // link to book page
+                                                if($basketData['image']) { // if there is an image
+                                                    echo ('<img class="image" src="images/' . $basketData['image'] . '" alt="' . $basketData['name'] . '">');
+                                                } else { // no image
+                                                    echo ('<div class="noimage">');
+                                                        echo ('<div class="centered">No Image</div>');
+                                                        echo ('<img class="image" src="images/default.png" alt="No Image">');
+                                                    echo ('</div>');
+                                                }
+                                        echo ('</div>');
+                                        echo ('<div class="title">');
+                                            echo($basketData["name"]);
+                                            echo ('</a>');
+                                        echo ('</div>');
+                                    echo('</div>');
+                                } while ($basketData = $stmt->fetch(PDO::FETCH_ASSOC));
+                            } else {
+                                // message to be shown if there are no books
+                                echo('<br>There is nothing in the basket');
+                            }
+                        ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- bottom navbar -->
     <div class="navbar_bottom">
