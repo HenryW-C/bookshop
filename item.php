@@ -159,7 +159,12 @@ if (!isset($_SESSION['Email'])) {
 
                                         echo ('<div class="bottom";">');
                                             echo ('<h4>Price: £' . $bookData['price'] . '</h4><br>');
-                                            echo ('<a type="button" href="addtobasket.php?bookID=' . $bookData["bookID"] . '" class="btn btn-primary">Add to Basket</a>');
+                                            if($_SESSION['backURL'] == 'basket.php'){
+                                                echo ('<a type="button" href="basket.php" class="btn btn-primary">Return to Basket</a>');
+                                            }
+                                            else{
+                                                echo ('<a type="button" href="addtobasket.php?bookID=' . $bookData["bookID"] . '" class="btn btn-primary">Add to Basket</a>');
+                                            }
                                         echo ('</div>');
                                         
                                     echo ('</div>');
