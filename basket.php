@@ -27,6 +27,7 @@ if (!isset($_SESSION['Email'])) {
 <body>
     
     <!-- top navbar -->
+    <div class="white_box_top"></div>
     <div class="navbar_top">
         <div class="container-fluid">
             <!-- logo and link to homepage -->
@@ -104,6 +105,7 @@ if (!isset($_SESSION['Email'])) {
                     <!-- 'custom-column' to fill page as backing box -->
                     <div class="custom-column">
                         <?php
+                            $_SESSION['totalPrice']=0; //initialise total price variable
                             // fetch all books that are in the basket
                             $stmt = $conn->prepare("SELECT * FROM tblBooks WHERE buyerID = :userID AND orderID IS NULL ORDER BY name ASC");
                             $stmt->bindParam(':userID', $_SESSION['UserID'], PDO::PARAM_INT);
@@ -132,6 +134,7 @@ if (!isset($_SESSION['Email'])) {
                                         echo ('</div>');
                                         echo ('<div class="price">');
                                             echo('<h4>£'.$basketData["price"].'<h4>');
+                                            $_SESSION['totalPrice'] = $_SESSION['totalPrice']+$basketData["price"];
                                         echo ('</div>');
                                         echo ('<div class="remove">');
                                             echo ('<a class="link" href="removefrombasket.php?bookID=' . $basketData["bookID"] .'">X</a>');
@@ -146,10 +149,21 @@ if (!isset($_SESSION['Email'])) {
                     </div>
                 </div>
             </div>
+            <div class="row" >
+                <div class="col-md-12">
+                    <div class="container mt-4 d-flex justify-content-end">
+                        <div class="pill-bar">
+                            <span class="price">Total: £<?php echo($_SESSION['totalPrice']) ?></span>
+                            <a type="button" href="checkout.php" class="btn btn-primary">Checkout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
     <!-- bottom navbar -->
+    <div class="white_box_bottom"><div>
     <div class="navbar_bottom">
         <a> </a>
     </div>

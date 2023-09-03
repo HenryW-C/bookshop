@@ -137,6 +137,7 @@
   margin-left: 10px;
   margin-right: 10px;
   margin-top: 90px;
+  margin-bottom: 50px;
   text-align: center;
 }
 
@@ -209,8 +210,8 @@
   color: #000000;
 }
 
-/* custom columns */
-.custom-column {
+/* custom columns on book page */
+.item .custom-column {
   background-color: #f4f4f4;
   border: 5px solid #D9D9D9;
   border-radius: 10px;
@@ -218,6 +219,23 @@
   height: 85vh;
   display: flex;
   flex-direction: column;
+}
+
+/* custom columns - default */
+.custom-column {
+  background-color: #f4f4f4;
+  border: 5px solid #D9D9D9;
+  border-radius: 10px;
+  padding: 20px;
+  min-height: 75vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* allows custom column to grow */
+.custom-column:empty::before {
+  content: "\200B";
+  flex: 1;
 }
 
 /* custom rows */
@@ -288,6 +306,23 @@
   font-family: 'Roboto Slab';
   text-decoration: none;
   color: #000000;
+}
+
+.pill-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f4f4f4;
+  border: 5px #D9D9D9 solid;
+  color: #000000;
+  padding: 10px 15px;
+  border-radius: 50px;
+  width: 30%;
+}
+
+.price {
+  font-size: 18px;
+  margin-right: 10px;
 }
 
 /* custom columns */

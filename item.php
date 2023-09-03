@@ -171,7 +171,7 @@ if (!isset($_SESSION['Email'])) {
                                 echo ('</div>');
                                 echo ('<div class="col-md-4">');
                                     echo ('<div class="custom-column">');
-                                        echo ('Basket:');
+                                        echo ('<h3>Basket:</h3>');
                                         $stmt = $conn->prepare("SELECT * FROM tblBooks WHERE buyerID = :userID AND orderID IS NULL ORDER BY name ASC");
                                         $stmt->bindParam(':userID', $_SESSION['UserID'], PDO::PARAM_INT);
                                         $stmt->execute();
@@ -179,7 +179,9 @@ if (!isset($_SESSION['Email'])) {
 
                                         if ($basketData) {
                                             do {
-                                                echo('<br>' . $basketData["name"]);
+                                                echo ('<div class="custom-row">');
+                                                    echo('<br>' . $basketData["name"]);
+                                                echo ('</div>');
                                             } while ($basketData = $stmt->fetch(PDO::FETCH_ASSOC));
                                         } else {
                                             echo('<br>There is nothing in the basket');
