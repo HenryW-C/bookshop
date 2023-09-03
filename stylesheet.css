@@ -271,6 +271,18 @@
   width: 30vw;
 }
 
+/* basket price */
+.price {
+  flex: 3;
+}
+
+/* basket remove button */
+.remove {
+  flex: 5;
+  margin-left: 40%;
+  font-size: 50pt;
+}
+
 /* books page links */
 .custom-row .link {
   font-family: 'Roboto Slab';

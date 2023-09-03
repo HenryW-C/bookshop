@@ -130,6 +130,12 @@ if (!isset($_SESSION['Email'])) {
                                             echo('<h4>'.$basketData["name"].'<h4>');
                                             echo ('</a>');
                                         echo ('</div>');
+                                        echo ('<div class="price">');
+                                            echo('<h4>£'.$basketData["price"].'<h4>');
+                                        echo ('</div>');
+                                        echo ('<div class="remove">');
+                                            echo ('<a class="link" href="removefrombasket.php?bookID=' . $basketData["bookID"] .'">X</a>');
+                                        echo ('</div>');
                                     echo('</div>');
                                 } while ($basketData = $stmt->fetch(PDO::FETCH_ASSOC));
                             } else {
