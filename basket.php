@@ -45,7 +45,6 @@ if (!isset($_SESSION['Email'])) {
                             <optgroup label="Levels">
                                 <!-- php code to take levels from table and display as dropdown options -->
                                 <?php
-                                session_start(); 
                                 include_once ("connection.php");
                                 $stmt = $conn->prepare('SELECT category FROM tblCategories WHERE categoryType = 0');
                                 $stmt->execute();
