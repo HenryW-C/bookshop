@@ -12,7 +12,15 @@ $stmt = $conn->prepare("INSERT INTO
     $stmt->bindParam(':date', $date);
     $stmt->bindParam(':userID', $_SESSION["UserID"]);
     $stmt->execute();
-    $_SESSION['totalPrice']=0;
+
+$stmt = $conn->prepare("");
+
+    $stmt->bindParam(':price', $_SESSION['totalPrice']);
+    $stmt->bindParam(':date', $date);
+    $stmt->bindParam(':userID', $_SESSION["UserID"]);
+    $stmt->execute();
+
+$_SESSION['totalPrice']=0;
 
 // sends the user to the homepage
 header('Location: homepage.php');
