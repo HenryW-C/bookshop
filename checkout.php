@@ -13,11 +13,12 @@ $stmt = $conn->prepare("INSERT INTO
     $stmt->bindParam(':userID', $_SESSION["UserID"]);
     $stmt->execute();
 
-$stmt = $conn->prepare("");
+$lastInsertID = $conn->lastInsertId();
 
-    $stmt->bindParam(':price', $_SESSION['totalPrice']);
-    $stmt->bindParam(':date', $date);
-    $stmt->bindParam(':userID', $_SESSION["UserID"]);
+$stmt = $conn->prepare("UPDATE tblBooks SET orderID=:orderID WHERE buyerID=:buyerID AND orderID IS NULL");
+
+    $stmt->bindParam(':orderID', $lastInsertID);
+    $stmt->bindParam(':buyerID', $_SESSION["UserID"]);
     $stmt->execute();
 
 $_SESSION['totalPrice']=0;

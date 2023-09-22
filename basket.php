@@ -111,6 +111,12 @@ if (!isset($_SESSION['Email'])) {
                             $stmt->execute();
                             $basketData = $stmt->fetch(PDO::FETCH_ASSOC);
                             if ($basketData) {
+                                $basketFull = 1;
+                            }
+                            else {
+                                $basketFull = 0;
+                            }
+                            if ($basketFull == 1) {
                                 // if there are books, they are displayed
                                 echo ('<h2>Basket:</h2>');
                                 do {
@@ -155,7 +161,10 @@ if (!isset($_SESSION['Email'])) {
                             <span class="price">Total: £<?php
                             $price = number_format($_SESSION['totalPrice'], 2, '.', ',');
                             echo($price) ?></span>
+                            <?php 
+                            if ($basketFull == 1) { ?>
                             <a type="button" href="checkout.php" class="btn btn-primary">Checkout</a>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
