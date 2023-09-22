@@ -45,7 +45,6 @@ if (!isset($_SESSION['Email'])) {
                             <optgroup label="Levels">
                                 <!-- php code to take levels from table and display as dropdown options -->
                                 <?php
-                                session_start(); 
                                 include_once ("connection.php");
                                 $stmt = $conn->prepare('SELECT category FROM tblCategories WHERE categoryType = 0');
                                 $stmt->execute();
@@ -81,7 +80,7 @@ if (!isset($_SESSION['Email'])) {
                     <div  class="btn-group" role="group">
                         <!-- php switch statement to show select buttons dependant on user type -->
                         <?php
-                        switch ($_SESSION['UserType']??'') { 
+                        switch ($_SESSION['UserType']) { 
                         case(1): ?>
                         <a type="button" href="/bookshop/admin_account.php" class="btn btn-primary">My Account</a>
                         <a type="button" href="/bookshop/logout.php" class="btn btn-primary">Logout</a>
