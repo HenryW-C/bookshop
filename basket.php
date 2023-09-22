@@ -110,6 +110,7 @@ if (!isset($_SESSION['Email'])) {
                             $stmt->bindParam(':userID', $_SESSION['UserID'], PDO::PARAM_INT);
                             $stmt->execute();
                             $basketData = $stmt->fetch(PDO::FETCH_ASSOC);
+                            // sets variable to determine if there are items in the basket
                             if ($basketData) {
                                 $basketFull = 1;
                             }
@@ -162,6 +163,7 @@ if (!isset($_SESSION['Email'])) {
                             $price = number_format($_SESSION['totalPrice'], 2, '.', ',');
                             echo($price) ?></span>
                             <?php 
+                            // ensures that the user can only checkout if there are books in the basket
                             if ($basketFull == 1) { ?>
                             <a type="button" href="checkout.php" class="btn btn-primary">Checkout</a>
                             <?php } ?>
