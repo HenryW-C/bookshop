@@ -153,7 +153,9 @@ if (!isset($_SESSION['Email'])) {
                 <div class="col-md-12">
                     <div class="container mt-4 d-flex justify-content-end">
                         <div class="pill-bar">
-                            <span class="price">Total: £<?php echo($_SESSION['totalPrice']) ?></span>
+                            <span class="price">Total: £<?php
+                            $price = number_format($_SESSION['totalPrice'], 2, '.', ',');
+                            echo($price) ?></span>
                             <a type="button" href="checkout.php" class="btn btn-primary">Checkout</a>
                         </div>
                     </div>
