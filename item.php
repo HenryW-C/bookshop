@@ -192,7 +192,7 @@ if (!isset($_SESSION['Email'])) {
                     echo ("Error: " . $e->getMessage());
                 }
             } else {
-                echo ('Invalid bookID.');
+                echo ('Invalid bookID');
             }
         ?>
     </div> 

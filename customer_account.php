@@ -101,7 +101,38 @@ if (!isset($_SESSION['Email'])) {
                 <div class="col-md-6">
                     <div class="custom-column">
                         <h3>Past Orders</h3>
-                        <p>[Past Orders]</p>
+                        <?php
+                            // fetch all orders that the user has made
+                            $stmt = $conn->prepare("SELECT * FROM tblOrders WHERE userID = :userID");
+                            $stmt->bindParam(':userID', $_SESSION['UserID'], PDO::PARAM_INT);
+                            $stmt->execute();
+                            $orderData = $stmt->fetch(PDO::FETCH_ASSOC);
+                            // sets variable to determine if there are orders
+                            if ($orderData) {
+                                $orderFull = 1;
+                            }
+                            else {
+                                $orderFull = 0;
+                            }
+                            if ($orderFull == 1) {
+                                // if there are orders, they are displayed
+                                do {
+                                    // row to fill the width of the page
+                                    echo('<div class="custom-row">');
+                                        echo ('<div class="title">');
+                                            echo('<h4>'.$orderData["orderID"].'<h4>');
+                                            echo ('</a>');
+                                        echo ('</div>');
+                                        echo ('<div class="price">');
+                                            echo('<h4>£'.$orderData["totalPrice"].'<h4>');
+                                        echo ('</div>');
+                                    echo('</div>');
+                                } while ($orderData = $stmt->fetch(PDO::FETCH_ASSOC));
+                            } else {
+                                // message to be shown if there are no orders
+                                echo('<br>There are no past orders');
+                            }
+                        ?>
                     </div>
                 </div>
             </div>
