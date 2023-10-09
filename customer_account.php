@@ -120,11 +120,12 @@ if (!isset($_SESSION['Email'])) {
                                     // row to fill the width of the page
                                     echo('<div class="custom-row">');
                                         echo ('<div class="title">');
-                                            echo('<h4>'.$orderData["orderID"].'<h4>');
+                                            echo('<h4>Order #'.$orderData["orderID"].'</h4>');
                                             echo ('</a>');
                                         echo ('</div>');
                                         echo ('<div class="price">');
-                                            echo('<h4>£'.$orderData["totalPrice"].'<h4>');
+                                            $price = number_format($orderData['totalPrice'], 2, '.', ',');
+                                            echo('<h4>£'.$price.'</h4>');
                                         echo ('</div>');
                                     echo('</div>');
                                 } while ($orderData = $stmt->fetch(PDO::FETCH_ASSOC));

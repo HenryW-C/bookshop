@@ -139,7 +139,8 @@ if (!isset($_SESSION['Email'])) {
                                             echo ('</a>');
                                         echo ('</div>');
                                         echo ('<div class="price">');
-                                            echo('<h4>£'.$basketData["price"].'<h4>');
+                                            $price = number_format($basketData["price"], 2, '.', ',');
+                                            echo('<h4>£'.$price.'</h4>');
                                             $_SESSION['totalPrice'] = $_SESSION['totalPrice']+$basketData["price"];
                                         echo ('</div>');
                                         echo ('<div class="remove">');

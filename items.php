@@ -171,7 +171,8 @@ if (isset($_GET['selectedCategory']) && isset($_GET['searchQuery'])) {
                                     echo ('</div>');
                                     echo ('<h5 class=name>' . $row['name'] . '</h5>');
                                 echo ('</a>');
-                                echo ('<p class="card-text text-truncate">' . '£' . $row['price'] . '</p>');
+                                $price = number_format($row['price'], 2, '.', ',');
+                                echo ('<p class="card-text text-truncate">' . '£' .$price . '</p>');
                                 // link to add to basket page
                                 echo ('<a type="button" href="addtobasket.php?bookID=' . $row["bookID"] . '" class="btn btn-sm">Add to Basket</a>');
                             echo ('</div>');

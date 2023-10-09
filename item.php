@@ -153,7 +153,8 @@ if (!isset($_SESSION['Email'])) {
                                         echo ('<p>Description: ' . $bookData['description'] . '</p>');
 
                                         echo ('<div class="bottom";">');
-                                            echo ('<h4>Price: £' . $bookData['price'] . '</h4><br>');
+                                            $price = number_format($bookData['price'], 2, '.', ',');
+                                            echo ('<h4>Price: £' . $price . '</h4><br>');
                                             if($_SESSION['backURL'] == 'basket.php'){
                                                 echo ('<a type="button" href="basket.php" class="btn btn-primary">Return to Basket</a>');
                                             }
