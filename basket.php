@@ -31,7 +31,7 @@ if (!isset($_SESSION['Email'])) {
     <div class="navbar_top">
         <div class="container-fluid">
             <!-- logo and link to homepage -->
-            <a class="logo" type="button" href="/bookshop/homepage.php">Bella's<br>Books </a>
+            <a class="logo" type="button" href="/bookshop/homepage.php">Bella's<br>Books</a>
 
             <!-- search bar including dropdown box and search button -->
             <div class="search-bar">

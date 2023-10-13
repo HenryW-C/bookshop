@@ -41,7 +41,7 @@ if (isset($_GET['selectedCategory']) && isset($_GET['searchQuery'])) {
       <div class="container-fluid">
 
           <!-- logo and link to homepage -->
-          <a class="logo" type="button" href="/bookshop/homepage.php">Bella's<br>Books </a>
+          <a class="logo" type="button" href="/bookshop/homepage.php">Bella's<br>Books</a>
 
           <!-- search bar including dropdown box and search button -->
           <div class="search-bar">
@@ -124,7 +124,7 @@ if (isset($_GET['selectedCategory']) && isset($_GET['searchQuery'])) {
                 $query .= " AND (tblBooks.level = :selectedCategory OR tblBooks.subject = :selectedCategory)";
                 $message = 'You have searched ' . $searchQuery . ' in Category: ' . $selectedCategory . '<br><br>';
             } else {
-                $message = 'You have searched ' . $searchQuery . ' in all categories <br><br>';
+                $message = 'You have searched ' . $searchQuery . ' in all categories<br><br>';
             }
 
             // check if searchQuery is not blank
