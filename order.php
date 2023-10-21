@@ -1,4 +1,5 @@
 <?php
+// link to connection.php to access the database
 include_once("connection.php");
 
 // starts session and ensures that user is logged in, if not, they are sent to login
@@ -73,7 +74,6 @@ if (!isset($_SESSION['Email'])) {
                 </form>
             </div>
 
-
             <!-- buttons at end of navbar -->
             <span>
                 <div class="float-end">
@@ -99,14 +99,8 @@ if (!isset($_SESSION['Email'])) {
     </div>
 
     <!-- body of website -->
-    <div class="order">
+    <div class="main">
         <?php
-            include_once("connection.php");
-            if (!isset($_SESSION['Email'])) {
-            $_SESSION['Message'] = "Please login to use this service";
-            header('Location: login.php');
-            }
-            
             array_map("htmlspecialchars", $_GET);
             // retrieve the orderID from the query parameter
             if (isset($_GET['orderID']) && !empty($_GET['orderID'])) {
@@ -123,6 +117,7 @@ if (!isset($_SESSION['Email'])) {
                     // display book details
                     if ($orderData) {
                         // CODE TO DISPLAY BOOKS
+                        echo("HELPPP");
                         
                     } else {
                         echo ('Order not found');
