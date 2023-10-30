@@ -158,6 +158,9 @@ if (!isset($_SESSION['Email'])) {
                                             if($_SESSION['backURL'] == 'basket.php'){
                                                 echo ('<a type="button" href="basket.php" class="btn btn-primary">Return to Basket</a>');
                                             }
+                                            elseif(strpos($_SESSION['backURL'], 'order.php')){
+                                                echo ('<a type="button" href="'.$_SESSION['backURL'].'" class="btn btn-primary">Return to Order</a>');
+                                            }
                                             else{
                                                 echo ('<a type="button" href="addtobasket.php?bookID=' . $bookData["bookID"] . '" class="btn btn-primary">Add to Basket</a>');
                                             }
@@ -176,7 +179,7 @@ if (!isset($_SESSION['Email'])) {
                                         if ($basketData) {
                                             do {
                                                 echo ('<div class="custom-row">');
-                                                    echo('<br>' . $basketData["name"]);
+                                                    echo($basketData["name"].'<br>');
                                                 echo ('</div>');
                                             } while ($basketData = $stmt->fetch(PDO::FETCH_ASSOC));
                                         } else {
