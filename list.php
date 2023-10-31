@@ -115,6 +115,19 @@ if (isset($_GET['selectedCategory']) && isset($_GET['searchQuery'])) {
         <div class="row">
             <div class="col-md-4">
                 <div class="custom-column">
+                <form action="upload.php" method="post" enctype="multipart/form-data">
+                    Select image to upload:
+                    <input type="file" name="fileToUpload" id="fileToUpload">
+                    <input type="submit" value="Upload Image" name="submit">
+                </form>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="custom-column">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="custom-column">
                 </div>
             </div>
         </div>
