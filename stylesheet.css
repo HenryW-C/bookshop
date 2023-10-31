@@ -211,13 +211,22 @@
 
 /* custom columns on book page */
 .item .custom-column {
+  height: 85vh;
+}
+
+/* custom columns on list page */
+.list .custom-column {
+  background-color: #ffffff;
+  height: 79.5vh;
+}
+
+/* background on list page */
+.list {
   background-color: #f4f4f4;
   border: 5px solid #D9D9D9;
   border-radius: 10px;
   padding: 20px;
-  height: 85vh;
-  display: flex;
-  flex-direction: column;
+  height: 800px;
 }
 
 /* custom columns - default */
@@ -226,7 +235,7 @@
   border: 5px solid #D9D9D9;
   border-radius: 10px;
   padding: 20px;
-  min-height: 75vh;
+  min-height: 700px;
   display: flex;
   flex-direction: column;
 }

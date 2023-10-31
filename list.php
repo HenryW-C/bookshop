@@ -111,6 +111,14 @@ if (isset($_GET['selectedCategory']) && isset($_GET['searchQuery'])) {
 
     <!-- body of website -->
     <div class="main">
+        <div class="list">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="custom-column">
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
   <!-- bottom navbar -->
