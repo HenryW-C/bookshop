@@ -128,7 +128,6 @@
 .btn-primary:hover{
   background: #303030;
   border-color:#000000;
-  border-radius: 30px;
 }
 
 /* main content */
@@ -332,4 +331,17 @@
   bottom: 80px;
   left: 50vw;
   transform: translate(-50%, 0%);
+}
+
+/* list book button */
+.btn-list {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  top: 15px;
+  min-height: 9vh;
+  background-color: #45B0B0;
+  border: 5px solid #303030;
+  border-radius: 10px;
+  font-size: 35px;
 }

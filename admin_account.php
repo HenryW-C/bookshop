@@ -143,6 +143,7 @@ if (!isset($_SESSION['Email'])) {
                         <h3>Databases</h3>
                         <p>[Databases]</p>
                     </div>
+                <a type="button" href="list.php" class="btn btn-primary btn-list">List Book</a>
                 </div>
             </div>
         </div>

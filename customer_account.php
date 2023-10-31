@@ -134,8 +134,9 @@ if (!isset($_SESSION['Email'])) {
                                 // message to be shown if there are no orders
                                 echo('<br>There are no past orders');
                             }
-                        ?>
+                        ?> 
                     </div>
+                    <a type="button" href="list.php" class="btn btn-primary btn-list">List Book</a>
                 </div>
             </div>
         </div>
