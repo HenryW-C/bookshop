@@ -114,7 +114,7 @@ if (isset($_GET['selectedCategory']) && isset($_GET['searchQuery'])) {
     <div class="row">
         <!-- first column with the title input then the image input -->
         <div class="col-md-4">
-            <input type="text" style="margin-bottom: 2vh;" class="list-features" name="title" placeholder="Type title here..." >
+            <input type="text" style="margin-bottom: 2vh; z-index:10;" class="list-features" name="title" placeholder="Type title here..." >
             <input type="text" style="margin-bottom: 2vh; height: 6vh; font-size: 24px;" class="list-features" name="author" placeholder="Type author here..." >
             <div class="custom-column justify-content-center" style="height: 64vh;">
                 <form action="upload.php" method="post" enctype="multipart/form-data">
@@ -123,7 +123,7 @@ if (isset($_GET['selectedCategory']) && isset($_GET['searchQuery'])) {
                         <label for="fileToUpload" class="file-upload-button">
                             <span class="file-upload-button-label">Select Image</span>
                         </label>
-                        <input type="file" name="fileToUpload" id="fileToUpload" class="file-upload-input" onchange="previewImage()">
+                        <input style="z-index:-5;" type="file" name="fileToUpload" id="fileToUpload" class="file-upload-input" onchange="previewImage()">
                         <br><br>
                         <!-- image preview -->
                         <img id="image-preview" src="">
