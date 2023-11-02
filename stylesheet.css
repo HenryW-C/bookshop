@@ -217,6 +217,7 @@
 /* custom columns on list page */
 .list .custom-column {
   background-color: #ffffff;
+  border: 5px solid #45b0b0;
   height: 79.5vh;
 }
 
