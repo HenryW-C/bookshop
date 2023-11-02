@@ -120,11 +120,32 @@ if (isset($_GET['selectedCategory']) && isset($_GET['searchQuery'])) {
                     <form action="upload.php" method="post" enctype="multipart/form-data">
                         <!-- this creates a new button over the file input so that it can be styled -->
                         <div class="file-upload-container">
-                            <input type="file" name="fileToUpload" id="fileToUpload" class="file-upload-input">
-                            <button type="button" class="file-upload-button" onclick="document.getElementById('fileToUpload').click()">
+                            <label for="fileToUpload" class="file-upload-button">
                                 <span class="file-upload-button-label">Select Image</span>
-                            </button>
+                            </label>
+                            <input type="file" name="fileToUpload" id="fileToUpload" class="file-upload-input" onchange="previewImage()">
+                            <br><br>
+                            <!-- image preview -->
+                            <img id="image-preview" src="">
                         </div>
+
+                        <!-- script to preview the image -->
+                        <script>
+                            function previewImage() {
+                                const fileInput = document.getElementById('fileToUpload');
+                                const imagePreview = document.getElementById('image-preview');
+                                const file = fileInput.files[0];
+                                if (file) {
+                                    const reader = new FileReader();
+                                    reader.onload = function(e) {
+                                        imagePreview.src = e.target.result;
+                                    };
+                                    reader.readAsDataURL(file);
+                                } else {
+                                    imagePreview.src = ''; // clear the image if no file is selected
+                                }
+                            }
+                        </script>
                 </div>
             </div>
 

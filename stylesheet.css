@@ -262,12 +262,25 @@
   color: #000000;
   padding: 10px 15px;
   border-radius: 50px;
-  width: 50%;
+  width: 100%;
+  cursor: pointer;
 }
 
 /* the text inside the custom button */
 .file-upload-button-label {
   font-size: 16px;
+}
+
+/* style the container that holds the file input */
+.file-upload-container {
+  position: relative;
+  display: inline-block;
+}
+
+/* style the image preview */
+#image-preview {
+  max-width: 100%;
+  max-height: 200px;
 }
 
 /* custom columns on list page */
