@@ -214,6 +214,62 @@
   height: 85vh;
 }
 
+/* dropdown button for listing */
+.list .dropdown-toggle {
+  border-radius: 30px;
+  border-width: 1;
+  width: 100%;
+  background-color: #D9D9D9;
+  color: #000000;
+  padding-right: 30px;
+}
+
+/* dropdown menu for listing */
+.list .dropdown-menu {
+  font-family: 'Roboto Slab';
+  min-width: 100%;
+  left: 0;
+  margin: 5px;
+  border-radius: 15px 15px 15px 15px;
+}
+
+/* list book button and little boxes */
+.list-features {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 9vh;
+  border: 5px solid #45b0b0;
+  border-radius: 10px;
+  font-size: 35px;
+  width: 100%;
+  padding-left: 10px;
+}
+
+/* hides the file input itself */
+.file-upload-input {
+  position: absolute;
+  font-size: 100px;
+  opacity: 0;
+  right: 0;
+  top: 0;
+}
+
+/* the custom button to trigger the file input */
+.file-upload-button {
+  background-color: #d9d9d9;
+  border: 1px #000000 solid;
+  color: #000000;
+  padding: 10px 15px;
+  border-radius: 50px;
+  width: 50%;
+}
+
+/* the text inside the custom button */
+.file-upload-button-label {
+  font-size: 16px;
+}
+
 /* custom columns on list page */
 .list .custom-column {
   background-color: #ffffff;
@@ -236,7 +292,7 @@
   border: 5px solid #D9D9D9;
   border-radius: 10px;
   padding: 20px;
-  min-height: 700px;
+  height: 700px;
   display: flex;
   flex-direction: column;
 }
@@ -343,7 +399,7 @@
   transform: translate(-50%, 0%);
 }
 
-/* list book button */
+/* list book button and sbmit button */
 .btn-list {
   position: relative;
   display: flex;

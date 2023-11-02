@@ -45,8 +45,24 @@ if ($uploadOk == 0) {
 } else {
   if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
     echo "The file ". htmlspecialchars($filename) . " has been uploaded.";
+    // header('Location: ' . $backURL);
   } else {
     echo "Sorry, there was an error uploading your file.";
   }
 }
+    
+if(isset($_POST['description'])) {
+      $description = $_POST['description'];
+      echo "Description: $description<br>";
+  } 
+
+if(isset($_POST['selectedLevel'])) {
+    $selectedLevel = $_POST['selectedLevel'];
+    echo "Selected Level: $selectedLevel<br>";
+} 
+
+if(isset($_POST['selectedSubject'])) {
+    $selectedSubject = $_POST['selectedSubject'];
+    echo "Selected Subject: $selectedSubject<br>";
+} 
 ?>

@@ -113,22 +113,63 @@ if (isset($_GET['selectedCategory']) && isset($_GET['searchQuery'])) {
 <div class="main">
     <div class="list">
         <div class="row">
+            <!-- first column with the title input then the image input -->
             <div class="col-md-4">
-                <div class="custom-column">
-                <form action="upload.php" method="post" enctype="multipart/form-data">
-                    Select image to upload:
-                    <input type="file" name="fileToUpload" id="fileToUpload">
-                    <input type="submit" value="Upload Image" name="submit">
-                </form>
+                <input type="text" style="margin-bottom: 15px;" class="list-features" name="title" placeholder="Type title here..." >
+                <div class="custom-column justify-content-center" style="height: 69vh;">
+                    <form action="upload.php" method="post" enctype="multipart/form-data">
+                        <!-- this creates a new button over the file input so that it can be styled -->
+                        <div class="file-upload-container">
+                            <input type="file" name="fileToUpload" id="fileToUpload" class="file-upload-input">
+                            <button type="button" class="file-upload-button" onclick="document.getElementById('fileToUpload').click()">
+                                <span class="file-upload-button-label">Select Image</span>
+                            </button>
+                        </div>
                 </div>
             </div>
+
+            <!-- second column with the description box then the price box -->
             <div class="col-md-4">
-                <div class="custom-column">
+                <div class="custom-column" style="height: 69vh;">
+                    <textarea type="text" name="description" placeholder="Type description here..." style="border: none; height: 100%; text-align: left"></textarea>
                 </div>
+                <input type="text" style="margin-top: 15px;" class="list-features" name="title" placeholder="Type price here...">
             </div>
+
+            <!-- third column with the category selection then the submit button -->
             <div class="col-md-4">
-                <div class="custom-column">
+                <div class="custom-column justify-content-center" style="height: 69vh;">
+                    <select class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" name="selectedLevel"  style="margin-bottom: 100px;">
+                        <!-- php code to take levels from table and display as dropdown options -->
+                        <option selected disabled>Select Level</option>
+                        <?php
+                        include_once("connection.php");
+                        $stmt = $conn->prepare('SELECT category FROM tblCategories WHERE categoryType = 0');
+                        $stmt->execute();
+                        $results = $stmt->fetchAll();
+
+                        foreach ($results as $row): ?>
+                            <option value="<?=$row["category"]?>"><?=$row["category"]?></option>
+                        <?php endforeach ?>
+                    </select>
+                    
+                    <select class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" name="selectedSubject"  style="margin-top: 100px;">
+                        <!-- php code to take subjects from table and display as dropdown options -->
+                        <option selected disabled>Select Category</option>
+                        <?php
+                        include_once("connection.php");
+                        $stmt = $conn->prepare('SELECT category FROM tblCategories WHERE categoryType = 1');
+                        $stmt->execute();
+                        $results = $stmt->fetchAll();
+
+                        foreach ($results as $row): ?>
+                            <option value="<?=$row["category"]?>"><?=$row["category"]?></option>
+                        <?php endforeach ?>
+                    </select>
                 </div>
+                <!-- submit button for the full form -->
+                <input type="submit" class="btn btn-primary btn-list" name="submit" value="List" style="width:100%;">
+                    </form>
             </div>
         </div>
     </div>
