@@ -241,7 +241,7 @@
   height: 9vh;
   border: 5px solid #45b0b0;
   border-radius: 10px;
-  font-size: 35px;
+  font-size: 36px;
   width: 100%;
   padding-left: 10px;
 }
@@ -262,7 +262,7 @@
   color: #000000;
   padding: 10px;
   border-radius: 50px;
-  width: 100%;
+  width: 60%;
   cursor: pointer;
 }
 
@@ -273,14 +273,13 @@
 
 /* style the container that holds the file input */
 .file-upload-container {
-  position: relative;
-  display: inline-block;
+  text-align: center;
 }
 
 /* style the image preview */
 #image-preview {
   max-width: 100%;
-  max-height: 200px;
+  max-height: 50vh;
 }
 
 /* custom columns on list page */

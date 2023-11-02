@@ -115,7 +115,7 @@ if (isset($_GET['selectedCategory']) && isset($_GET['searchQuery'])) {
         <!-- first column with the title input then the image input -->
         <div class="col-md-4">
             <input type="text" style="margin-bottom: 2vh;" class="list-features" name="title" placeholder="Type title here..." >
-            <input type="text" style="margin-bottom: 2vh; height: 6vh;" class="list-features" name="author" placeholder="Type author here..." >
+            <input type="text" style="margin-bottom: 2vh; height: 6vh; font-size: 24px;" class="list-features" name="author" placeholder="Type author here..." >
             <div class="custom-column justify-content-center" style="height: 64vh;">
                 <form action="upload.php" method="post" enctype="multipart/form-data">
                     <!-- this creates a new button over the file input so that it can be styled -->
