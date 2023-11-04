@@ -2,11 +2,15 @@
 array_map("htmlspecialchars", $_POST);
 include_once("connection.php");
 
+echo "<pre>";
+print_r($_POST);
+echo "</pre>";
+
 $stmt = $conn->prepare("INSERT INTO 
   TblBooks (bookID, name, author, subject, level, description, image, price, sold, sellerID, buyerID, orderID)
   VALUES (null, :name, :author, :subject, :level, :description, null, :price, 0, :userID, null, null)");
 
-  $stmt->bindParam(':name', $_POST["name"]);
+  $stmt->bindParam(':name', $_POST["title"]);
   $stmt->bindParam(':author', $author);
   $stmt->bindParam(':subject', $subject);
   $stmt->bindParam(':level', $level);
