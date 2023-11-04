@@ -442,34 +442,35 @@
   z-index: 3;
   padding-top: 30vh;
   overflow: auto;
-  border-radius: 10px;
+  border-radius: 5px;
   background-color: rgb(0,0,0);
   background-color: rgba(0,0,0,0.4);
 }
 
-/* modal Content */
+/* modal content */
 .modal-content {
   position: relative;
   background-color: #ffffff;
   margin: auto;
   padding: 0;
   border: 5px solid #000000;
+  border-radius: 20px;
   width: 80%;
   -webkit-animation-name: animateIn;
-  -webkit-animation-duration: 0.4s;
+  -webkit-animation-duration: 0.5s;
   animation-name: animateIn;
-  animation-duration: 0.4s
+  animation-duration: 0.5s
 }
 
 /* animation */
 @-webkit-keyframes animateIn {
-  from {width:60%; opacity:0} 
-  to {width:80%; opacity:1}
+  from {opacity:0} 
+  to {opacity:1}
 }
 
 @keyframes animateIn {
-  from {width:60%; opacity:0} 
-  to {width:80%; opacity:1}
+  from {opacity:0} 
+  to {opacity:1}
 }
 
 /* close button */
@@ -488,6 +489,7 @@
 
 .modal-header {
   padding: 2px 16px;
+  border-radius: 20px 20px 0px 0px;
   background-color: #45B0B0;
   color: #000000;
 }
@@ -498,6 +500,7 @@
 
 .modal-footer {
   padding: 2px 16px;
+  border-radius: 0px;
   background-color: #45B0B0;
   color: #000000;
 }
