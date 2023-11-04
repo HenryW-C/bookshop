@@ -114,10 +114,10 @@ if (isset($_GET['selectedCategory']) && isset($_GET['searchQuery'])) {
     <div class="row">
         <!-- first column with the title input then the image input -->
         <div class="col-md-4">
-            <input type="text" style="margin-bottom: 2vh; z-index:10;" class="list-features" name="title" placeholder="Type title here..." >
-            <input type="text" style="margin-bottom: 2vh; height: 6vh; font-size: 24px;" class="list-features" name="author" placeholder="Type author here..." >
-            <div class="custom-column justify-content-center" style="height: 64vh;">
-                <form action="upload.php" method="post" enctype="multipart/form-data">
+            <form action="upload.php" method="post" enctype="multipart/form-data">
+                <input type="text" style="margin-bottom: 2vh; z-index:10;" class="list-features" name="title" placeholder="Type title here..." required>
+                <input type="text" style="margin-bottom: 2vh; height: 6vh; font-size: 24px;" class="list-features" name="author" placeholder="Type author here..." >
+                <div class="custom-column justify-content-center" style="height: 64vh;">
                     <!-- this creates a new button over the file input so that it can be styled -->
                     <div class="file-upload-container">
                         <label for="fileToUpload" class="file-upload-button">
@@ -152,9 +152,9 @@ if (isset($_GET['selectedCategory']) && isset($_GET['searchQuery'])) {
         <!-- second column with the description box then the price box -->
         <div class="col-md-4">
             <div class="custom-column" style="height: 72vh;">
-                <textarea type="text" name="description" placeholder="Type description here..." style="border: none; height: 100%; text-align: left"></textarea>
+                <textarea type="text" name="description" placeholder="Type description here..." style="border: none; height: 100%; text-align: left" required></textarea>
             </div>
-            <input type="text" style="margin-top: 2vh;" class="list-features" name="title" placeholder="Type price here...">
+            <input type="text" style="margin-top: 2vh;" class="list-features" name="title" placeholder="Type price here..." required>
         </div>
 
         <!-- third column with the category selection then the submit button -->
