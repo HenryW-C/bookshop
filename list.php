@@ -189,8 +189,6 @@ if (isset($_GET['selectedCategory']) && isset($_GET['searchQuery'])) {
                 </select>
             </div>
             <!-- submit button for the full form -->
-            <?php 
-            echo('<input type="text" name="UserID" value="'. $userID .'" hidden>');?>
             <input type="submit" class="btn btn-primary btn-list" value="List" style="width:100%;">
                 </form>
         </div>

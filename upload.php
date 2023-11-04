@@ -1,8 +1,5 @@
 <?php
-echo "<pre>";
-print_r($_POST);
-echo "</pre>";
-
+session_start();
 array_map("htmlspecialchars", $_POST);
 include_once("connection.php");
 
@@ -18,7 +15,7 @@ $stmt = $conn->prepare("INSERT INTO
   $stmt->bindParam(':level', $_POST["selectedLevel"]);
   $stmt->bindParam(':description', $_POST["description"]);
   $stmt->bindParam(':price', $_POST["price"]);
-  $stmt->bindParam(':userID', $_POST['UserID']);
+  $stmt->bindParam(':userID', $_SESSION['UserID']);
   $stmt->execute();
 
 if (isset($_FILES["fileToUpload"]) && $_FILES["fileToUpload"]["error"] === 0) {
