@@ -1,13 +1,12 @@
 <?php
-session_start(); 
-$_POST = array_map("htmlspecialchars", $_POST);
-include_once("connection.php");
-
 echo "<pre>";
 print_r($_POST);
 echo "</pre>";
 
-print_r($_SESSION);
+array_map("htmlspecialchars", $_POST);
+include_once("connection.php");
+
+header('Location: homepage.php');
 
 $stmt = $conn->prepare("INSERT INTO 
   TblBooks (bookID, name, author, subject, level, description, image, price, sold, sellerID, buyerID, orderID)
@@ -19,7 +18,7 @@ $stmt = $conn->prepare("INSERT INTO
   $stmt->bindParam(':level', $_POST["selectedLevel"]);
   $stmt->bindParam(':description', $_POST["description"]);
   $stmt->bindParam(':price', $_POST["price"]);
-  $stmt->bindParam(':userID', $_SESSION['UserID']);
+  $stmt->bindParam(':userID', $_POST['UserID']);
   $stmt->execute();
 
 if (isset($_FILES["fileToUpload"]) && $_FILES["fileToUpload"]["error"] === 0) {
@@ -48,6 +47,11 @@ if (isset($_FILES["fileToUpload"]) && $_FILES["fileToUpload"]["error"] === 0) {
       echo "Sorry, there was an error uploading your file.";
     }
   }
+
+  $name = $_FILES["fileToUpload"]["name"];
+  $ext = end((explode(".", $name)));
+
+  $filename = ($conn->lastInsertId()).'.'.$ext;
 
   // tblBooks is updated to list the new file name
   $stmt = $conn->prepare("UPDATE tblBooks SET image=:imageName WHERE bookID=:bookID");

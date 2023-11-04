@@ -2,8 +2,8 @@
 include_once("connection.php");
 
 // starts session and ensures that user is logged in, if not, they are sent to login
-session_start(); 
-$_SESSION['backURL']=$_SERVER['REQUEST_URI'];
+session_start();
+$userID = $_SESSION['UserID'];
 if (!isset($_SESSION['Email'])) {
   $_SESSION['Message'] = "Please login to use this service";
   header('Location: login.php');
@@ -189,7 +189,9 @@ if (isset($_GET['selectedCategory']) && isset($_GET['searchQuery'])) {
                 </select>
             </div>
             <!-- submit button for the full form -->
-            <input type="submit" class="btn btn-primary btn-list" name="submit" value="List" style="width:100%;">
+            <?php 
+            echo('<input type="text" name="UserID" value="'. $userID .'" hidden>');?>
+            <input type="submit" class="btn btn-primary btn-list" value="List" style="width:100%;">
                 </form>
         </div>
     </div>
