@@ -95,9 +95,61 @@ if (!isset($_SESSION['Email'])) {
             <div class="row">
                 <div class="col-md-4">
                     <div class="custom-column">
-                        <h3>Delivery Details</h3>
-                        <p>[Delivery Details]</p>
+                        <h3>Messages</h3>
+                        <?php
+                            // fetch all messages sent to the user
+                            $stmt = $conn->prepare("SELECT * FROM tblMessages WHERE recieveUserID = :userID");
+                            $stmt->bindParam(':userID', $_SESSION['UserID'], PDO::PARAM_INT);
+                            $stmt->execute();
+                            $messageData = $stmt->fetch(PDO::FETCH_ASSOC);
+                            // sets variable to determine if there are messages
+                            if ($messageData) {
+                                $messageFull = 1;
+                            }
+                            else {
+                                $messageFull = 0;
+                            }
+                            if ($messageFull == 1) {
+                                // if there are messages, they are displayed
+                                do {
+                                    // row to fill the width of the page
+                                    echo('<div class="custom-row" style="cursor: pointer;" id="myBtn">');
+                                        echo ('<div class="sender">');
+                                            echo('<h4>User #'.$messageData["messageID"].'</h4>');
+                                        echo ('</div>');
+                                        echo ('<div class="date">');    
+                                            echo('<h4>'.$messageData["sendDate"].'</h4>');
+                                        echo ('</div>');
+                                    echo('</div>');
+                    ?>
+                                    <!-- modal -->
+                                    <div id="myModal" class="modal">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <span class="close">&times;</span>
+                                                <h2>Message</h2>
+                                            </div>
+                                            <div class="modal-body">
+                                                <?php
+                                                    echo('<p>'.$messageData["content"].'</p>');
+                                                ?>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <?php
+                                                    echo('<h5> Sent: '.$messageData["sendDate"].'</h5>');
+                                                ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                        <?php
+                                } while ($messageData = $stmt->fetch(PDO::FETCH_ASSOC));
+                            } else {
+                                // message to be shown if there are no messages
+                                echo('<br>There are no messages');
+                            }
+                        ?> 
                     </div>
+                    <a type="button" href="newmessage.php" class="btn btn-primary btn-list">Send Message</a>
                 </div>
                 <div class="col-md-4">
                     <div class="custom-column">
@@ -137,13 +189,13 @@ if (!isset($_SESSION['Email'])) {
                             }
                         ?>
                     </div>
+                    <a type="button" href="list.php" class="btn btn-primary btn-list">List Book</a>
                 </div>
                 <div class="col-md-4">
                     <div class="custom-column">
                         <h3>Databases</h3>
                         <p>[Databases]</p>
                     </div>
-                <a type="button" href="list.php" class="btn btn-primary btn-list">List Book</a>
                 </div>
             </div>
         </div>
@@ -154,5 +206,34 @@ if (!isset($_SESSION['Email'])) {
         <a> </a>
     </div>
    
+    <!-- modal script -->
+    <script>
+        // get the modal
+        var modal = document.getElementById("myModal");
+
+        // get the button that opens the modal
+        var btn = document.getElementById("myBtn");
+
+        // get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // when the user clicks the button, open the modal 
+        btn.onclick = function() {
+        modal.style.display = "block";
+        }
+
+        // when the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+        modal.style.display = "none";
+        }
+
+        // when the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+        }
+    </script>
+
 </body>
 </html>

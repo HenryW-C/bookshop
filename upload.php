@@ -1,7 +1,7 @@
 <?php
-array_map("htmlspecialchars", $_POST);
-include_once("connection.php");
 session_start(); 
+$_POST = array_map("htmlspecialchars", $_POST);
+include_once("connection.php");
 
 echo "<pre>";
 print_r($_POST);
@@ -24,7 +24,7 @@ $stmt = $conn->prepare("INSERT INTO
 
 if (isset($_FILES["fileToUpload"]) && $_FILES["fileToUpload"]["error"] === 0) {
   // if an image was uploaded, specifies the filename for the image
-  $filename = ($conn->lastInsertId()).'.png';
+  $filename = ($conn->lastInsertId());
 
   $target_dir = "/Applications/XAMPP/htdocs/bookshop/images/";
   $target_file = $target_dir . $filename . "." . strtolower(pathinfo($_FILES["fileToUpload"]["name"], PATHINFO_EXTENSION));

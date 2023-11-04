@@ -328,6 +328,7 @@
   margin-top: 20px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 /* basket left content (image) */
@@ -373,6 +374,12 @@
 /* basket price */
 .price {
   flex: 3;
+}
+
+/* message date */
+.date {
+  flex: 0;
+  white-space: nowrap;
 }
 
 /* basket remove button */
@@ -426,4 +433,71 @@
   border: 5px solid #303030;
   border-radius: 10px;
   font-size: 35px;
+}
+
+/* message modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 3;
+  padding-top: 30vh;
+  overflow: auto;
+  border-radius: 10px;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+}
+
+/* modal Content */
+.modal-content {
+  position: relative;
+  background-color: #ffffff;
+  margin: auto;
+  padding: 0;
+  border: 5px solid #000000;
+  width: 80%;
+  -webkit-animation-name: animateIn;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animateIn;
+  animation-duration: 0.4s
+}
+
+/* animation */
+@-webkit-keyframes animateIn {
+  from {width:60%; opacity:0} 
+  to {width:80%; opacity:1}
+}
+
+@keyframes animateIn {
+  from {width:60%; opacity:0} 
+  to {width:80%; opacity:1}
+}
+
+/* close button */
+.close {
+  color: #000000;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover, .close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 2px 16px;
+  background-color: #45B0B0;
+  color: #000000;
+}
+
+.modal-body {
+  padding: 6px 16px;
+}
+
+.modal-footer {
+  padding: 2px 16px;
+  background-color: #45B0B0;
+  color: #000000;
 }

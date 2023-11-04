@@ -94,9 +94,42 @@ if (!isset($_SESSION['Email'])) {
             <div class="row">
                 <div class="col-md-6">
                     <div class="custom-column">
-                        <h3>Delivery Details</h3>
-                        <p>[Delivery Details]</p>
+                        <h3>Messages</h3>
+                        <?php
+                            // fetch all messages sent to the user
+                            $stmt = $conn->prepare("SELECT * FROM tblMessages WHERE recieveUserID = :userID");
+                            $stmt->bindParam(':userID', $_SESSION['UserID'], PDO::PARAM_INT);
+                            $stmt->execute();
+                            $messageData = $stmt->fetch(PDO::FETCH_ASSOC);
+                            // sets variable to determine if there are messages
+                            if ($messageData) {
+                                $messageFull = 1;
+                            }
+                            else {
+                                $messageFull = 0;
+                            }
+                            if ($messageFull == 1) {
+                                // if there are messages, they are displayed
+                                do {
+                                    // row to fill the width of the page
+                                    echo ('<a class="link" href="message.php?messageID=' .$messageData["messageID"]. '" class="card-title">'); // link to message page
+                                        echo('<div class="custom-row">');
+                                            echo ('<div class="sender">');
+                                                echo('<h4>User #'.$messageData["messageID"].'</h4>');
+                                            echo ('</div>');
+                                            echo ('<div class="date">');
+                                                echo('<h4>'.$messageData["sendDate"].'</h4>');
+                                            echo ('</div>');
+                                        echo('</div>');
+                                    echo ('</a>');
+                                } while ($messageData = $stmt->fetch(PDO::FETCH_ASSOC));
+                            } else {
+                                // message to be shown if there are no messages
+                                echo('<br>There are no messages');
+                            }
+                        ?> 
                     </div>
+                    <a type="button" href="newmessage.php" class="btn btn-primary btn-list">Send Message</a>
                 </div>
                 <div class="col-md-6">
                     <div class="custom-column">
