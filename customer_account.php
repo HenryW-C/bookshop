@@ -112,16 +112,35 @@ if (!isset($_SESSION['Email'])) {
                                 // if there are messages, they are displayed
                                 do {
                                     // row to fill the width of the page
-                                    echo ('<a class="link" href="message.php?messageID=' .$messageData["messageID"]. '" class="card-title">'); // link to message page
-                                        echo('<div class="custom-row">');
-                                            echo ('<div class="sender">');
-                                                echo('<h4>User #'.$messageData["messageID"].'</h4>');
-                                            echo ('</div>');
-                                            echo ('<div class="date">');
-                                                echo('<h4>'.$messageData["sendDate"].'</h4>');
-                                            echo ('</div>');
-                                        echo('</div>');
-                                    echo ('</a>');
+                                    echo('<div class="custom-row" style="cursor: pointer;" id="myBtn">');
+                                        echo ('<div class="sender">');
+                                            echo('<h4>User #'.$messageData["messageID"].'</h4>');
+                                        echo ('</div>');
+                                        echo ('<div class="date">');    
+                                            echo('<h4>'.$messageData["sendDate"].'</h4>');
+                                        echo ('</div>');
+                                    echo('</div>');
+                        ?>
+                                    <!-- modal -->
+                                    <div id="myModal" class="modal">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <span class="close">&times;</span>
+                                                <h2>Message</h2>
+                                            </div>
+                                            <div class="modal-body">
+                                                <?php
+                                                    echo('<p>'.$messageData["content"].'</p>');
+                                                ?>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <?php
+                                                    echo('<h5> Sent: '.$messageData["sendDate"].'</h5>');
+                                                ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                        <?php
                                 } while ($messageData = $stmt->fetch(PDO::FETCH_ASSOC));
                             } else {
                                 // message to be shown if there are no messages
@@ -180,5 +199,34 @@ if (!isset($_SESSION['Email'])) {
         <a> </a>
     </div>
    
+    <!-- modal script -->
+    <script>
+        // get the modal
+        var modal = document.getElementById("myModal");
+
+        // get the button that opens the modal
+        var btn = document.getElementById("myBtn");
+
+        // get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // when the user clicks the button, open the modal 
+        btn.onclick = function() {
+        modal.style.display = "block";
+        }
+
+        // when the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+        modal.style.display = "none";
+        }
+
+        // when the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+        }
+    </script>
+
 </body>
 </html>

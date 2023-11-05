@@ -121,7 +121,7 @@ if (!isset($_SESSION['Email'])) {
                                             echo('<h4>'.$messageData["sendDate"].'</h4>');
                                         echo ('</div>');
                                     echo('</div>');
-                    ?>
+                        ?>
                                     <!-- modal -->
                                     <div id="myModal" class="modal">
                                         <div class="modal-content">

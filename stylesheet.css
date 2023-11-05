@@ -489,7 +489,7 @@
 
 .modal-header {
   padding: 2px 16px;
-  border-radius: 20px 20px 0px 0px;
+  border-radius: 15px 15px 0px 0px;
   background-color: #45B0B0;
   color: #000000;
 }
@@ -500,7 +500,7 @@
 
 .modal-footer {
   padding: 2px 16px;
-  border-radius: 0px;
+  border-radius: 0px 0px 15px 15px;
   background-color: #45B0B0;
   color: #000000;
 }
