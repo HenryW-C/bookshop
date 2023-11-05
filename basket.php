@@ -97,77 +97,79 @@ if (!isset($_SESSION['Email'])) {
     </div>
 
     <!-- body of website -->
-    <div class="main">
-        <div class="container-fluid mt-5">
-            <div class="row">
-                <div class="col-md-12">
-                    <!-- 'custom-column' to fill page as backing box -->
-                    <div class="custom-column">
-                        <?php
-                            $_SESSION['totalPrice']=0; //initialise total price variable
-                            // fetch all books that are in the basket
-                            $stmt = $conn->prepare("SELECT * FROM tblBooks WHERE buyerID = :userID AND orderID IS NULL ORDER BY name ASC");
-                            $stmt->bindParam(':userID', $_SESSION['UserID'], PDO::PARAM_INT);
-                            $stmt->execute();
-                            $basketData = $stmt->fetch(PDO::FETCH_ASSOC);
-                            // sets variable to determine if there are items in the basket
-                            if ($basketData) {
-                                $basketFull = 1;
-                            }
-                            else {
-                                $basketFull = 0;
-                            }
-                            if ($basketFull == 1) {
-                                // if there are books, they are displayed
-                                echo ('<h2>Basket:</h2>');
-                                do {
-                                    // row to fill the width of the page
-                                    echo('<div class="custom-row">');
-                                        echo ('<div class="left-content">'); // image on left of page
-                                            echo ('<a class="link" href="item.php?bookID=' . $basketData["bookID"] . '" class="card-title">'); // link to book page
-                                                if($basketData['image']) { // if there is an image
-                                                    echo ('<img class="image" src="images/' . $basketData['image'] . '" alt="' . $basketData['name'] . '">');
-                                                } else { // no image
-                                                    echo ('<div class="noimage">');
-                                                        echo ('<div class="centered">No Image</div>');
-                                                        echo ('<img class="image" src="images/default.png" alt="No Image">');
-                                                    echo ('</div>');
-                                                }
-                                        echo ('</div>');
-                                        echo ('<div class="title">');
-                                            echo('<h4>'.$basketData["name"].'<h4>');
-                                            echo ('</a>');
-                                        echo ('</div>');
-                                        echo ('<div class="price">');
-                                            $price = number_format($basketData["price"], 2, '.', ',');
-                                            echo('<h4>£'.$price.'</h4>');
-                                            $_SESSION['totalPrice'] = $_SESSION['totalPrice']+$basketData["price"];
-                                        echo ('</div>');
-                                        echo ('<div class="remove">');
-                                            echo ('<a class="link" href="removefrombasket.php?bookID=' . $basketData["bookID"] .'">X</a>');
-                                        echo ('</div>');
-                                    echo('</div>');
-                                } while ($basketData = $stmt->fetch(PDO::FETCH_ASSOC));
-                            } else {
-                                // message to be shown if there are no books
-                                echo('<br>There is nothing in the basket');
-                            }
-                        ?>
+    <div class="basket">
+        <div class="main">
+            <div class="container-fluid mt-5">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- 'custom-column' to fill page as backing box -->
+                        <div class="custom-column">
+                            <?php
+                                $_SESSION['totalPrice']=0; //initialise total price variable
+                                // fetch all books that are in the basket
+                                $stmt = $conn->prepare("SELECT * FROM tblBooks WHERE buyerID = :userID AND orderID IS NULL ORDER BY name ASC");
+                                $stmt->bindParam(':userID', $_SESSION['UserID'], PDO::PARAM_INT);
+                                $stmt->execute();
+                                $basketData = $stmt->fetch(PDO::FETCH_ASSOC);
+                                // sets variable to determine if there are items in the basket
+                                if ($basketData) {
+                                    $basketFull = 1;
+                                }
+                                else {
+                                    $basketFull = 0;
+                                }
+                                if ($basketFull == 1) {
+                                    // if there are books, they are displayed
+                                    echo ('<h2>Basket:</h2>');
+                                    do {
+                                        // row to fill the width of the page
+                                        echo('<div class="custom-row">');
+                                            echo ('<div class="left-content">'); // image on left of page
+                                                echo ('<a class="link" href="item.php?bookID=' . $basketData["bookID"] . '" class="card-title">'); // link to book page
+                                                    if($basketData['image']) { // if there is an image
+                                                        echo ('<img class="image" src="images/' . $basketData['image'] . '" alt="' . $basketData['name'] . '">');
+                                                    } else { // no image
+                                                        echo ('<div class="noimage">');
+                                                            echo ('<div class="centered">No Image</div>');
+                                                            echo ('<img class="image" src="images/default.png" alt="No Image">');
+                                                        echo ('</div>');
+                                                    }
+                                            echo ('</div>');
+                                            echo ('<div class="title">');
+                                                echo('<h4>'.$basketData["name"].'<h4>');
+                                                echo ('</a>');
+                                            echo ('</div>');
+                                            echo ('<div class="price">');
+                                                $price = number_format($basketData["price"], 2, '.', ',');
+                                                echo('<h4>£'.$price.'</h4>');
+                                                $_SESSION['totalPrice'] = $_SESSION['totalPrice']+$basketData["price"];
+                                            echo ('</div>');
+                                            echo ('<div class="remove">');
+                                                echo ('<a class="link" href="removefrombasket.php?bookID=' . $basketData["bookID"] .'">X</a>');
+                                            echo ('</div>');
+                                        echo('</div>');
+                                    } while ($basketData = $stmt->fetch(PDO::FETCH_ASSOC));
+                                } else {
+                                    // message to be shown if there are no books
+                                    echo('<br>There is nothing in the basket');
+                                }
+                            ?>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="row" >
-                <div class="col-md-12">
-                    <div class="container mt-4 d-flex justify-content-end">
-                        <div class="pill-bar">
-                            <span class="price">Total: £<?php
-                            $price = number_format($_SESSION['totalPrice'], 2, '.', ',');
-                            echo($price) ?></span>
-                            <?php 
-                            // ensures that the user can only checkout if there are books in the basket
-                            if ($basketFull == 1) { ?>
-                            <a type="button" href="checkout.php" class="btn btn-primary">Checkout</a>
-                            <?php } ?>
+                <div class="row" >
+                    <div class="col-md-12">
+                        <div class="container mt-4 d-flex justify-content-end">
+                            <div class="pill-bar">
+                                <span class="price">Total: £<?php
+                                $price = number_format($_SESSION['totalPrice'], 2, '.', ',');
+                                echo($price) ?></span>
+                                <?php 
+                                // ensures that the user can only checkout if there are books in the basket
+                                if ($basketFull == 1) { ?>
+                                <a type="button" href="checkout.php" class="btn btn-primary">Checkout</a>
+                                <?php } ?>
+                            </div>
                         </div>
                     </div>
                 </div>
