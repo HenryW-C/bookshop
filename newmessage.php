@@ -30,6 +30,7 @@ if (!isset($_SESSION['Email'])) {
     <div class="white_box_top"></div>
     <div class="navbar_top">
         <div class="container-fluid">
+
             <!-- logo and link to homepage -->
             <a class="logo" type="button" href="/bookshop/homepage.php">Bella's<br>Books</a>
 
@@ -56,7 +57,7 @@ if (!isset($_SESSION['Email'])) {
                             </optgroup>
 
                             <optgroup label="Subjects">
-                                <!-- php code to take levels from table and display as dropdown options -->
+                                <!-- php code to take subjects from table and display as dropdown options -->
                                 <?php
                                 include_once ("connection.php");
                                 $stmt = $conn->prepare('SELECT category FROM tblCategories WHERE categoryType = 1');
@@ -80,16 +81,18 @@ if (!isset($_SESSION['Email'])) {
                     <div  class="btn-group" role="group">
                         <!-- php switch statement to show select buttons dependant on user type -->
                         <?php
-                        switch ($_SESSION['UserType']) { 
+                        switch ($_SESSION['UserType']??'') { 
                         case(1): ?>
                         <a type="button" href="/bookshop/admin_account.php" class="btn btn-primary">My Account</a>
+                        <a type="button" href="/bookshop/basket.php" class="btn btn-primary">Basket</a>
                         <a type="button" href="/bookshop/logout.php" class="btn btn-primary">Logout</a>
                         <?php break; ?>
 
                         <?php case(0): ?>
                         <a type="button" href="/bookshop/customer_account.php" class="btn btn-primary">My Account</a>
+                        <a type="button" href="/bookshop/basket.php" class="btn btn-primary">Basket</a>
                         <a type="button" href="/bookshop/logout.php" class="btn btn-primary">Logout</a>
-                        <?php } ?>
+                        <?php break; }?>
                     </div> 
                 </div> 
             </span>
