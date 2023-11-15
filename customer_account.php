@@ -93,102 +93,14 @@ if (!isset($_SESSION['Email'])) {
         <div class="container-fluid mt-5"> 
             <div class="row">
                 <div class="col-md-6">
-                    <div class="custom-column">
-                        <h3>Messages</h3>
-                        <?php
-                            // fetch all messages sent to the user
-                            $stmt = $conn->prepare("SELECT * FROM tblMessages WHERE recieveUserID = :userID");
-                            $stmt->bindParam(':userID', $_SESSION['UserID'], PDO::PARAM_INT);
-                            $stmt->execute();
-                            $messageData = $stmt->fetch(PDO::FETCH_ASSOC);
-                            // sets variable to determine if there are messages
-                            if ($messageData) {
-                                $messageFull = 1;
-                            }
-                            else {
-                                $messageFull = 0;
-                            }
-                            if ($messageFull == 1) {
-                                // if there are messages, they are displayed
-                                do {
-                                    // row to fill the width of the page
-                                    echo('<div class="custom-row" style="cursor: pointer;" id="messageBtn">');
-                                        echo ('<div class="sender">');
-                                            echo('<h4>User #'.$messageData["messageID"].'</h4>');
-                                        echo ('</div>');
-                                        echo ('<div class="date">');    
-                                            echo('<h4>'.$messageData["sendDate"].'</h4>');
-                                        echo ('</div>');
-                                    echo('</div>');
-                        ?>
-                                    <!-- modal -->
-                                    <div id="messageModal" class="modal">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <span class="close">&times;</span>
-                                                <h2>Message</h2>
-                                            </div>
-                                            <div class="modal-body">
-                                                <?php
-                                                    echo('<p>'.$messageData["content"].'</p>');
-                                                ?>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <?php
-                                                    echo('<h5> Sent: '.$messageData["sendDate"].'</h5>');
-                                                ?>
-                                            </div>
-                                        </div>
-                                    </div>
-                        <?php
-                                } while ($messageData = $stmt->fetch(PDO::FETCH_ASSOC));
-                            } else {
-                                // message to be shown if there are no messages
-                                echo('<br>There are no messages');
-                            }
-                        ?> 
-                    </div>
-                    <a type="button"  id="messageBtn" class="btn btn-primary btn-list">Send Message</a>
+                    <?php
+                        include_once ("messages.php");
+                    ?>
                 </div>
                 <div class="col-md-6">
-                    <div class="custom-column">
-                        <h3>Past Orders</h3>
-                        <?php
-                            // fetch all orders that the user has made
-                            $stmt = $conn->prepare("SELECT * FROM tblOrders WHERE userID = :userID");
-                            $stmt->bindParam(':userID', $_SESSION['UserID'], PDO::PARAM_INT);
-                            $stmt->execute();
-                            $orderData = $stmt->fetch(PDO::FETCH_ASSOC);
-                            // sets variable to determine if there are orders
-                            if ($orderData) {
-                                $orderFull = 1;
-                            }
-                            else {
-                                $orderFull = 0;
-                            }
-                            if ($orderFull == 1) {
-                                // if there are orders, they are displayed
-                                do {
-                                    // row to fill the width of the page
-                                    echo ('<a class="link" href="order.php?orderID=' .$orderData["orderID"]. '" class="card-title">'); // link to order page
-                                        echo('<div class="custom-row">');
-                                            echo ('<div class="title">');
-                                                echo('<h4>Order #'.$orderData["orderID"].'</h4>');
-                                            echo ('</div>');
-                                            echo ('<div class="price">');
-                                                $price = number_format($orderData['totalPrice'], 2, '.', ',');
-                                                echo('<h4>£'.$price.'</h4>');
-                                            echo ('</div>');
-                                        echo('</div>');
-                                    echo ('</a>');
-                                } while ($orderData = $stmt->fetch(PDO::FETCH_ASSOC));
-                            } else {
-                                // message to be shown if there are no orders
-                                echo('<br>There are no past orders');
-                            }
-                        ?> 
-                    </div>
-                    <a type="button" href="list.php" class="btn btn-primary btn-list">List Book</a>
+                    <?php
+                        include_once ("orders.php");
+                    ?>
                 </div>
             </div>
         </div>
@@ -198,35 +110,5 @@ if (!isset($_SESSION['Email'])) {
     <div class="navbar_bottom">
         <a> </a>
     </div>
-   
-    <!-- modal script -->
-    <script>
-        // get the modal
-        var modal = document.getElementById("messageModal");
-
-        // get the button that opens the modal
-        var btn = document.getElementById("messageBtn");
-
-        // get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
-
-        // when the user clicks the button, open the modal 
-        btn.onclick = function() {
-        modal.style.display = "block";
-        }
-
-        // when the user clicks on <span> (x), close the modal
-        span.onclick = function() {
-        modal.style.display = "none";
-        }
-
-        // when the user clicks anywhere outside of the modal, close it
-        window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-        }
-    </script>
-
 </body>
 </html>
