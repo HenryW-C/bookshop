@@ -112,7 +112,7 @@ if (!isset($_SESSION['Email'])) {
                                 // if there are messages, they are displayed
                                 do {
                                     // row to fill the width of the page
-                                    echo('<div class="custom-row" style="cursor: pointer;" id="myBtn">');
+                                    echo('<div class="custom-row" style="cursor: pointer;" id="messageBtn">');
                                         echo ('<div class="sender">');
                                             echo('<h4>User #'.$messageData["messageID"].'</h4>');
                                         echo ('</div>');
@@ -122,7 +122,7 @@ if (!isset($_SESSION['Email'])) {
                                     echo('</div>');
                         ?>
                                     <!-- modal -->
-                                    <div id="myModal" class="modal">
+                                    <div id="messageModal" class="modal">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <span class="close">&times;</span>
@@ -148,7 +148,7 @@ if (!isset($_SESSION['Email'])) {
                             }
                         ?> 
                     </div>
-                    <a type="button" href="newmessage.php" class="btn btn-primary btn-list">Send Message</a>
+                    <a type="button"  id="messageBtn" class="btn btn-primary btn-list">Send Message</a>
                 </div>
                 <div class="col-md-6">
                     <div class="custom-column">
@@ -202,10 +202,10 @@ if (!isset($_SESSION['Email'])) {
     <!-- modal script -->
     <script>
         // get the modal
-        var modal = document.getElementById("myModal");
+        var modal = document.getElementById("messageModal");
 
         // get the button that opens the modal
-        var btn = document.getElementById("myBtn");
+        var btn = document.getElementById("messageBtn");
 
         // get the <span> element that closes the modal
         var span = document.getElementsByClassName("close")[0];
