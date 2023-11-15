@@ -34,80 +34,42 @@ if (isset($_GET['selectedCategory']) && isset($_GET['searchQuery'])) {
     
 </head>
 <body>
-    
-  <!-- top navbar -->
-  <div class="white_box_top"></div>
-  <div class="navbar_top">
-      <div class="container-fluid">
+    <!-- top navbar -->
+    <div class="white_box_top"></div>
+    <div class="navbar_top">
+        <div class="container-fluid">
 
-          <!-- logo and link to homepage -->
-          <a class="logo" type="button" href="/bookshop/homepage.php">Bella's<br>Books</a>
+            <!-- logo and link to homepage -->
+            <a class="logo" type="button" href="/bookshop/homepage.php">Bella's<br>Books</a>
 
-          <!-- search bar including dropdown box and search button -->
-          <div class="search-bar">
-              <form class="d-flex" id="searchForm" action="items.php" method="GET">
-                  <div class="dropdown">
-                      <!-- dropdown box code -->
-                      <select class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" name="selectedCategory">
-                          <!-- default 'categories' label -->
-                          <option value="">Categories</option>
-                          <option value=""> All</option>
-                          <optgroup label="Levels">
-                              <!-- php code to take levels from table and display as dropdown options -->
-                              <?php
-                              include_once ("connection.php");
-                              $stmt = $conn->prepare('SELECT category FROM tblCategories WHERE categoryType = 0');
-                              $stmt->execute();
-                              $results = $stmt->fetchAll();
+            <!-- search bar including dropdown box and search button -->
+            <?php
+                include_once ("searchbar.php");
+            ?>  
 
-                              foreach ($results as $row): ?>
-                                  <option value="<?=$row["category"]?>"><?=$row["category"]?></option>
-                              <?php endforeach ?>
-                          </optgroup>
+            <!-- buttons at end of navbar -->
+            <span>
+                <div class="float-end">
+                    <div  class="btn-group" role="group">
+                        <!-- php switch statement to show select buttons dependant on user type -->
+                        <?php
+                        switch ($_SESSION['UserType']??'') { 
+                        case(1): ?>
+                        <a type="button" href="/bookshop/admin_account.php" class="btn btn-primary">My Account</a>
+                        <a type="button" href="/bookshop/basket.php" class="btn btn-primary">Basket</a>
+                        <a type="button" href="/bookshop/logout.php" class="btn btn-primary">Logout</a>
+                        <?php break; ?>
 
-                          <optgroup label="Subjects">
-                              <!-- php code to take subjects from table and display as dropdown options -->
-                              <?php
-                              include_once ("connection.php");
-                              $stmt = $conn->prepare('SELECT category FROM tblCategories WHERE categoryType = 1');
-                              $stmt->execute();
-                              $results = $stmt->fetchAll();
-
-                              foreach ($results as $row): ?>
-                                  <option value="<?=$row["category"]?>"><?=$row["category"]?></option>
-                              <?php endforeach ?>
-                          </optgroup>
-                      </select>
-                  </div>
-                  <input class="form-control me-2" type="search" placeholder="Search" name="searchQuery">
-                  <button class="btn btn-outline-success go-button" type="submit">Go</button>
-              </form>
-          </div>
-
-
-          <!-- buttons at end of navbar -->
-          <span>
-              <div class="float-end">
-                  <div  class="btn-group" role="group">
-                      <!-- php switch statement to show select buttons dependant on user type -->
-                      <?php
-                      switch ($_SESSION['UserType']??'') { 
-                      case(1): ?>
-                      <a type="button" href="/bookshop/admin_account.php" class="btn btn-primary">My Account</a>
-                      <a type="button" href="/bookshop/basket.php" class="btn btn-primary">Basket</a>
-                      <a type="button" href="/bookshop/logout.php" class="btn btn-primary">Logout</a>
-                      <?php break; ?>
-
-                      <?php case(0): ?>
-                      <a type="button" href="/bookshop/customer_account.php" class="btn btn-primary">My Account</a>
-                      <a type="button" href="/bookshop/basket.php" class="btn btn-primary">Basket</a>
-                      <a type="button" href="/bookshop/logout.php" class="btn btn-primary">Logout</a>
-                      <?php break; }?>
-                  </div> 
-              </div> 
-          </span>
-      </div>
-  </div>
+                        <?php case(0): ?>
+                        <a type="button" href="/bookshop/customer_account.php" class="btn btn-primary">My Account</a>
+                        <a type="button" href="/bookshop/basket.php" class="btn btn-primary">Basket</a>
+                        <a type="button" href="/bookshop/logout.php" class="btn btn-primary">Logout</a>
+                        <?php break; }?>
+                    </div> 
+                </div> 
+            </span>
+        </div>
+    </div>
 
     <!-- body of website -->
     <div class="main">
