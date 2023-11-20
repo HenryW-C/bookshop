@@ -60,8 +60,6 @@ if (!isset($_SESSION['Email'])) {
         </div>
     </div>
 
-
-
     <!-- body of website -->
     <div class="item">
         <?php
@@ -112,6 +110,7 @@ if (!isset($_SESSION['Email'])) {
                                         if($bookData['level']) {
                                             echo ('<h5>Level: <b>' . $bookData['level'] . '</b></h5></p>');
                                         }
+                                        echo ('<p>Seller: User #' . $bookData['sellerID'] . '</p>');
                                         echo ('<p>Description: ' . $bookData['description'] . '</p>');
 
                                         echo ('<div class="bottom">');
@@ -127,7 +126,6 @@ if (!isset($_SESSION['Email'])) {
                                                 echo ('<a type="button" href="addtobasket.php?bookID=' . $bookData["bookID"] . '" class="btn btn-primary">Add to Basket</a>');
                                             }
                                         echo ('</div>');
-                                        
                                     echo ('</div>');
                                 echo ('</div>');
                                 echo ('<div class="col-md-4">');
