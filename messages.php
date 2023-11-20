@@ -26,7 +26,7 @@
                     echo ('</div>');
                 echo('</div>');
     ?>
-                <!-- modal -->
+                <!-- message modal -->
                 <div class="modal message-modal">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -40,7 +40,7 @@
                         </div>
                         <div class="modal-footer">
                             <?php
-                                    echo('<h5> Sent: '.$messageData["sendDate"].'</h5>');
+                                echo('<h5> Sent: '.$messageData["sendDate"].'</h5>');
                             ?>
                         </div>
                     </div>
@@ -53,8 +53,25 @@
         }
     ?> 
 </div>
-<a type="button" href="newmessage.php" class="btn btn-primary btn-list">Send Message</a>
 
+<a type="button" class="btn btn-primary btn-list messageBtn">Send Message</a>
+
+<!-- send modal -->
+<form action="sendmessage.php" method="post">
+    <div class="modal message-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>New Message</h2>
+            </div>
+            <div class="modal-body">
+                <textarea type="text" name="description" placeholder="Type message here..." style="border: none; height: 100%; width: 100%; text-align: left" required></textarea>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</form>
 
 <!-- modal script -->
 <script>
