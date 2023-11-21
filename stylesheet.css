@@ -489,12 +489,14 @@
   font-weight: bold;
 }
 
+/* acts as inert button */
 .close:hover, .close:focus {
   color: #000;
   text-decoration: none;
   cursor: pointer;
 }
 
+/* modal header */
 .modal-header {
   padding: 2px 16px;
   border-radius: 15px 15px 0px 0px;
@@ -502,13 +504,34 @@
   color: #000000;
 }
 
+/* modal body */
 .modal-body {
   padding: 6px 16px;
 }
 
+/* modal footer */
 .modal-footer {
   padding: 2px 16px;
   border-radius: 0px 0px 15px 15px;
   background-color: #45B0B0;
   color: #000000;
+}
+
+/* modal user input box */
+.message-modal .userInput{
+  background-color: #ffffff;
+  color: #000000;
+  border: #000000 solid 2px;
+  border-radius: 30px;
+  height: 35px;
+}
+
+/* modal user submit box */
+.message-modal .submit{
+  color: #ffffff;
+  background-color:#303030;
+  border: #000000 solid 2px;
+  border-radius: 30px;
+  width: 120px;
+  height: 35px;
 }

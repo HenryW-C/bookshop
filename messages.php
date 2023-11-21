@@ -65,9 +65,11 @@
                 <h2>New Message</h2>
             </div>
             <div class="modal-body">
-                <textarea type="text" name="description" placeholder="Type message here..." style="border: none; height: 100%; width: 100%; text-align: left" required></textarea>
+                <textarea type="text" name="message" placeholder="Type message here..." style="border: none; height: 100%; width: 100%; text-align: left" required></textarea>
             </div>
             <div class="modal-footer">
+                <input type="text" class="userInput" name="recipient" placeholder="To user..." required>
+                <button type="submit" class="submit">Send</button>
             </div>
         </div>
     </div>
