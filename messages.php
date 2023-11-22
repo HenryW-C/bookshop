@@ -19,7 +19,7 @@
                 // row to fill the width of the page
                 echo('<div class="custom-row messageBtn" style="cursor: pointer;">');
                     echo ('<div class="sender">');
-                        echo('<h4>User #'.$messageData["messageID"].'</h4>');
+                        echo('<h4>User #'.$messageData["senderUserID"].'</h4>');
                     echo ('</div>');
                     echo ('<div class="date">');    
                         echo('<h4>'.$messageData["sendDate"].'</h4>');

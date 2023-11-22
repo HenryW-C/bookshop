@@ -55,6 +55,7 @@ if (!isset($_SESSION['Email'])) {
     <div class="main">
         <div class="container-fluid mt-5"> 
             <div class="row">
+                <a type="button" class="btn btn-primary top-btn">Account Information</a>
                 <div class="col-md-6">
                     <?php
                         include_once ("messages.php");
