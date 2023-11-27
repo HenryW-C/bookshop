@@ -56,7 +56,7 @@ if (!isset($_SESSION['Email'])) {
         <div class="container-fluid mt-5"> 
             <div class="row">
                 <div class="col-md-12">
-                    <a type="button" class="btn btn-primary top-btn">Account Information</a>
+                    <a type="button" href="/bookshop/accountinfo.php" class="btn btn-primary top-btn">Account Information</a>
                 </div>
                 <div class="col-md-6">
                     <?php
