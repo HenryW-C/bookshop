@@ -39,8 +39,21 @@ if (!isset($_SESSION['Email'])) {
             <span>
                 <div class="float-end">
                     <div  class="btn-group" role="group">
-                        <a type="button" href="/bookshop/basket.php" class="btn btn-primary">Basket</a>
-                        <a type="button" href="/bookshop/logout.php" class="btn btn-primary">Logout</a>
+                        <!-- php switch statement to show select buttons dependant on user type -->
+                        <?php
+                            switch ($_SESSION['UserType']) { 
+                            case(1): ?>
+                            <a type="button" href="/bookshop/admin_account.php" class="btn btn-primary">My Account</a>
+                            <a type="button" href="/bookshop/basket.php" class="btn btn-primary">Basket</a>
+                            <a type="button" href="/bookshop/logout.php" class="btn btn-primary">Logout</a>
+                            <?php break; ?>
+
+                            <?php case(0): ?>
+                            <a type="button" href="/bookshop/customer_account.php" class="btn btn-primary">My Account</a>
+                            <a type="button" href="/bookshop/basket.php" class="btn btn-primary">Basket</a>
+                            <a type="button" href="/bookshop/logout.php" class="btn btn-primary">Logout</a>
+                            <?php break;
+                            } ?>
                     </div> 
                 </div> 
             </span>
@@ -53,56 +66,91 @@ if (!isset($_SESSION['Email'])) {
             <h3> Edit Details </h3>
             <p style="color:red;">
                 <?php
+                    // displays error message
                     if (isset($_SESSION['Message'])){
                         echo($_SESSION['Message']);
                         unset($_SESSION['Message']);
                     } 
+
+                    // fetches user details to pre-fill form
+                    $stmt = $conn->prepare("SELECT * FROM tblusers WHERE userID=:userID");
+                    $stmt->bindParam(':userID', $_SESSION['UserID']);
+                    $stmt->execute();
+                    $results = $stmt->fetchAll();
+                    
+                    $stmt->execute();
+                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){ 
+                        $email = $row['email'];
+                        $forename = $row['forename'];
+                        $surname = $row['surname'];
+                        $phone = $row['telephone'];
+                        $addressLine = $row['addressLine'];
+                        $postcode = $row['postcode'];
+                        $cardNo = $row['cardNo'];
+                        $cardName = $row['cardName'];
+                        $cardExpiry = $row['cardExpiry'];
+                        $cardCVC = $row['cardCVC'];
+                    }
                 ?>
             </p>
+            <!-- displays user details in rows with information filled -->
             <form action="accountinfoprocess.php" method="post">
                 <div class="container">
                     <div class="row">
-                        <div class="col-sm text-end" style="line-height: 1.8em">
+                        <div class="col-sm text-end" style="line-height: 1.85em">
                             Email:<br>
                             First Name:<br>
                             Surname:<br>
                             Phone:<br>
-                            <br>
+                        </div>
+                        <div class="col-sm text-start">
+                            <input type="email" name="email" value="<?php echo($email) ?>" required><br>
+                            <input type="text" name="forename" value="<?php echo($forename) ?>" required><br>
+                            <input type="text" name="surname" value="<?php echo($surname) ?>" required><br>
+                            <input type="tel" name="phone" value="<?php echo($phone) ?>" required><br>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm text-end" style="line-height: 1.85em">
                             Address Line 1:<br>
                             Postcode:<br>
-                            <br>
+                        </div>
+                        <div class="col-sm text-start">
+                            <input type="text" name="address" value="<?php echo($addressLine) ?>" required><br>
+                            <input type="text" name="postcode" value="<?php echo($postcode) ?>" required><br>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm text-end" style="line-height: 1.85em">
                             Card Number:<br>
                             Card Name:<br>
                             Card Expiry:<br>
                             Card CVC:<br>
-                            <br>
+                        </div>
+                        <div class="col-sm text-start">
+                            <input type="text" name="cardno" value="<?php echo($cardNo) ?>" required><br>
+                            <input type="text" name="cardname" value="<?php echo($cardName) ?>" required><br>
+                            <input type="text" name="cardexpiry" value="<?php echo($cardExpiry) ?>" required><br>
+                            <input type="text" name="cardcvc" value="<?php echo($cardCVC) ?>" required><br>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm text-end" style="line-height: 1.85em">
                             Current Password:<br>
                             New Password:<br>
                         </div>
-
                         <div class="col-sm text-start">
-                            <input type="email" name="email" placeholder="Email" required><br>
-                            <input type="text" name="forename" placeholder="First Name" required><br>
-                            <input type="text" name="surname" placeholder="Surname" required><br>
-                            <input type="tel" name="phone" placeholder="Phone" required><br>
-                            <br>
-                            <input type="text" name="address" placeholder="Address Line 1" required><br>
-                            <input type="text" name="postcode" placeholder="Postcode" required><br>
-                            <br>
-                            <input type="text" name="cardno" placeholder="Card Number" required><br>
-                            <input type="text" name="cardname" placeholder="Card Name" required><br>
-                            <input type="text" name="cardexpiry" placeholder="Card Expiry Date" required><br>
-                            <input type="password" name="cardcvc" placeholder="Card CVC" required><br>
-                            <br>
                             <input type="password" name="currentpass" placeholder="Current Password" required><br>
                             <input type="password" name="newpass" placeholder="New Password" required><br>
-                            <br>
-                            <input type="submit" value="Save Changes">
                         </div>
                     </div>
-                <div>
-            </form>      
-        </div>
+                    <br>
+                    <input type="submit" value="Save Changes">
+            </form>    
+        </div>  
     </div> 
 
     <!-- bottom navbar -->
