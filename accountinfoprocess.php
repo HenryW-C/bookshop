@@ -5,22 +5,24 @@ session_start();
 array_map("htmlspecialchars", $_POST);
 include_once("connection.php");
 
-$stmt = $conn->prepare("SELECT * FROM tblusers WHERE email = :email AND userID != :userID");
-$stmt->bindparam(':email', $_POST["email"]);
-$stmt->bindparam(':userID',$_SESSION['userID']);
+$email=$_POST["email"];
+$stmt = $conn->prepare("SELECT email FROM tblusers WHERE email = :email AND userID != :userID;");
+$stmt->bindparam('email',$email);
+$stmt->bindparam(':userID',$_SESSION['UserID']);
 $stmt->execute();
+$result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-// if new password is entered and current is not
-if (!empty($_POST['newpass']) && empty($_POST["currentpass"])){
+// if the email entered is already in the database
+if($result){
     // the user is redirected with an error message
-    $_SESSION['Message']="Please enter the current password to make a change";
+    $_SESSION['Message']="This email is already registered. Please user another email";
     header('Location: accountinfo.php');
 }
 
-// if the email entered is already in the database
-elseif($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+// if new password is entered and current is not
+elseif (!empty($_POST['newpass']) && empty($_POST["currentpass"])){
     // the user is redirected with an error message
-    $_SESSION['Message']="This email is already registered. Please user another email";
+    $_SESSION['Message']="Please enter the current password to make a change";
     header('Location: accountinfo.php');
 }
 
@@ -41,7 +43,7 @@ else{
         $stmt->bindParam(':cardname', $_POST["cardname"]);
         $stmt->bindParam(':cardexpiry', $_POST["cardexpiry"]);
         $stmt->bindParam(':cardcvc', $_POST["cardcvc"]);
-        $stmt->bindParam(':userID', $_SESSION["userID"]);
+        $stmt->bindParam(':userID', $_SESSION["UserID"]);
         $stmt->execute();
 
     // updates the password, if one has been entered
@@ -65,7 +67,7 @@ else{
 
                 $new_hashed_password = password_hash($_POST["newpass"], PASSWORD_DEFAULT);
                 $stmt->bindParam(':newPasswordHashed', $new_hashed_password);
-                $stmt->bindParam(':userID', $_SESSION["userID"]);
+                $stmt->bindParam(':userID', $_SESSION["UserID"]);
                 $stmt->execute();
             }
             // if they don't match, the user is told
