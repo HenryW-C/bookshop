@@ -13,7 +13,7 @@ $stmt->execute();
 // if the email entered is already in the database
 if($row = $stmt->fetch(PDO::FETCH_ASSOC)){
     // the user is redirected with an error message
-    $_SESSION['Message']="This email is already redistered. Please user another email";
+    $_SESSION['Message']="This email is already registered. Please user another email";
     header('Location: signup.php');
 }
 

@@ -66,7 +66,7 @@ $stmt->execute();
 // create 2D array of users
 $users = [
   ['0', 'jill.wones@aol.com', password_hash("pass", PASSWORD_DEFAULT), 'Jill', 'Wones', '07957159532', 'Laundimer House', 'PE84AP', '5105105105105100', 'MR JILL WONES', '07/25', '218'],
-  ['1', 'roris.byabov@yahoo.com', password_hash("pass", PASSWORD_DEFAULT), 'Roris', 'Byabov', '01234567890', 'Home', 'SW1A 1AA', '1234123412341234', 'RORIS BYABOV', '08/24', '123'],
+  ['1', 'roris.byabov@yahoo.com', password_hash("pass", PASSWORD_DEFAULT), 'Roris', 'Byabov', '01234567890', 'Home', 'SW1A1AA', '1234123412341234', 'RORIS BYABOV', '08/24', '123'],
   ];
 
 // inputs array into table by executing row-by-row

@@ -137,14 +137,16 @@ if (!isset($_SESSION['Email'])) {
                         </div>
                     </div>
                     <br>
+                    <h3>Change Password</h3>
+                    <p>[Optional]</p>
                     <div class="row">
                         <div class="col-sm text-end" style="line-height: 1.85em">
                             Current Password:<br>
                             New Password:<br>
                         </div>
                         <div class="col-sm text-start">
-                            <input type="password" name="currentpass" placeholder="Current Password" required><br>
-                            <input type="password" name="newpass" placeholder="New Password" required><br>
+                            <input type="password" name="currentpass" placeholder="Current Password"><br>
+                            <input type="password" name="newpass" placeholder="New Password"><br>
                         </div>
                     </div>
                     <br>
