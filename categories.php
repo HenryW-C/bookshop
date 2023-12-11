@@ -29,6 +29,7 @@ if (!isset($_SESSION['Email'])) {
 </head>
 <body>
     <!-- top navbar -->
+    <div class="white_box_top"></div>
     <div class="navbar_top">
         <div class="container-fluid">
             <!-- logo and link to homepage -->
@@ -66,100 +67,54 @@ if (!isset($_SESSION['Email'])) {
 
     <!-- body of website -->
     <div class="main">
-        <div class="text-center">
-            <h3> Edit Details </h3>
-            <p style="color:red;">
-                <?php
-                    // displays error message
-                    if (isset($_SESSION['Message'])){
-                        echo($_SESSION['Message']);
-                        unset($_SESSION['Message']);
-                    } 
-
-                    // fetches user details to pre-fill form
-                    $stmt = $conn->prepare("SELECT * FROM tblusers WHERE userID=:userID");
-                    $stmt->bindParam(':userID', $_SESSION['UserID']);
-                    $stmt->execute();
-                    $results = $stmt->fetchAll();
-                    
-                    $stmt->execute();
-                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){ 
-                        $email = $row['email'];
-                        $forename = $row['forename'];
-                        $surname = $row['surname'];
-                        $phone = $row['telephone'];
-                        $addressLine = $row['addressLine'];
-                        $postcode = $row['postcode'];
-                        $cardNo = $row['cardNo'];
-                        $cardName = $row['cardName'];
-                        $cardExpiry = $row['cardExpiry'];
-                        $cardCVC = $row['cardCVC'];
-                    }
-                ?>
-            </p>
-            <!-- displays user details in rows with information filled -->
-            <form action="accountinfoprocess.php" method="post">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm text-end" style="line-height: 1.85em">
-                            Email:<br>
-                            First Name:<br>
-                            Surname:<br>
-                            Phone:<br>
-                        </div>
-                        <div class="col-sm text-start">
-                            <input type="email" name="email" value="<?php echo($email) ?>" required><br>
-                            <input type="text" name="forename" value="<?php echo($forename) ?>" required><br>
-                            <input type="text" name="surname" value="<?php echo($surname) ?>" required><br>
-                            <input type="tel" name="phone" value="<?php echo($phone) ?>" required><br>
-                        </div>
+        <div class="container-fluid mt-5">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- 'custom-column' to fill page as backing box -->
+                    <div class="custom-column">
+                        <?php
+                            // fetch all categories
+                            $stmt = $conn->prepare("SELECT * FROM tblCategories ORDER BY category ASC");
+                            $stmt->execute();
+                            $categoryData = $stmt->fetch(PDO::FETCH_ASSOC);
+                            var_dump($categoryData);
+                            // sets variable to determine if there are categories
+                            if ($categoryData) {
+                                $categoryData = 1;
+                            }
+                            else {
+                                $categoryData = 0;
+                            }
+                            if ($categoryData == 1) {
+                                // if there are categories, they are displayed
+                                echo ('<h2>Categories:</h2>');
+                                do {
+                                    // row to fill the width of the page
+                                    echo('<div class="custom-row">');
+                                        echo ('<div class="left-content">'); // image on left of page
+                                           
+                                        echo ('</div>');
+                                        echo ('<div class="title">');
+                                           
+                                        echo ('</div>');
+                                        echo ('<div class="remove">');
+                                            echo ('<a class="link" href="removecategory.php?categoryID=' . $categoryData["categoryID"] .'">X</a>');
+                                        echo ('</div>');
+                                    echo('</div>');
+                                } while ($categoryData = $stmt->fetch(PDO::FETCH_ASSOC));
+                            } else {
+                                // message to be shown if there are no categories
+                                echo('<br>There are no categories');
+                            }
+                        ?>
                     </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-sm text-end" style="line-height: 1.85em">
-                            Address Line 1:<br>
-                            Postcode:<br>
-                        </div>
-                        <div class="col-sm text-start">
-                            <input type="text" name="address" value="<?php echo($addressLine) ?>" required><br>
-                            <input type="text" name="postcode" value="<?php echo($postcode) ?>" required><br>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-sm text-end" style="line-height: 1.85em">
-                            Card Number:<br>
-                            Card Name:<br>
-                            Card Expiry:<br>
-                            Card CVC:<br>
-                        </div>
-                        <div class="col-sm text-start">
-                            <input type="text" name="cardno" value="<?php echo($cardNo) ?>" required><br>
-                            <input type="text" name="cardname" value="<?php echo($cardName) ?>" required><br>
-                            <input type="text" name="cardexpiry" value="<?php echo($cardExpiry) ?>" required><br>
-                            <input type="text" name="cardcvc" value="<?php echo($cardCVC) ?>" required><br>
-                        </div>
-                    </div>
-                    <br>
-                    <h3>Change Password</h3>
-                    <p>[Optional]</p>
-                    <div class="row">
-                        <div class="col-sm text-end" style="line-height: 1.85em">
-                            Current Password:<br>
-                            New Password:<br>
-                        </div>
-                        <div class="col-sm text-start">
-                            <input type="password" name="currentpass" placeholder="Current Password"><br>
-                            <input type="password" name="newpass" placeholder="New Password"><br>
-                        </div>
-                    </div>
-                    <br>
-                    <input type="submit" value="Save Changes">
-            </form>    
+                </div>
+            </div>
         </div>  
     </div> 
 
     <!-- bottom navbar -->
+    <div class="white_box_bottom"><div>
     <div class="navbar_bottom">
         <a> </a>
     </div>
