@@ -73,6 +73,7 @@ if (!isset($_SESSION['Email'])) {
                         <h3>Databases</h3>
                         <p>[Databases]</p>
                     </div>
+                    <a type="button" href="/bookshop/categories.php" class="btn btn-primary btn-list messageBtn">Manage Categories</a>
                 </div>
             </div>
         </div>

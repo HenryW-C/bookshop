@@ -59,7 +59,8 @@ $stmt->execute();
 // create categories table
 $stmt = $conn->prepare("DROP TABLE IF EXISTS tblCategories;
 CREATE TABLE tblCategories
-(category VARCHAR(100) PRIMARY KEY,
+(categoryID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+category VARCHAR(100),
 categoryType BOOL NOT NULL)");
 $stmt->execute();
 
