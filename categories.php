@@ -74,10 +74,9 @@ if (!isset($_SESSION['Email'])) {
                     <div class="custom-column">
                         <?php
                             // fetch all categories
-                            $stmt = $conn->prepare("SELECT * FROM tblCategories ORDER BY category ASC");
+                            $stmt = $conn->prepare("SELECT * FROM tblCategories ORDER BY categoryID ASC");
                             $stmt->execute();
                             $categoryData = $stmt->fetch(PDO::FETCH_ASSOC);
-                            var_dump($categoryData);
                             // sets variable to determine if there are categories
                             if ($categoryData) {
                                 $categoryData = 1;
@@ -91,11 +90,16 @@ if (!isset($_SESSION['Email'])) {
                                 do {
                                     // row to fill the width of the page
                                     echo('<div class="custom-row">');
-                                        echo ('<div class="left-content">'); // image on left of page
-                                           
+                                        echo ('<div class="left-content">');
+                                           echo($categoryData["category"]);
                                         echo ('</div>');
                                         echo ('<div class="title">');
-                                           
+                                           if ($categoryData["category"] == 1){
+                                            echo ('Subject');
+                                           }
+                                           else{
+                                            echo ('Level');
+                                           }
                                         echo ('</div>');
                                         echo ('<div class="remove">');
                                             echo ('<a class="link" href="removecategory.php?categoryID=' . $categoryData["categoryID"] .'">X</a>');
