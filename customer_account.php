@@ -28,7 +28,8 @@ if (!isset($_SESSION['Email'])) {
 
 </head>
 <body>
-    <!-- top navbar -->
+    <!-- top navbar -->    
+    <div class="white_box_top"></div>
     <div class="navbar_top">
         <div class="container-fluid">
             <!-- logo and link to homepage -->
@@ -73,6 +74,7 @@ if (!isset($_SESSION['Email'])) {
     </div> 
 
     <!-- bottom navbar -->
+    <div class="white_box_bottom"><div>
     <div class="navbar_bottom">
         <a> </a>
     </div>

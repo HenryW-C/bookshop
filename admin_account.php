@@ -29,6 +29,7 @@ if (!isset($_SESSION['Email'])) {
 </head>
 <body>
     <!-- top navbar -->
+    <div class="white_box_top"></div>
     <div class="navbar_top">
         <div class="container-fluid">
             <!-- logo and link to homepage -->
@@ -54,10 +55,15 @@ if (!isset($_SESSION['Email'])) {
     <!-- body of website -->
     <div class="main">
         <div class="container-fluid mt-5"> 
-            <div class="row">
-                <div class="col-md-12">
+            <div class="row d-flex justify-content-between">
+                <div class="col-md-8">
                     <a type="button" href="/bookshop/accountinfo.php" class="btn btn-primary top-btn">Account Information</a>
                 </div>
+                <div class="col-md-4">
+                    <a type="button" href="/bookshop/newadmin.php" class="btn btn-primary top-btn">New Admin</a>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-md-4">
                     <?php
                         include_once ("messages.php");
@@ -94,6 +100,7 @@ if (!isset($_SESSION['Email'])) {
     </div> 
 
     <!-- bottom navbar -->
+    <div class="white_box_bottom"><div>
     <div class="navbar_bottom">
         <a> </a>
     </div>
