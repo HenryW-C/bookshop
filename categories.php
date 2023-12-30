@@ -66,52 +66,77 @@ if (!isset($_SESSION['Email'])) {
     </div>
 
     <!-- body of website -->
-    <div class="main">
-        <div class="container-fluid mt-5">
-            <div class="row">
-                <div class="col-md-12">
-                    <!-- 'custom-column' to fill page as backing box -->
-                    <div class="custom-column">
-                        <?php
-                            // fetch all categories
-                            $stmt = $conn->prepare("SELECT * FROM tblCategories ORDER BY category ASC");
-                            $stmt->execute();
-                            $categoryData = $stmt->fetch(PDO::FETCH_ASSOC);
-                            var_dump($categoryData);
-                            // sets variable to determine if there are categories
-                            if ($categoryData) {
-                                $categoryData = 1;
-                            }
-                            else {
-                                $categoryData = 0;
-                            }
-                            if ($categoryData == 1) {
-                                // if there are categories, they are displayed
-                                echo ('<h2>Categories:</h2>');
-                                do {
-                                    // row to fill the width of the page
-                                    echo('<div class="custom-row">');
-                                        echo ('<div class="left-content">'); // image on left of page
-                                           
-                                        echo ('</div>');
-                                        echo ('<div class="title">');
-                                           
-                                        echo ('</div>');
-                                        echo ('<div class="remove">');
-                                            echo ('<a class="link" href="removecategory.php?categoryID=' . $categoryData["categoryID"] .'">X</a>');
-                                        echo ('</div>');
-                                    echo('</div>');
-                                } while ($categoryData = $stmt->fetch(PDO::FETCH_ASSOC));
-                            } else {
-                                // message to be shown if there are no categories
-                                echo('<br>There are no categories');
-                            }
-                        ?>
+    <div class="basket">
+        <div class="main">
+            <div class="container-fluid mt-5">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- 'custom-column' to fill page as backing box -->
+                        <div class="custom-column">
+                            <?php
+                                // fetch all categories
+                                $stmt = $conn->prepare("SELECT * FROM tblCategories ORDER BY categoryType, Category");
+                                $stmt->execute();
+                                $categoryData = $stmt->fetch(PDO::FETCH_ASSOC);
+                                // sets variable to determine if there are categories
+                                if ($categoryData) {
+                                    $categoryFull = 1;
+                                }
+                                else {
+                                    $categoryFull = 0;
+                                }
+                                if ($categoryFull == 1) {
+                                    // if there are categories, they are displayed
+                                    echo ('<h2>Categories:</h2>');
+                                    do {
+                                        // row to fill the width of the page
+                                        echo('<div class="custom-row" style="height:10vh">');
+                                            echo ('<div class="left-content">'); // image on left of page
+                                                echo ('<h3>'.$categoryData['category'].'</h3>');
+                                            echo ('</div>');
+                                            echo ('<div class="category-type">');
+                                                if ($categoryData['categoryType'] == 1) {
+                                                    echo ('<h3>Subject</h3>');
+                                                }
+                                                else {
+                                                    echo ('<h3>Level</h3>');
+                                                }
+                                            echo ('</div>');
+                                            echo ('<div class="remove">');
+                                                echo ('<a class="link" href="removecategory.php?categoryID=' . $categoryData["categoryID"] .'">X</a>');
+                                            echo ('</div>');
+                                        echo('</div>');
+                                    } while ($categoryData = $stmt->fetch(PDO::FETCH_ASSOC));
+                                } else {
+                                    // message to be shown if there are no categories
+                                    echo('<br>There are no categories');
+                                }
+                            ?>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>  
-    </div> 
+                <p></p>
+                <div class="custom-column" style="min-height:15vh;">
+                    <h3>Add Category</h3>
+                    <form action="addcategory.php" method="post">
+                        <div class="custom-row" style="height:10vh">
+                            <div class="left-content">
+                                <input type="text" name="category" placeholder="Category" required>
+                            </div>
+                            <div class="category-type" >
+                                <select name="categoryType" required>
+                                    <option value="" disabled selected hidden>Category Type</option>
+                                    <option value="1">Subject</option>
+                                    <option value="0">Level</option>
+                                </select>
+                            </div>
+                            <input class="btn btn-primary" type="submit" value="Add">
+                        </div>
+                    </form>
+                </div>
+            </div>  
+        </div> 
+    </div>
 
     <!-- bottom navbar -->
     <div class="white_box_bottom"><div>
