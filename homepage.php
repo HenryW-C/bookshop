@@ -58,9 +58,76 @@
 
 
     <!-- body of website -->
-    <div class="main">
-        <h1>Welcome to Bella's Books</h1>
-    </div> 
+    <div class="featured">
+        <div class="main">
+            <h1>Welcome to Bella's Books</h1>
+            <div class="container-fluid mt-5"> 
+                <div class="row">
+                    <h3>Featured Books</h3>
+                    <div class="col-md-12">
+                        <div style="height:32vh;" class="custom-column">
+                            <div class="row">
+                                <?php
+                                    // select the 5 most expensive books
+                                    $stmt = $conn->prepare("SELECT * FROM tblBooks ORDER BY price DESC LIMIT 6");
+                                    $stmt->execute();
+
+                                    // fetch all results and display them
+                                    $bookData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                                    foreach ($bookData as $row) {
+                                            echo ('<div class="col-md-2 image-container">');
+                                            echo ('<a href="item.php?bookID=' . $row["bookID"] . '">');
+                                            // if there is an image, it is displayed. otherwise, blank image and text is displayed
+                                            if($row['image']) {
+                                                echo ('<img class="image" src="images/' . $row['image'] . '" alt="' . $row['name'] . '"><br><br>');
+                                            } else {
+                                                echo ('<div class="noimage">');
+                                                    echo ('<div class="centered">'.$row['name'].'</div>');
+                                                    echo ('<img class="image" src="images/default.png"><br><br>');
+                                                echo ('</div>');
+                                            }
+                                            echo('</a>');
+                                            echo ('</div>');
+                                    }
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                    <p></p>
+                    <h3>Latest Listings</h3>
+                    <div class="col-md-12">
+                        <div style="height:32vh;" class="custom-column">
+                            <div class="row">
+                                <?php
+                                    // select the 5 newest books
+                                    $stmt = $conn->prepare("SELECT * FROM tblBooks ORDER BY bookID DESC LIMIT 6");
+                                    $stmt->execute();
+
+                                    // fetch all results and display them
+                                    $bookData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                                    foreach ($bookData as $row) {
+                                        echo ('<div class="col-md-2 image-container">');
+                                        echo ('<a href="item.php?bookID=' . $row["bookID"] . '">');
+                                        // if there is an image, it is displayed. otherwise, blank image and text is displayed
+                                        if($row['image']) {
+                                            echo ('<img class="image" src="images/' . $row['image'] . '" alt="' . $row['name'] . '"><br><br>');
+                                        } else {
+                                            echo ('<div class="noimage">');
+                                                echo ('<div class="centered">'.$row['name'].'</div>');
+                                                echo ('<img class="image" src="images/default.png"><br><br>');
+                                            echo ('</div>');
+                                        }
+                                        echo('</a>');
+                                        echo ('</div>');
+                                    }
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- bottom navbar -->
     <div class="navbar_bottom">

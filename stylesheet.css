@@ -169,6 +169,15 @@
   width: 250px;
 }
 
+/* book image on homepage */
+.featured .image {
+  border: 1px solid #000000;
+  border-radius: 4px;
+  padding: 2px;
+  height: 250px;
+  width: 175px;
+}
+
 /* container holding the image and the text - items page */
 .books .noimage {
   position: relative;
@@ -178,6 +187,23 @@
 
 /* centered text on no image - items page */
 .books .noimage .centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  color: #000000;
+}
+
+/* container holding the image and the text - homepage */
+.featured .noimage {
+  position: relative;
+  text-align: center;
+  color: #ffffff;
+}
+
+/* centered text on no image - homepage */
+.featured .noimage .centered {
   position: absolute;
   top: 50%;
   left: 50%;
