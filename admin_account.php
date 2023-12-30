@@ -71,7 +71,21 @@ if (!isset($_SESSION['Email'])) {
                 <div class="col-md-4">
                     <div class="custom-column">
                         <h3>Databases</h3>
-                        <p>[Databases]</p>
+                        <?php
+                            // fetch all tables
+                            $stmt = $conn->prepare("SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_SCHEMA='bookshop' ");
+                            $stmt->execute();
+                            $tableData = $stmt->fetch(PDO::FETCH_ASSOC);
+                            do {
+                                // row to fill the width of the page
+                                echo ('<a class="link" href="viewtable.php?tableName=' . $tableData["TABLE_NAME"] . '" class="card-title">'); // link to table page
+                                    echo('<div  class="custom-row messageBtn" style="cursor: pointer;">');
+                                        // display table name
+                                        echo('<h4>'.$tableData["TABLE_NAME"].'</h4>');
+                                    echo('</div>');
+                                echo ('</a>');
+                            } while ($tableData = $stmt->fetch(PDO::FETCH_ASSOC));
+                        ?>
                     </div>
                     <a type="button" href="/bookshop/categories.php" class="btn btn-primary btn-list messageBtn">Manage Categories</a>
                 </div>
