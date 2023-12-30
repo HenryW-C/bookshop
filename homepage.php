@@ -68,7 +68,7 @@
                         <div style="height:32vh;" class="custom-column">
                             <div class="row">
                                 <?php
-                                    // select the 5 most expensive books
+                                    // select the 6 most expensive books
                                     $stmt = $conn->prepare("SELECT * FROM tblBooks ORDER BY price DESC LIMIT 6");
                                     $stmt->execute();
 
@@ -99,7 +99,7 @@
                         <div style="height:32vh;" class="custom-column">
                             <div class="row">
                                 <?php
-                                    // select the 5 newest books
+                                    // select the 6 newest books
                                     $stmt = $conn->prepare("SELECT * FROM tblBooks ORDER BY bookID DESC LIMIT 6");
                                     $stmt->execute();
 

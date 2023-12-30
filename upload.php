@@ -28,7 +28,7 @@ if (isset($_FILES["fileToUpload"]) && $_FILES["fileToUpload"]["error"] === 0) {
   $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
   // check file size
-  if ($_FILES["fileToUpload"]["size"] > 500000) {
+  if ($_FILES["fileToUpload"]["size"] > 50000000) {
     echo "Sorry, your file is too large.";
     $uploadOk = 0;
   }
