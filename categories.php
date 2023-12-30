@@ -66,7 +66,6 @@ if (!isset($_SESSION['Email'])) {
     </div>
 
     <!-- body of website -->
-<<<<<<< HEAD
     <div class="basket">
         <div class="main">
             <div class="container-fluid mt-5">
@@ -114,53 +113,6 @@ if (!isset($_SESSION['Email'])) {
                                 }
                             ?>
                         </div>
-=======
-    <div class="main">
-        <div class="container-fluid mt-5">
-            <div class="row">
-                <div class="col-md-12">
-                    <!-- 'custom-column' to fill page as backing box -->
-                    <div class="custom-column">
-                        <?php
-                            // fetch all categories
-                            $stmt = $conn->prepare("SELECT * FROM tblCategories ORDER BY categoryID ASC");
-                            $stmt->execute();
-                            $categoryData = $stmt->fetch(PDO::FETCH_ASSOC);
-                            // sets variable to determine if there are categories
-                            if ($categoryData) {
-                                $categoryData = 1;
-                            }
-                            else {
-                                $categoryData = 0;
-                            }
-                            if ($categoryData == 1) {
-                                // if there are categories, they are displayed
-                                echo ('<h2>Categories:</h2>');
-                                do {
-                                    // row to fill the width of the page
-                                    echo('<div class="custom-row">');
-                                        echo ('<div class="left-content">');
-                                           echo($categoryData["category"]);
-                                        echo ('</div>');
-                                        echo ('<div class="title">');
-                                           if ($categoryData["category"] == 1){
-                                            echo ('Subject');
-                                           }
-                                           else{
-                                            echo ('Level');
-                                           }
-                                        echo ('</div>');
-                                        echo ('<div class="remove">');
-                                            echo ('<a class="link" href="removecategory.php?categoryID=' . $categoryData["categoryID"] .'">X</a>');
-                                        echo ('</div>');
-                                    echo('</div>');
-                                } while ($categoryData = $stmt->fetch(PDO::FETCH_ASSOC));
-                            } else {
-                                // message to be shown if there are no categories
-                                echo('<br>There are no categories');
-                            }
-                        ?>
->>>>>>> 1f67bd6bf6f5a8d672f1cb0e161f857a16895982
                     </div>
                 </div>
                 <p></p>
