@@ -4,8 +4,7 @@ include_once("connection.php");
 
 // starts session and ensures that user is logged in, if not, they are sent to login
 session_start(); 
-$URL = $_SERVER['REQUEST_URI'];
-$_SESSION['backURL'] = $URL;
+$_SESSION['backURL']=$_SERVER['REQUEST_URI'];
 if (!isset($_SESSION['Email'])) {
   $_SESSION['Message'] = "Please login to use this service";
   header('Location: login.php');

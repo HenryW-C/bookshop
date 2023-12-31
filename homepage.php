@@ -1,3 +1,7 @@
+<?php
+session_start(); 
+$_SESSION['backURL']=$_SERVER['REQUEST_URI'];
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -69,7 +73,7 @@
                             <div class="row">
                                 <?php
                                     // select the 6 most expensive books
-                                    $stmt = $conn->prepare("SELECT * FROM tblBooks ORDER BY price DESC LIMIT 6");
+                                    $stmt = $conn->prepare("SELECT * FROM tblBooks WHERE buyerID IS NULL ORDER BY price DESC LIMIT 6");
                                     $stmt->execute();
 
                                     // fetch all results and display them
@@ -100,7 +104,7 @@
                             <div class="row">
                                 <?php
                                     // select the 6 newest books
-                                    $stmt = $conn->prepare("SELECT * FROM tblBooks ORDER BY bookID DESC LIMIT 6");
+                                    $stmt = $conn->prepare("SELECT * FROM tblBooks WHERE buyerID IS NULL ORDER BY bookID DESC LIMIT 6");
                                     $stmt->execute();
 
                                     // fetch all results and display them

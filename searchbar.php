@@ -11,7 +11,7 @@
                     <?php
                     session_start(); 
                     include_once ("connection.php");
-                    $stmt = $conn->prepare('SELECT category FROM tblCategories WHERE categoryType = 0');
+                    $stmt = $conn->prepare('SELECT category FROM tblCategories WHERE categoryType = 0 ORDER BY category ASC');
                     $stmt->execute();
                     $results = $stmt->fetchAll();
 
@@ -24,7 +24,7 @@
                     <!-- php code to take levels from table and display as dropdown options -->
                     <?php
                     include_once ("connection.php");
-                    $stmt = $conn->prepare('SELECT category FROM tblCategories WHERE categoryType = 1');
+                    $stmt = $conn->prepare('SELECT category FROM tblCategories WHERE categoryType = 1 ORDER BY category ASC');
                     $stmt->execute();
                     $results = $stmt->fetchAll();
 

@@ -19,7 +19,7 @@ if (!isset($_SESSION['Email'])) {
 <html>
 <head>
     
-    <title>Create Account</title>
+    <title>Create Admin Account</title>
     <!-- links to stylesheets and google fonts -->
     <link rel="icon" type="image/x-icon" href="images/favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1">

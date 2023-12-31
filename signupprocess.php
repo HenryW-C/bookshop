@@ -38,6 +38,6 @@ else{
     $stmt->bindParam(':cardcvc', $_POST["cardcvc"]);
     $stmt->execute();
     $conn=null;
-    header('Location: signup.php');
+    header('Location: homepage.php');
 }
 ?>

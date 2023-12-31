@@ -4,7 +4,7 @@ include_once("connection.php");
 
 // starts session and ensures that user is logged in as admin, if not, they are sent to login
 session_start(); 
-$_SESSION['backURL']='admin_account.php';
+$_SESSION['backURL']='categories.php';
 if ($_SESSION['UserType'] != 1) {
     $_SESSION['Message'] = "Please login to use this service";
     header('Location: login.php');

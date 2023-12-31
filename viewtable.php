@@ -4,7 +4,7 @@ include_once("connection.php");
 
 // starts session and ensures that user is logged in, if not, they are sent to login
 session_start(); 
-$_SESSION['backURL']='basket.php';
+$_SESSION['backURL']=$_SERVER['REQUEST_URI'];
 if (!isset($_SESSION['Email'])) {
   $_SESSION['Message'] = "Please login to use this service";
   header('Location: login.php');
@@ -15,7 +15,7 @@ if (!isset($_SESSION['Email'])) {
 <html>
 <head>
     
-    <title>Basket</title>
+    <title>Vew Table</title>
     <!-- links to stylesheets and google fonts -->
     <link rel="icon" type="image/x-icon" href="images/favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1">
