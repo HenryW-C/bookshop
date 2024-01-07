@@ -14,10 +14,10 @@ surname VARCHAR(30) NOT NULL,
 telephone VARCHAR(15),
 addressLine VARCHAR(20),
 postcode VARCHAR(7),
-cardNo CHAR(16),
+cardNo VARCHAR(300),
 cardName VARCHAR(100),
 cardExpiry CHAR(5),
-cardCVC CHAR(3))");
+cardCVC VARCHAR(300))");
 $stmt->execute();
 
 // create books table
@@ -66,8 +66,8 @@ $stmt->execute();
 
 // create 2D array of users
 $users = [
-  ['0', 'jill.wones@aol.com', password_hash("pass", PASSWORD_DEFAULT), 'Jill', 'Wones', '07957159532', 'Laundimer House', 'PE84AP', '5105105105105100', 'MR JILL WONES', '07/25', '218'],
-  ['1', 'roris.byabov@yahoo.com', password_hash("pass", PASSWORD_DEFAULT), 'Roris', 'Byabov', '01234567890', 'Home', 'SW1A1AA', '1234123412341234', 'RORIS BYABOV', '08/24', '123'],
+  ['0', 'jill.wones@aol.com', password_hash("pass", PASSWORD_DEFAULT), 'Jill', 'Wones', '07957159532', 'Laundimer House', 'PE84AP', password_hash("5105105105105100", PASSWORD_DEFAULT), 'MR JILL WONES', '07/25', password_hash("218", PASSWORD_DEFAULT)],
+  ['1', 'roris.byabov@yahoo.com', password_hash("pass", PASSWORD_DEFAULT), 'Roris', 'Byabov', '01234567890', 'Home', 'SW1A1AA', password_hash("1234123412341234", PASSWORD_DEFAULT), 'RORIS BYABOV', '08/24', password_hash("123", PASSWORD_DEFAULT)],
   ];
 
 // inputs array into table by executing row-by-row
