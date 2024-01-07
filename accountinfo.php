@@ -63,7 +63,7 @@ if (!isset($_SESSION['Email'])) {
     <!-- body of website -->
     <div class="main">
         <div class="text-center">
-            <h3> Edit Details </h3>
+            <h1> Edit Details </h1>
             <p style="color:red;">
                 <?php
                     // displays error message
@@ -86,10 +86,8 @@ if (!isset($_SESSION['Email'])) {
                         $phone = $row['telephone'];
                         $addressLine = $row['addressLine'];
                         $postcode = $row['postcode'];
-                        $cardNo = $row['cardNo'];
                         $cardName = $row['cardName'];
                         $cardExpiry = $row['cardExpiry'];
-                        $cardCVC = $row['cardCVC'];
                     }
                 ?>
             </p>
@@ -124,20 +122,16 @@ if (!isset($_SESSION['Email'])) {
                     <br>
                     <div class="row">
                         <div class="col-sm text-end" style="line-height: 1.85em">
-                            Card Number:<br>
                             Card Name:<br>
                             Card Expiry:<br>
-                            Card CVC:<br>
                         </div>
                         <div class="col-sm text-start">
-                            <input type="text" name="cardno" value="<?php echo($cardNo) ?>" required><br>
                             <input type="text" name="cardname" value="<?php echo($cardName) ?>" required><br>
                             <input type="text" name="cardexpiry" value="<?php echo($cardExpiry) ?>" required><br>
-                            <input type="text" name="cardcvc" value="<?php echo($cardCVC) ?>" required><br>
                         </div>
                     </div>
                     <br>
-                    <h3>Change Password</h3>
+                    <h3>Secure Details</h3>
                     <p>[Optional]</p>
                     <div class="row">
                         <div class="col-sm text-end" style="line-height: 1.85em">
@@ -147,6 +141,17 @@ if (!isset($_SESSION['Email'])) {
                         <div class="col-sm text-start">
                             <input type="password" name="currentpass" placeholder="Current Password"><br>
                             <input type="password" name="newpass" placeholder="New Password"><br>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm text-end" style="line-height: 1.85em">
+                            Card Number:<br>
+                            Card CVC:<br>
+                        </div>
+                        <div class="col-sm text-start">
+                            <input type="password" name="cardno" placeholder="New Card Number"><br>
+                            <input type="password" name="cardCVC" placeholder="New Card CVC"><br>
                         </div>
                     </div>
                     <br>

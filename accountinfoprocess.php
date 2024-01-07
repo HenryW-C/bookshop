@@ -26,12 +26,40 @@ elseif (!empty($_POST['newpass']) && empty($_POST["currentpass"])){
     header('Location: accountinfo.php');
 }
 
+// if new card number is entered, it must be 16 digits
+elseif (!empty($_POST['cardno']) && strlen($_POST['cardno']) != 16){
+    // the user is redirected with an error message
+    $_SESSION['Message']="Please enter a valid card number";
+    header('Location: accountinfo.php');
+}
+
+// if new cvc is entered, it must be 3 digits
+elseif (!empty($_POST['cardCVC']) && strlen($_POST['cardCVC']) != 3){
+    // the user is redirected with an error message
+    $_SESSION['Message']="Please enter a valid card CVC";
+    header('Location: accountinfo.php');
+}
+
+// if a new password is entered, it must be 8 charcaters or more and contain a number
+elseif (!empty($_POST['newpass']) && strlen($_POST['newpass']) < 8 && !preg_match("#[0-9]+#", $_POST['newpass'])){
+    // the user is redirected with an error message
+    $_SESSION['Message']="Please enter a valid password, it must have at least 8 characters and a number";
+    header('Location: accountinfo.php');
+}
+
+// the card expiry date must be in the correct format
+elseif (!empty($_POST['cardexpiry']) && !preg_match("/^(0[1-9]|1[0-2])\/?([0-9]{4}|[0-9]{2})$/", $_POST['cardexpiry'])){
+    // the user is redirected with an error message
+    $_SESSION['Message']="Please enter a valid card expiry date";
+    header('Location: accountinfo.php');
+}
+
 // if the email is not already registered, the user's details are updated
 else{
     // updates the main details
         $stmt = $conn->prepare("UPDATE tblUsers 
         SET email=:email, forename=:forename, surname=:surname, telephone=:phone, addressLine=:address, 
-        postcode=:postcode, cardNo=:cardno, cardName=:cardname, cardExpiry=:cardexpiry, cardCVC=:cardcvc
+        postcode=:postcode, cardName=:cardname, cardExpiry=:cardexpiry
         WHERE userID=:userID");
         $stmt->bindParam(':email', $_POST["email"]);
         $stmt->bindParam(':forename', $_POST["forename"]);
@@ -39,10 +67,8 @@ else{
         $stmt->bindParam(':phone', $_POST["phone"]);
         $stmt->bindParam(':address', $_POST["address"]);
         $stmt->bindParam(':postcode', $_POST["postcode"]);
-        $stmt->bindParam(':cardno', $_POST["cardno"]);
         $stmt->bindParam(':cardname', $_POST["cardname"]);
         $stmt->bindParam(':cardexpiry', $_POST["cardexpiry"]);
-        $stmt->bindParam(':cardcvc', $_POST["cardcvc"]);
         $stmt->bindParam(':userID', $_SESSION["UserID"]);
         $stmt->execute();
 
@@ -76,6 +102,27 @@ else{
                 header('Location: accountinfo.php');
             }
         }
+    
+    // updates the card number, if one has been entered
+        if (!empty($_POST['cardno'])){
+            $stmt = $conn->prepare("UPDATE tblUsers 
+            SET cardNo=:cardno
+            WHERE userID=:userID");
+            $stmt->bindParam(':cardno', password_hash($_POST["cardno"], PASSWORD_DEFAULT));
+            $stmt->bindParam(':userID', $_SESSION["UserID"]);
+            $stmt->execute();
+        }
+    // updates the cardCVC, if one has been entered
+        if (!empty($_POST['cardCVC'])){
+            $stmt = $conn->prepare("UPDATE tblUsers 
+            SET cardCVC=:cardcvc
+            WHERE userID=:userID");
+            $stmt->bindParam(':cardcvc', password_hash($_POST["cardCVC"], PASSWORD_DEFAULT));
+            $stmt->bindParam(':userID', $_SESSION["UserID"]);
+            $stmt->execute();
+        }
+    
+    
     $conn=null;
 
     header('Location: accountinfo.php');
