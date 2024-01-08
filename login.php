@@ -16,7 +16,7 @@
     <!-- top navbar -->
     <div class="navbar_top">
         <div class="container-fluid">
-            <a class="logo" class="button" href="/bookshop/homepage.php">Bella's<br>Books</a>
+            <a class="logo" class="button" href="homepage.php">Bella's<br>Books</a>
         </div>
     </div>
 

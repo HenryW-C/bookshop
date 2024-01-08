@@ -21,7 +21,7 @@ if($results){
             // if password is correct, user is sent to homepage or the page they were on
             if(password_verify($attempt,$hashed)){
                 if (!isset($_SESSION['backURL'])){
-                    $backURL= "/bookshop/homepage.php";
+                    $backURL= "homepage.php";
                 }else{
                     $backURL=$_SESSION['backURL'];
                 }

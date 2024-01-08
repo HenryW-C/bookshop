@@ -33,7 +33,7 @@ if (!isset($_SESSION['Email'])) {
     <div class="navbar_top">
         <div class="container-fluid">
             <!-- logo and link to homepage -->
-            <a class="logo" type="button" href="/bookshop/homepage.php">Bella's<br>Books</a>
+            <a class="logo" type="button" href="homepage.php">Bella's<br>Books</a>
 
             <!-- search bar including dropdown box and search button -->
             <?php
@@ -44,8 +44,8 @@ if (!isset($_SESSION['Email'])) {
             <span>
                 <div class="float-end">
                     <div  class="btn-group" role="group">
-                        <a type="button" href="/bookshop/basket.php" class="btn btn-primary">Basket</a>
-                        <a type="button" href="/bookshop/logout.php" class="btn btn-primary">Logout</a>
+                        <a type="button" href="basket.php" class="btn btn-primary">Basket</a>
+                        <a type="button" href="logout.php" class="btn btn-primary">Logout</a>
                     </div> 
                 </div> 
             </span>
@@ -57,10 +57,10 @@ if (!isset($_SESSION['Email'])) {
         <div class="container-fluid mt-5"> 
             <div class="row d-flex justify-content-between">
                 <div class="col-md-8">
-                    <a type="button" href="/bookshop/accountinfo.php" class="btn btn-primary top-btn">Account Information</a>
+                    <a type="button" href="accountinfo.php" class="btn btn-primary top-btn">Account Information</a>
                 </div>
                 <div class="col-md-4">
-                    <a type="button" href="/bookshop/newadmin.php" class="btn btn-primary top-btn">New Admin</a>
+                    <a type="button" href="newadmin.php" class="btn btn-primary top-btn">New Admin</a>
                 </div>
             </div>
             <div class="row">
@@ -93,7 +93,7 @@ if (!isset($_SESSION['Email'])) {
                             } while ($tableData = $stmt->fetch(PDO::FETCH_ASSOC));
                         ?>
                     </div>
-                    <a type="button" href="/bookshop/categories.php" class="btn btn-primary btn-list messageBtn">Manage Categories</a>
+                    <a type="button" href="categories.php" class="btn btn-primary btn-list messageBtn">Manage Categories</a>
                 </div>
             </div>
         </div>

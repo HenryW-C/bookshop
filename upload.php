@@ -22,7 +22,7 @@ if (isset($_FILES["fileToUpload"]) && $_FILES["fileToUpload"]["error"] === 0) {
   // if an image was uploaded, specifies the filename for the image
   $filename = ($conn->lastInsertId());
 
-  $target_dir = "/Applications/XAMPP/htdocs/bookshop/images/";
+  $target_dir = "images/";
   $target_file = $target_dir . $filename . "." . strtolower(pathinfo($_FILES["fileToUpload"]["name"], PATHINFO_EXTENSION));
   $uploadOk = 1;
   $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));

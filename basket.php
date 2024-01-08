@@ -31,7 +31,7 @@ if (!isset($_SESSION['Email'])) {
         <div class="container-fluid">
 
             <!-- logo and link to homepage -->
-            <a class="logo" type="button" href="/bookshop/homepage.php">Bella's<br>Books</a>
+            <a class="logo" type="button" href="homepage.php">Bella's<br>Books</a>
 
             <!-- search bar including dropdown box and search button -->
             <?php
@@ -46,13 +46,13 @@ if (!isset($_SESSION['Email'])) {
                         <?php
                         switch ($_SESSION['UserType']) { 
                         case(1): ?>
-                        <a type="button" href="/bookshop/admin_account.php" class="btn btn-primary">My Account</a>
-                        <a type="button" href="/bookshop/logout.php" class="btn btn-primary">Logout</a>
+                        <a type="button" href="admin_account.php" class="btn btn-primary">My Account</a>
+                        <a type="button" href="logout.php" class="btn btn-primary">Logout</a>
                         <?php break; ?>
 
                         <?php case(0): ?>
-                        <a type="button" href="/bookshop/customer_account.php" class="btn btn-primary">My Account</a>
-                        <a type="button" href="/bookshop/logout.php" class="btn btn-primary">Logout</a>
+                        <a type="button" href="customer_account.php" class="btn btn-primary">My Account</a>
+                        <a type="button" href="logout.php" class="btn btn-primary">Logout</a>
                         <?php } ?>
                     </div> 
                 </div> 
