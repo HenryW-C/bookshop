@@ -19,7 +19,7 @@ $name = $row['forename'];
 
 // creates an entry in the order table
 $stmt = $conn->prepare("INSERT INTO 
-    TblOrders (orderID,totalPrice,orderDate,userID)
+    tblOrders (orderID,totalPrice,orderDate,userID)
     VALUES (null,:price,:date,:userID)");
 
     $stmt->bindParam(':price', $_SESSION['totalPrice']);
@@ -40,7 +40,7 @@ while ($row2 = $stmt->fetch(PDO::FETCH_ASSOC))
 {
     // creates an entry in the message table
     $stmt3 = $conn->prepare("INSERT INTO 
-    TblMessages (messageID,senderUserID,recieveUserID,sendDate,content)
+    tblMessages (messageID,senderUserID,recieveUserID,sendDate,content)
     VALUES (null,:buyerID,:sellerID,:sendDate,:content)");
 
         $stmt3->bindParam(':buyerID', $_SESSION["UserID"]);
