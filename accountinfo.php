@@ -73,7 +73,7 @@ if (!isset($_SESSION['Email'])) {
                     } 
 
                     // fetches user details to pre-fill form
-                    $stmt = $conn->prepare("SELECT * FROM tblusers WHERE userID=:userID");
+                    $stmt = $conn->prepare("SELECT * FROM tblUsers WHERE userID=:userID");
                     $stmt->bindParam(':userID', $_SESSION['UserID']);
                     $stmt->execute();
                     $results = $stmt->fetchAll();

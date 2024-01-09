@@ -6,7 +6,7 @@ include_once ("connection.php");
 array_map("htmlspecialchars", $_POST);
 
 // selects all columns from the user's row
-$stmt = $conn->prepare("SELECT * FROM tblusers WHERE email =:email ;" );
+$stmt = $conn->prepare("SELECT * FROM tblUsers WHERE email =:email ;" );
 $stmt->bindParam(':email', $_POST['Email']);
 $stmt->execute();
 $results = $stmt->fetchAll();

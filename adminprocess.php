@@ -6,7 +6,7 @@ array_map("htmlspecialchars", $_POST);
 include_once("connection.php");
 
 $email=$_POST["email"];
-$stmt = $conn->prepare("SELECT email FROM tblusers WHERE email = :email;");
+$stmt = $conn->prepare("SELECT email FROM tblUsers WHERE email = :email;");
 $stmt->bindparam('email',$email);
 $stmt->execute();
 
