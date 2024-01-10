@@ -3,7 +3,7 @@ include_once("connection.php");
 session_start(); 
 
 // sets a date varaible
-date_default_timezone_set('UTC');
+date_default_timezone_set('Europe/London');
 $date = date("Y-m-d H:i:s");
 
 // fetches the address of the seller

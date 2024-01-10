@@ -9,6 +9,7 @@ try{
 
     // sets the backURl and date
     $backURL = $_SESSION['backURL'];
+    date_default_timezone_set('Europe/London');
     $date = date("Y-m-d H:i:s");
 
     // adds the message to the database
