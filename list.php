@@ -117,7 +117,18 @@ if (isset($_GET['selectedCategory']) && isset($_GET['searchQuery'])) {
                 <div class="custom-column" style="height: 72vh;">
                     <textarea type="text" name="description" placeholder="Type description here..." style="border: none; height: 100%; text-align: left" required></textarea>
                 </div>
-                <input type="text" style="margin-top: 2vh;" class="list-features" name="price" placeholder="Type price here..." required>
+                <!-- ensures that price entered can only be numbers and a '.' -->
+                <script>
+                    function isNumberKey(evt) {
+                        var charCode = (evt.which) ? evt.which : event.keyCode
+                        if (charCode != 46 && charCode > 31 &&
+                            (charCode < 48 || charCode > 57))
+                            return false;
+                        return true;
+                    }
+                </script>
+                <!-- runs function on input -->
+                <input type="text" style="margin-top: 2vh;" class="list-features" name="price" placeholder="Type price here..." onkeypress="return isNumberKey(event)" required>
             </div>
 
             <!-- third column with the category selection then the submit button -->
