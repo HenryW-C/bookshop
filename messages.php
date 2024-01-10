@@ -68,7 +68,18 @@
                 <textarea type="text" name="message" placeholder="Type message here..." style="border: none; height: 100%; width: 100%; text-align: left" required></textarea>
             </div>
             <div class="modal-footer">
-                <input type="text" class="userInput" name="recipient" placeholder="To user..." required>
+                <!-- script ensures that only IDs can be entered -->
+                <script>
+                    function isID(event) {
+                        var pressedKey = event.key;
+                        var currentValue = event.target.value;
+                        var futureValue = currentValue + pressedKey;
+                        if (/^\d{0,6}$/.test(futureValue))
+                            return true;
+                        return false;
+                    }
+                </script>
+                <input type="string" class="userInput" name="recipient" placeholder="To user..." onkeypress="return isID(event)" required>
                 <button type="submit" class="submit">Send</button>
             </div>
         </div>
