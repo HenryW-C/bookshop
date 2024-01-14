@@ -55,6 +55,7 @@
 /* navbar logo */
 .navbar_top .logo {
   font-family: 'Roboto Slab';
+  line-height: 97%;
   color: #000000;
   text-align: center;
   text-decoration: none;
@@ -339,6 +340,12 @@
   height: 630px;
   display: flex;
   flex-direction: column;
+  overflow: auto;
+}
+
+/* featured boxes on homepage */
+.featured .custom-column {
+  overflow: hidden;
 }
 
 /* custom columns - basket */

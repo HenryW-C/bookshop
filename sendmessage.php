@@ -14,7 +14,7 @@ try{
 
     // adds the message to the database
     $stmt = $conn->prepare("INSERT INTO 
-    TblMessages (messageID,senderUserID,recieveUserID,sendDate,content)
+    tblMessages (messageID,senderUserID,recieveUserID,sendDate,content)
     VALUES (null,:sendUserID,:recieveUserID,:sendDate,:content)");
 
     $stmt->bindParam(':sendUserID', $_SESSION["UserID"]);

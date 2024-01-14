@@ -3,10 +3,8 @@ session_start();
 array_map("htmlspecialchars", $_POST);
 include_once("connection.php");
 
-header('Location: homepage.php');
-
 $stmt = $conn->prepare("INSERT INTO 
-  TblBooks (bookID, name, author, subject, level, description, image, price, sold, sellerID, buyerID, orderID)
+  tblBooks (bookID, name, author, subject, level, description, image, price, sold, sellerID, buyerID, orderID)
   VALUES (null, :name, :author, :subject, :level, :description, null, :price, 0, :userID, null, null)");
 
   $stmt->bindParam(':name', $_POST["title"]);
@@ -57,4 +55,5 @@ if (isset($_FILES["fileToUpload"]) && $_FILES["fileToUpload"]["error"] === 0) {
   $stmt->execute();
   $conn=null;
 }
+header('Location: homepage.php');
 ?>

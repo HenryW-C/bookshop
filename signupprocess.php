@@ -7,7 +7,7 @@ include_once("connection.php");
 
 $email=$_POST["email"];
 $stmt = $conn->prepare("SELECT email FROM tblUsers WHERE email = :email;");
-$stmt->bindparam('email',$email);
+$stmt->bindparam(':email',$email);
 $stmt->execute();
 
 // if the email entered is already in the database
@@ -50,7 +50,7 @@ else if(!preg_match("/^(0[1-9]|1[0-2])\/?([0-9]{4}|[0-9]{2})$/",$_POST["cardexpi
 // if the email is not already registered, the user is added to the database
 else{
     $stmt = $conn->prepare("INSERT INTO 
-    TblUsers (userID,userType,email,password,forename,surname,telephone,addressLine,postcode,cardNo,cardName,cardExpiry,cardCVC)
+    tblUsers (userID,userType,email,password,forename,surname,telephone,addressLine,postcode,cardNo,cardName,cardExpiry,cardCVC)
     VALUES (null,0,:email,:password,:forename,:surname,:phone,:address,:postcode,:cardno,:cardname,:cardexpiry,:cardcvc)");
 
     $hashed_password = password_hash($_POST["passwd"], PASSWORD_DEFAULT);

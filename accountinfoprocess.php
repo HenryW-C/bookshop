@@ -7,7 +7,7 @@ include_once("connection.php");
 
 $email=$_POST["email"];
 $stmt = $conn->prepare("SELECT email FROM tblUsers WHERE email = :email AND userID != :userID;");
-$stmt->bindparam('email',$email);
+$stmt->bindparam(':email',$email);
 $stmt->bindparam(':userID',$_SESSION['UserID']);
 $stmt->execute();
 $result = $stmt->fetch(PDO::FETCH_ASSOC);
