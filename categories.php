@@ -76,6 +76,7 @@ if (!isset($_SESSION['Email'])) {
                                 if ($categoryFull == 1) {
                                     // if there are categories, they are displayed
                                     echo ('<h2>Categories:</h2>');
+                                    echo ('<p>WARNING: Do not delete categories if books are associated with them</p>');
                                     do {
                                         // row to fill the width of the page
                                         echo('<div class="custom-row" style="height:10vh">');
